@@ -26,7 +26,7 @@ CARS = [
         'engine': '2.0 Дизель',
         'transmission': 'Автомат',
         'city': 'Вінниця',
-        'image': 'https://upload.wikimedia.org/wikipedia/commons/7/76/2019_BMW_320d_M_Sport_automatic_2.0_Front.jpg',
+        'image': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/BMW_320d_F30_%286857485681%29.jpg/960px-BMW_320d_F30_%286857485681%29.jpg',
         'description': 'M-пакет, шкіряний салон, LED фари, навігація.',
     },
     {
@@ -39,7 +39,7 @@ CARS = [
         'engine': '1.5 Бензин',
         'transmission': 'Механіка',
         'city': 'Львів',
-        'image': 'https://upload.wikimedia.org/wikipedia/commons/4/43/VW_Golf_VIII_1X7A0561.jpg',
+        'image': 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/2020_Volkswagen_Golf_Style_1.5_Front.jpg/960px-2020_Volkswagen_Golf_Style_1.5_Front.jpg',
         'description': 'Як нова, гаражне зберігання, зимова гума в комплекті.',
     },
 ]

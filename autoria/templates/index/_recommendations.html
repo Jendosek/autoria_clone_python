@@ -1,0 +1,373 @@
+{% load static %}
+
+<section class="section-recs container">
+    <h2 class="section-title">AUTO.RIA рекомендує</h2>
+
+    <div class="recs-grid" id="recsGrid">
+        {% for car in cars %}
+        <div class="car-card" data-card>
+            <div class="car-card__visual">
+                <div class="car-card__image-wrap">
+                    <a href="{% url 'car_detail' car.id %}">
+                        <img src="{{ car.image }}" alt="{{ car.brand }} {{ car.model }}" class="car-card__image">
+                    </a>
+                    <button class="car-card__close" onclick="hideCard(this)" aria-label="Приховати">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2.5">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                    <button class="car-card__fav" onclick="toggleFav(this)" aria-label="Додати в обране">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                    <div class="car-card__badges">
+                        <span class="car-card__vin">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            Перевірений VIN
+                        </span>
+                        <span class="car-card__plate">
+                            <span class="car-card__plate-blue">
+                                <span class="car-card__plate-flag"></span>
+                                <span class="car-card__plate-ua">UA</span>
+                            </span>
+                            <span class="car-card__plate-number">{{ car.plate }}</span>
+                        </span>
+                    </div>
+                </div>
+                <a href="{% url 'car_detail' car.id %}" class="car-card__body">
+                    <h3 class="car-card__name">{{ car.brand }} {{ car.model }} {{ car.year }}</h3>
+                    <div class="car-card__price">
+                        <span class="car-card__price-usd">{{ car.price|floatformat:0 }} $</span>
+                        <span class="car-card__price-dot">•</span>
+                        <span class="car-card__price-uah">{{ car.price_uah|floatformat:0 }} грн</span>
+                    </div>
+                    <div class="car-card__specs">
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                            {{ car.mileage }} тис. км
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" font-weight="600">A</text></svg>
+                            {{ car.transmission }}
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="7"/><rect x="9" y="7" width="8" height="4" rx="1"/></svg>
+                            {{ car.engine }}
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                            {{ car.city }}
+                        </span>
+                    </div>
+                    <span class="car-card__posted">{{ car.posted }}</span>
+                </a>
+            </div>
+            <div class="car-card__hidden" style="display:none">
+                <div class="car-card__hidden-inner">
+                    <div class="car-card__hidden-header">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="2" width="20" height="20" rx="4" fill="#1a8a1a"/>
+                            <polyline points="7 12 10 15 17 8" fill="none" stroke="#fff" stroke-width="2.5"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Приховано</span>
+                    </div>
+                    <p class="car-card__hidden-text">Дякуємо, в наступний раз ми підберемо для вас щось більш
+                        актуальне</p>
+                    <button class="car-card__hidden-btn" onclick="unhideCard(this)">Скасувати</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% for car in cars %}
+        <div class="car-card" data-card>
+            <div class="car-card__visual">
+                <div class="car-card__image-wrap">
+                    <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image }}"
+                                                                 alt="{{ car.brand }} {{ car.model }}"
+                                                                 class="car-card__image"></a>
+                    <button class="car-card__close" onclick="hideCard(this)" aria-label="Приховати">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2.5">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                    <button class="car-card__fav" onclick="toggleFav(this)" aria-label="Додати в обране">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                    <div class="car-card__badges"><span class="car-card__vin"><svg width="14" height="14"
+                                                                                   viewBox="0 0 24 24" fill="none"
+                                                                                   stroke="currentColor"
+                                                                                   stroke-width="2.5"><polyline
+                            points="20 6 9 17 4 12"/></svg> Перевірений VIN</span><span class="car-card__plate">
+                            <span class="car-card__plate-blue">
+                                <span class="car-card__plate-flag"></span>
+                                <span class="car-card__plate-ua">UA</span>
+                            </span>
+                            <span class="car-card__plate-number">{{ car.plate }}</span>
+                        </span></div>
+                </div>
+                <a href="{% url 'car_detail' car.id %}" class="car-card__body">
+                    <h3 class="car-card__name">{{ car.brand }} {{ car.model }} {{ car.year }}</h3>
+                    <div class="car-card__price"><span
+                            class="car-card__price-usd">{{ car.price|floatformat:0 }} $</span><span
+                            class="car-card__price-dot">  •  </span><span class="car-card__price-uah">{{ car.price_uah|floatformat:0 }} грн</span>
+                    </div>
+                    <div class="car-card__specs">
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                            {{ car.mileage }} тис. км
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" font-weight="600">A</text></svg>
+                            {{ car.transmission }}
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="7"/><rect x="9" y="7" width="8" height="4" rx="1"/></svg>
+                            {{ car.engine }}
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                            {{ car.city }}
+                        </span>
+                    </div>
+                    <span class="car-card__posted">{{ car.posted }}</span>
+                </a>
+            </div>
+            <div class="car-card__hidden" style="display:none">
+                <div class="car-card__hidden-inner">
+                    <div class="car-card__hidden-header">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="2" width="20" height="20" rx="4" fill="#1a8a1a"/>
+                            <polyline points="7 12 10 15 17 8" fill="none" stroke="#fff" stroke-width="2.5"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Приховано</span>
+                    </div>
+                    <p class="car-card__hidden-text">Дякуємо, в наступний раз ми підберемо для вас щось більш
+                        актуальне</p>
+                    <button class="car-card__hidden-btn" onclick="unhideCard(this)">Скасувати</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% for car in cars %}
+        <div class="car-card" data-card>
+            <div class="car-card__visual">
+                <div class="car-card__image-wrap">
+                    <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image }}"
+                                                                 alt="{{ car.brand }} {{ car.model }}"
+                                                                 class="car-card__image"></a>
+                    <button class="car-card__close" onclick="hideCard(this)" aria-label="Приховати">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2.5">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                    <button class="car-card__fav" onclick="toggleFav(this)" aria-label="Додати в обране">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </button>
+                    <div class="car-card__badges"><span class="car-card__vin"><svg width="14" height="14"
+                                                                                   viewBox="0 0 24 24" fill="none"
+                                                                                   stroke="currentColor"
+                                                                                   stroke-width="2.5"><polyline
+                            points="20 6 9 17 4 12"/></svg> Перевірений VIN</span><span class="car-card__plate">
+                            <span class="car-card__plate-blue">
+                                <span class="car-card__plate-flag"></span>
+                                <span class="car-card__plate-ua">UA</span>
+                            </span>
+                            <span class="car-card__plate-number">{{ car.plate }}</span>
+                        </span></div>
+                </div>
+                <a href="{% url 'car_detail' car.id %}" class="car-card__body">
+                    <h3 class="car-card__name">{{ car.brand }} {{ car.model }} {{ car.year }}</h3>
+                    <div class="car-card__price"><span
+                            class="car-card__price-usd">{{ car.price|floatformat:0 }} $</span><span
+                            class="car-card__price-dot">  •  </span><span class="car-card__price-uah">{{ car.price_uah|floatformat:0 }} грн</span>
+                    </div>
+                    <div class="car-card__specs">
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                            {{ car.mileage }} тис. км
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" font-weight="600">A</text></svg>
+                            {{ car.transmission }}
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="7"/><rect x="9" y="7" width="8" height="4" rx="1"/></svg>
+                            {{ car.engine }}
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                            {{ car.city }}
+                        </span>
+                    </div>
+                    <span class="car-card__posted">{{ car.posted }}</span>
+                </a>
+            </div>
+            <div class="car-card__hidden" style="display:none">
+                <div class="car-card__hidden-inner">
+                    <div class="car-card__hidden-header">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="2" width="20" height="20" rx="4" fill="#1a8a1a"/>
+                            <polyline points="7 12 10 15 17 8" fill="none" stroke="#fff" stroke-width="2.5"
+                                      stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Приховано</span>
+                    </div>
+                    <p class="car-card__hidden-text">Дякуємо, в наступний раз ми підберемо для вас щось більш
+                        актуальне</p>
+                    <button class="car-card__hidden-btn" onclick="unhideCard(this)">Скасувати</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% for car in cars %}
+        <div class="car-card" data-card>
+            <div class="car-card__visual">
+                <div class="car-card__image-wrap">
+                    <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image }}" alt="{{ car.brand }} {{ car.model }}" class="car-card__image"></a>
+                    <button class="car-card__close" onclick="hideCard(this)" aria-label="Приховати"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+                    <button class="car-card__fav" onclick="toggleFav(this)" aria-label="Додати в обране"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                    <div class="car-card__badges"><span class="car-card__vin"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Перевірений VIN</span><span class="car-card__plate">
+                            <span class="car-card__plate-blue">
+                                <span class="car-card__plate-flag"></span>
+                                <span class="car-card__plate-ua">UA</span>
+                            </span>
+                            <span class="car-card__plate-number">{{ car.plate }}</span>
+                        </span></div>
+                </div>
+                <a href="{% url 'car_detail' car.id %}" class="car-card__body">
+                    <h3 class="car-card__name">{{ car.brand }} {{ car.model }} {{ car.year }}</h3>
+                    <div class="car-card__price"><span class="car-card__price-usd">{{ car.price|floatformat:0 }} $</span><span class="car-card__price-dot">  •  </span><span class="car-card__price-uah">{{ car.price_uah|floatformat:0 }} грн</span></div>
+                    <div class="car-card__specs">
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                            {{ car.mileage }} тис. км
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" font-weight="600">A</text></svg>
+                            {{ car.transmission }}
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="7"/><rect x="9" y="7" width="8" height="4" rx="1"/></svg>
+                            {{ car.engine }}
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                            {{ car.city }}
+                        </span>
+                    </div>
+                    <span class="car-card__posted">{{ car.posted }}</span>
+                </a>
+            </div>
+            <div class="car-card__hidden" style="display:none"><div class="car-card__hidden-inner"><div class="car-card__hidden-header"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#1a8a1a"/><polyline points="7 12 10 15 17 8" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Приховано</span></div><p class="car-card__hidden-text">Дякуємо, в наступний раз ми підберемо для вас щось більш актуальне</p><button class="car-card__hidden-btn" onclick="unhideCard(this)">Скасувати</button></div></div>
+        </div>
+        {% endfor %}
+        {% for car in cars %}
+        <div class="car-card" data-card>
+            <div class="car-card__visual">
+                <div class="car-card__image-wrap">
+                    <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image }}" alt="{{ car.brand }} {{ car.model }}" class="car-card__image"></a>
+                    <button class="car-card__close" onclick="hideCard(this)" aria-label="Приховати"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+                    <button class="car-card__fav" onclick="toggleFav(this)" aria-label="Додати в обране"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                    <div class="car-card__badges"><span class="car-card__vin"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Перевірений VIN</span><span class="car-card__plate">
+                            <span class="car-card__plate-blue">
+                                <span class="car-card__plate-flag"></span>
+                                <span class="car-card__plate-ua">UA</span>
+                            </span>
+                            <span class="car-card__plate-number">{{ car.plate }}</span>
+                        </span></div>
+                </div>
+                <a href="{% url 'car_detail' car.id %}" class="car-card__body">
+                    <h3 class="car-card__name">{{ car.brand }} {{ car.model }} {{ car.year }}</h3>
+                    <div class="car-card__price"><span class="car-card__price-usd">{{ car.price|floatformat:0 }} $</span><span class="car-card__price-dot">  •  </span><span class="car-card__price-uah">{{ car.price_uah|floatformat:0 }} грн</span></div>
+                    <div class="car-card__specs">
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                            {{ car.mileage }} тис. км
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" font-weight="600">A</text></svg>
+                            {{ car.transmission }}
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="7"/><rect x="9" y="7" width="8" height="4" rx="1"/></svg>
+                            {{ car.engine }}
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                            {{ car.city }}
+                        </span>
+                    </div>
+                    <span class="car-card__posted">{{ car.posted }}</span>
+                </a>
+            </div>
+            <div class="car-card__hidden" style="display:none"><div class="car-card__hidden-inner"><div class="car-card__hidden-header"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#1a8a1a"/><polyline points="7 12 10 15 17 8" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Приховано</span></div><p class="car-card__hidden-text">Дякуємо, в наступний раз ми підберемо для вас щось більш актуальне</p><button class="car-card__hidden-btn" onclick="unhideCard(this)">Скасувати</button></div></div>
+        </div>
+        {% endfor %}
+        {% for car in cars %}
+        <div class="car-card" data-card>
+            <div class="car-card__visual">
+                <div class="car-card__image-wrap">
+                    <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image }}" alt="{{ car.brand }} {{ car.model }}" class="car-card__image"></a>
+                    <button class="car-card__close" onclick="hideCard(this)" aria-label="Приховати"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+                    <button class="car-card__fav" onclick="toggleFav(this)" aria-label="Додати в обране"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+                    <div class="car-card__badges"><span class="car-card__vin"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Перевірений VIN</span><span class="car-card__plate">
+                            <span class="car-card__plate-blue">
+                                <span class="car-card__plate-flag"></span>
+                                <span class="car-card__plate-ua">UA</span>
+                            </span>
+                            <span class="car-card__plate-number">{{ car.plate }}</span>
+                        </span></div>
+                </div>
+                <a href="{% url 'car_detail' car.id %}" class="car-card__body">
+                    <h3 class="car-card__name">{{ car.brand }} {{ car.model }} {{ car.year }}</h3>
+                    <div class="car-card__price"><span class="car-card__price-usd">{{ car.price|floatformat:0 }} $</span><span class="car-card__price-dot">  •  </span><span class="car-card__price-uah">{{ car.price_uah|floatformat:0 }} грн</span></div>
+                    <div class="car-card__specs">
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                            {{ car.mileage }} тис. км
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><text x="12" y="16" text-anchor="middle" fill="currentColor" stroke="none" font-size="11" font-weight="600">A</text></svg>
+                            {{ car.transmission }}
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="2"/><line x1="10" y1="3" x2="10" y2="7"/><rect x="9" y="7" width="8" height="4" rx="1"/></svg>
+                            {{ car.engine }}
+                        </span>
+                        <span class="car-card__spec">
+                            <svg class="spec-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                            {{ car.city }}
+                        </span>
+                    </div>
+                    <span class="car-card__posted">{{ car.posted }}</span>
+                </a>
+            </div>
+            <div class="car-card__hidden" style="display:none"><div class="car-card__hidden-inner"><div class="car-card__hidden-header"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" fill="#1a8a1a"/><polyline points="7 12 10 15 17 8" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Приховано</span></div><p class="car-card__hidden-text">Дякуємо, в наступний раз ми підберемо для вас щось більш актуальне</p><button class="car-card__hidden-btn" onclick="unhideCard(this)">Скасувати</button></div></div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="recs-more-wrap" id="recsMoreWrap">
+        <button class="recs-more-btn" onclick="showMore()">Показати ще</button>
+    </div>
+</section>
+
+<div class="toast" id="toast"></div>

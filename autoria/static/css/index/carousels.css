@@ -107,8 +107,9 @@
 }
 
 .video-card__name {
-    font-size: 13px;
-    color: #2c2c2c;
+    font-size: 14px;
+    font-weight: 700;
+    color: #131313;
     text-align: center;
     max-width: 100px;
     white-space: nowrap;
@@ -158,5 +159,5 @@
 }
 .today-card__desc {
     font-size: 14px;
-    color: #888;
+    color: #222222;
 }

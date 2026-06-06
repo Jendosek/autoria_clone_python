@@ -202,7 +202,7 @@ def index(request):
 
 def car_detail(request, car_id):
     car = next((c for c in CARS if c['id'] == car_id), None)
-    return render(request, 'car_detail/car_detail.html', {'car': car})
+    return render(request, 'car_detail/car_detail.html', {'car': car, 'similar_cars': CARS})
 
 def login(request):
     return render(request, 'login/login.html')

@@ -71,7 +71,7 @@
 
 /* --- Оцінка --- */
 .history-rating {
-    border-top: 1px solid #eee;
+    /*border-top: 1px solid #eee;*/
     padding-top: 24px;
 }
 .history-rating__title {

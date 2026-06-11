@@ -2,7 +2,7 @@
    СТРІЛКИ КАРУСЕЛЕЙ (спільні)
    ================================================ */
 .carousel-nav {
-    width: 40px; height: 40px;
+    width: 48px; height: 48px;
     border-radius: 50%;
     border: 2px solid #2c2c2c;
     background: transparent;
@@ -24,8 +24,8 @@
    ВІДГУКИ
    ================================================ */
 .reviews {
-    padding: 32px 0;
-    border-top: 1px solid #eee;
+    padding: 0 16px;
+    /*border-top: 1px solid #eee;*/
 }
 .reviews__header {
     display: flex;
@@ -36,7 +36,7 @@
 .reviews__header .reviews__arrows,
 .news-detail__header .reviews__arrows {
     display: flex;
-    gap: 8px;
+    gap: 14px;
 }
 .reviews__title {
     font-size: 24px;
@@ -52,8 +52,9 @@
 /* --- Рейтинг зліва --- */
 .reviews-rating {
     flex: 0 0 420px;
-    border: 1px solid #e0e0e0;
+    /*border: 1px solid #e0e0e0;*/
     border-radius: 12px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
     padding: 20px;
     align-self: flex-start;
 }
@@ -64,7 +65,7 @@
     margin-bottom: 18px;
 }
 .reviews-rating__score {
-    width: 44px; height: 44px;
+    width: 54px; height: 54px;
     border-radius: 50%;
     background: #2c2c2c;
     display: flex;
@@ -149,14 +150,14 @@
 .review-card__name {
     font-size: 16px;
     font-weight: 700;
-    color: #2c2c2c;
+    color: #1f2024;
     margin-bottom: 6px;
 }
 .review-card:hover .review-card__name { text-decoration: underline; }
 
 .review-card__text {
-    font-size: 13px;
-    color: #555;
+    font-size: 14px;
+    color: #1f2024;
     line-height: 1.5;
     margin-bottom: 6px;
     display: -webkit-box;
@@ -174,7 +175,7 @@
    НОВИНИ НА AUTO.RIA
    ================================================ */
 .news-detail {
-    padding: 32px 0;
+    padding: 32px 16px;
 }
 .news-detail__header {
     display: flex;

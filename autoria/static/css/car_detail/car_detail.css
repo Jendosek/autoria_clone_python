@@ -20,6 +20,6 @@
 .detail-layout {
     display: grid;
     grid-template-columns: 1fr 380px;
-    gap: 28px;
-    padding-bottom: 40px;
+    gap: 22px;
+    /*padding-bottom: 40px;*/
 }

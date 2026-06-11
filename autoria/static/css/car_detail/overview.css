@@ -33,7 +33,7 @@
 .detail-info__price {
     font-size: 26px;
     font-weight: 700;
-    color: #1a8a1a;
+    color: #07b75f;
 }
 
 .detail-info__price-dot {
@@ -168,15 +168,16 @@
 .detail-copy {
     width: 30px;
     height: 30px;
-    border: 1px solid #ccc;
+    border: 1px solid #ffffff;
     border-radius: 6px;
     background: #fff;
-    color: #888;
+    /* color: #888; */
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background-color 0.2s;
+    /* font-weight: 600; */
 }
 
 .detail-copy:hover {
@@ -185,15 +186,16 @@
 
 .detail-tag {
     padding: 6px 14px;
-    border: 1px solid #ccc;
+    border: 2px solid #eeeeee;
     border-radius: 20px;
     font-size: 14px;
+    font-weight: 600;
     color: #2c2c2c;
 }
 
 /* --- Перевірка --- */
 .detail-verification {
-    border: 1px solid #e0e0e0;
+    border: 2px solid #2e2e2e;
     border-radius: 12px;
     padding: 24px;
 }

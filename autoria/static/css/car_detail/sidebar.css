@@ -35,7 +35,7 @@
 .sidebar-header__price-usd {
     font-size: 22px;
     font-weight: 700;
-    color: #1a8a1a;
+    color: #07b75f;
 }
 
 .sidebar-header__price-dot {
@@ -112,7 +112,7 @@
 
 /* --- Продавець --- */
 .sidebar-seller {
-    background: #e8f4f8;
+    background: #e8f4fD;
     border-radius: 12px;
     padding: 20px;
 }
@@ -181,7 +181,7 @@
     display: block;
     width: 100%;
     padding: 16px;
-    background: #30b232;
+    background: #07b75f;
     color: #fff;
     border: none;
     border-radius: 50px;

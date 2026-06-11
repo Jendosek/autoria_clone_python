@@ -13,7 +13,7 @@
         <div class="carousel__track">
             {% for car in cars %}
             <a href="{% url 'car_detail' car.id %}" class="search-card">
-                <div class="search-card__icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+                <div class="search-card__icon"><img src="{% static 'images/index/filter_logos/default_logo.png' %}" alt="" class="dropdown__brand-logo"></div>
                 <div class="search-card__info">
                     <span class="search-card__title">{{ car.brand }} {{ car.model }} {{ car.year }} - {{ car.year }} рр.</span>
                     <span class="search-card__sub">Вживані, Вся Україна, {{ car.engine }}, Авто в Україні</span>
@@ -22,7 +22,7 @@
             {% endfor %}
             {% for car in cars %}
             <a href="{% url 'car_detail' car.id %}" class="search-card">
-                <div class="search-card__icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+                <div class="search-card__icon"><img src="{% static 'images/index/filter_logos/default_logo.png' %}" alt="" class="dropdown__brand-logo"></div>
                 <div class="search-card__info">
                     <span class="search-card__title">{{ car.brand }} {{ car.model }} {{ car.year }} - {{ car.year }} рр.</span>
                     <span class="search-card__sub">Вживані, Вся Україна, {{ car.engine }}, Авто в ...</span>

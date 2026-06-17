@@ -161,7 +161,7 @@
     border: 1px solid #256799;
     border-radius: 4px;
     background: #fff;
-    font-size: 15px;
+    font-size: 16px;
     color: #256799;
     cursor: pointer;
 }
@@ -172,19 +172,19 @@
 
 .prof-save {
     display: block;
-    width: 300px;
+    width: 240px;
     max-width: 300px;
     padding: 12px;
-    background: #79be00;
+    background: #219be7;
     color: #fff;
     border: none;
     border-radius: 4px;
-    font-size: 18px;
+    font-size: 16px;
     /* font-weight: 600; */
     cursor: pointer;
     margin-top: 16px;
 }
 
 .prof-save:hover {
-    background: #77a820;
+    background: #2AABEE;
 }

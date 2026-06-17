@@ -1,0 +1,19 @@
+<div id="tab-favorites">
+    <h2 class="listings-title">Обране</h2>
+    <div class="listings-grid">
+        {% for car in cars %}
+        <div class="listing-card">
+            <img src="{{ car.image }}" alt="{{ car.brand }} {{ car.model }}" class="listing-card__img">
+            <div class="listing-card__info">
+                <a href="{% url 'car_detail' car.id %}" class="listing-card__name">{{ car.brand }} {{ car.model }} {{ car.year }}</a>
+                <span class="listing-card__price">{{ car.price|floatformat:0 }} $</span>
+                <span class="listing-card__meta">{{ car.engine }} &middot; {{ car.transmission }} &middot; {{ car.mileage }} тис. км</span>
+                <span class="listing-card__city">{{ car.city }}</span>
+            </div>
+            <button class="listing-card__remove" onclick="this.closest('.listing-card').remove()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+</div>

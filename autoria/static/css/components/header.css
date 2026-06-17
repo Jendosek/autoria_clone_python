@@ -225,6 +225,7 @@
     font-size: 13px;
     color: #2c2c2c;
     text-decoration: none;
+    cursor: pointer;
 }
 .topbar__login:hover {
     text-decoration: underline;
@@ -273,12 +274,17 @@
     gap: 4px;
 }
 
+.topbar__login--text {
+    color: #333333;
+    cursor: default;
+}
+
 /* Зелена кнопка */
 .btn-sell-old {
     display: inline-flex;
     align-items: center;
     padding: 14px 32px;
-    background: #8bc34a;
+    background: #79be00;
     color: #fff;
     border-radius: 8px;
     font-size: 18px;
@@ -289,7 +295,7 @@
     flex-shrink: 0;
 }
 .btn-sell-old:hover {
-    background: #9ccc65;
+    background: #91cf47;
 }
 
 /* --- Банер --- */

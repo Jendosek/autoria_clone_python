@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Особистий кабінет — AutoRia{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/cabinet/cabinet.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cabinet/sidebar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cabinet/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cabinet/listings.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cabinet/favorites.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cabinet/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cabinet/settings.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login/apps.css' %}">
+{% endblock %}
+
+{% block header %}
+    {% include 'components/_header_login.html' with logged_in=True %}
+{% endblock %}
+
+{% block content %}
+<div class="cabinet-page">
+    <div class="container-narrow">
+        <h1 class="cabinet-title">Особистий кабінет</h1>
+        <div class="cabinet-layout">
+            {% include 'cabinet/_sidebar.html' %}
+            <div class="cabinet-content">
+                {% include 'cabinet/_dashboard.html' %}
+                {% include 'cabinet/_listings.html' %}
+                {% include 'cabinet/_favorites.html' %}
+                {% include 'cabinet/_profile.html' %}
+                {% include 'cabinet/_settings.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'login/_apps.html' %}
+{% endblock %}
+
+{% block footer %}
+    {% include 'components/_footer_login.html' %}
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/cabinet/sidebar.js' %}"></script>
+    <script src="{% static 'js/cabinet/dashboard.js' %}"></script>
+    <script src="{% static 'js/cabinet/listings.js' %}"></script>
+    <script src="{% static 'js/cabinet/settings.js' %}"></script>
+{% endblock %}

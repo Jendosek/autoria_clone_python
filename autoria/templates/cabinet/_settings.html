@@ -1,0 +1,44 @@
+<div id="tab-settings">
+    <!-- Рейтинг -->
+    <h2 class="sett-title">Рейтинг користувача {{ user.rating }}</h2>
+    <div class="sett-rating-card">
+        <div class="sett-rating-card__header">
+            <div class="sett-rating-card__avatar"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div><span class="sett-rating-card__role">Продавець</span><br><strong>{{ user.first_name }} {{ user.last_name }}</strong></div>
+        </div>
+        <div class="prof-rating-bar"><div class="prof-rating-bar__fill" style="width:{{ user.rating }}%"></div></div>
+        <span class="sett-rating-card__text">Ваш рейтинг користувача низький &middot; {{ user.rating }} з 100</span>
+    </div>
+    <div class="sett-tips">
+        <p>Рейтинг відображає вашу активність, відкритість і ступінь перевіреності. Доповніть інформацію про себе і підніміть свій рейтинг</p>
+        <div class="sett-tip sett-tip--done"><svg width="16" height="16" viewBox="0 0 24 24" fill="#4CAF50" stroke="none"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9" fill="none" stroke="#fff" stroke-width="2.5"/></svg> Ім'я вказано (+25)</div>
+        <div class="sett-tip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <a href="#">Завантажте своє фото</a> (+25)</div>
+        <div class="sett-tip"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> <a href="#">Додайте профіль facebook або google+</a> (+50)</div>
+    </div>
+    <button class="prof-save" onclick="switchTab(event,'profile')">Редагувати профіль</button>
+
+    <!-- Приватність -->
+    <h2 class="sett-title sett-title--mt">Налаштування приватності</h2>
+    <label class="sett-check"><input type="checkbox" checked><span>Дозволити покупцям зв'язуватись зі мною через чат</span></label>
+    <label class="sett-check"><input type="checkbox"><span>Отримувати розсилки про оновлення, акції, конкурси</span></label>
+
+    <!-- Персональні дані -->
+    <h2 class="sett-title sett-title--mt">Персональні дані</h2>
+    <a href="#" class="dash-btn-outline">Управління персональними даними</a>
+
+    <!-- Зміна паролю -->
+    <h2 class="sett-title sett-title--mt">Зміна паролю</h2>
+    <div class="sett-password">
+        <div class="sett-password__row"><span>Введіть поточний пароль:</span><input type="password" class="sett-password__input"></div>
+        <div class="sett-password__row"><span>Введіть новий пароль:</span><input type="password" class="sett-password__input"></div>
+        <div class="sett-password__row"><span>Повторіть новий пароль:</span><input type="password" class="sett-password__input"></div>
+        <button class="sett-password__save">Зберегти</button>
+    </div>
+
+    <!-- Видалення -->
+    <div class="sett-delete">
+        <h2 class="sett-title">Керування сторінкою</h2>
+        <p class="dash-text">Ви можете видалити свій обліковий запис. Відновити доступ до сторінки можна в будь-який момент.</p>
+        <button class="sett-delete__btn">Видалити</button>
+    </div>
+</div>

@@ -1,0 +1,160 @@
+{% load static %}
+
+<aside class="cab-sidebar">
+    <!-- Профіль -->
+    <div class="cab-profile">
+        <div class="cab-profile__header">
+            <div class="cab-profile__avatar">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="cab-profile__info">
+                <a href="#" class="cab-profile__name" onclick="switchTab(event,'profile')">{{ user.first_name }} {{ user.last_name }}</a>
+                <span class="cab-profile__meta">ID {{ user.id }} &middot; <a href="#" class="cab-profile__rating">{{ user.rating }} рейтинг</a></span>
+                <span class="cab-profile__phone">{{ user.phone }}</span>
+            </div>
+            <a href="#" class="cab-profile__edit" onclick="switchTab(event,'profile')">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b7bbf" stroke-width="2"><path d="M17 3a2.83 2.83 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+            </a>
+        </div>
+
+        <div class="cab-profile__balance">
+            <div>
+                <span class="cab-profile__balance-label">Особистий рахунок</span>
+                <span class="cab-profile__balance-value">{{ user.balance }} грн</span>
+            </div>
+            <button class="cab-profile__topup">Поповнити</button>
+        </div>
+
+        <a href="#" class="cab-profile__auth">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b7bbf" stroke-width="2"><rect x="5" y="11" width="14" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Авторизуватись через Дію
+        </a>
+        <a href="#" class="cab-profile__auth">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3b7bbf" stroke-width="2"><rect x="5" y="11" width="14" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            Авторизуватись через BankID
+        </a>
+    </div>
+
+    <!-- Додати оголошення -->
+    <a href="#" class="cab-add" onclick="switchTab(event,'listings')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8bc34a" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Додати оголошення
+    </a>
+
+    <!-- Навігація -->
+    <nav class="cab-nav">
+        <a href="#" class="cab-nav__item cab-nav__item--donate">
+            <span class="cab-nav__flag"></span>
+            <span>Збір на авто для ЗСУ</span>
+        </a>
+        <a href="#" class="cab-nav__item cab-nav__item--active" onclick="switchTab(event,'dashboard')" data-tab="dashboard">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Особистий кабінет</span>
+        </a>
+        <a href="#" class="cab-nav__item" onclick="switchTab(event,'listings')" data-tab="listings">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="7" y1="8" x2="17" y2="8"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="7" y1="16" x2="13" y2="16"/></svg>
+            <span>Мої оголошення</span>
+        </a>
+        <a href="#" class="cab-nav__item" data-tab="garage">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>Мій Гараж</span>
+            <span class="cab-nav__new">NEW</span>
+        </a>
+
+        <!-- Розгортувані -->
+        <div class="cab-nav__expand" data-expand="checks">
+            <a href="#" class="cab-nav__item" onclick="toggleExpand(event,'checks')">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7l4 4 4-4"/><path d="M12 7l4 4 4-4"/><line x1="4" y1="15" x2="20" y2="15"/><line x1="4" y1="19" x2="20" y2="19"/></svg>
+                <span>Мої перевірки авто</span>
+                <svg class="cab-nav__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="cab-nav__sub">
+                <a href="#">Замовити перевірку</a>
+                <a href="#">Все про перевірки</a>
+            </div>
+        </div>
+
+        <div class="cab-nav__expand" data-expand="notifications">
+            <a href="#" class="cab-nav__item" onclick="toggleExpand(event,'notifications')">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+                <span>Сповіщення</span>
+                <svg class="cab-nav__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="cab-nav__sub">
+                <a href="#">Акції</a>
+                <a href="#">Продаж</a>
+                <a href="#">Купівля</a>
+                <a href="#">Обране</a>
+                <a href="#">Інформаційні</a>
+                <a href="#">Налаштування сповіщень</a>
+            </div>
+        </div>
+
+        <div class="cab-nav__expand" data-expand="search">
+            <a href="#" class="cab-nav__item" onclick="toggleExpand(event,'search')">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <span>Пошук авто</span>
+                <svg class="cab-nav__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="cab-nav__sub">
+                <a href="#">Пошук вживаних авто</a>
+                <a href="#">Пошук нових авто</a>
+            </div>
+        </div>
+
+        <a href="#" class="cab-nav__item" onclick="switchTab(event,'favorites')" data-tab="favorites">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            <span>Обране</span>
+        </a>
+        <a href="#" class="cab-nav__item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>Мої підписки</span>
+        </a>
+        <a href="#" class="cab-nav__item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            <span>Чат</span>
+        </a>
+
+        <div class="cab-nav__expand" data-expand="billing">
+            <a href="#" class="cab-nav__item" onclick="toggleExpand(event,'billing')">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                <span>Мої рахунки і картки</span>
+                <svg class="cab-nav__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+            <div class="cab-nav__sub">
+                <a href="#">Поповнити Особистий рахунок</a>
+                <a href="#" class="cab-nav__sub-new">Платіжні картки <span class="cab-nav__new cab-nav__new--red">NEW</span></a>
+            </div>
+        </div>
+
+        <a href="#" class="cab-nav__item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+            <span>Розрахунок вартості авто</span>
+        </a>
+        <a href="#" class="cab-nav__item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Мої досягнення Інтернет-інспектора</span>
+        </a>
+        <a href="#" class="cab-nav__item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+            <span>Мої відгуки</span>
+        </a>
+        <a href="#" class="cab-nav__item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            <span>Мобільний додаток</span>
+        </a>
+
+        <div class="cab-nav__separator"></div>
+
+        <a href="#" class="cab-nav__item" onclick="switchTab(event,'settings')" data-tab="settings">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            <span>Налаштування</span>
+        </a>
+        <a href="{% url 'logout' %}" class="cab-nav__item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            <span>Вихід</span>
+        </a>
+
+        <div class="cab-nav__separator"></div>
+    </nav>
+</aside>

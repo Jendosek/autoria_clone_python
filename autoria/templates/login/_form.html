@@ -32,6 +32,8 @@
 
                 <p class="auth-divider">Або</p>
 
+                <form method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
                 <div class="auth-field">
                     <input type="text" class="auth-input" placeholder="Телефон або e-mail" id="loginEmail">
                     <svg class="auth-field__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
@@ -53,6 +55,7 @@
                 </div>
 
                 <button class="auth-submit" type="button">Увійти</button>
+                </form>
                 <a href="#" class="auth-link" onclick="switchToRegister(event)">Зареєструватися на AUTO.RIA</a>
             </div>
 

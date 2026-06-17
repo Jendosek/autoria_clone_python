@@ -1,0 +1,232 @@
+.listings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.listings-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2c2c2c;
+}
+
+.listings-filter-btn {
+    background: none;
+    border: none;
+    font-size: 15px;
+    color: #3b7bbf;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: underline;
+}
+
+.listings-filter-btn:hover {
+    text-decoration: none;
+}
+
+/* Фільтр */
+.listings-filter {
+    display: none;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+.listings-filter.is-open {
+    display: block;
+}
+
+.listings-filter__row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.listings-filter__label {
+    font-size: 14px;
+    color: #2c2c2c;
+    min-width: 140px;
+}
+
+.listings-filter__select {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    color: #2c2c2c;
+}
+
+.listings-filter__select--sm {
+    flex: 0 0 80px;
+}
+
+.listings-filter__input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.listings-filter__reset {
+    display: block;
+    font-size: 14px;
+    color: #3b7bbf;
+    text-decoration: underline;
+    margin-bottom: 12px;
+}
+
+.listings-filter__search {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #3b7bbf;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 16px;
+    color: #3b7bbf;
+    cursor: pointer;
+}
+
+.listings-filter__search:hover {
+    background: #f0f4f8;
+}
+
+/* Дії */
+.listings-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 16px;
+}
+
+.listings-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.listings-action-select {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.listings-action-btn {
+    padding: 10px 24px;
+    background: #3b7bbf;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.listings-action-btn:hover {
+    background: #2d6aa0;
+}
+
+/* Картки */
+.listings-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.listing-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    position: relative;
+}
+
+.listing-card__check {
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.listing-card__img {
+    width: 160px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+    background: #f0f0f0;
+}
+
+.listing-card__info {
+    flex: 1;
+}
+
+.listing-card__name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #3b7bbf;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.listing-card__name:hover {
+    text-decoration: underline;
+}
+
+.listing-card__price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a8a1a;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.listing-card__meta {
+    font-size: 13px;
+    color: #888;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.listing-card__date, .listing-card__city {
+    font-size: 13px;
+    color: #aaa;
+}
+
+.listing-card__remove {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Порожній стан */
+.listings-empty {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: #fff8e1;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.listings-empty a {
+    color: #3b7bbf;
+    font-weight: 700;
+    text-decoration: underline;
+}

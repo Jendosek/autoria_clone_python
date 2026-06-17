@@ -1,0 +1,91 @@
+{% load static %}
+
+<div id="tab-dashboard" class="is-active" xmlns="http://www.w3.org/1999/html">
+
+    <!-- Сповіщення -->
+    <div class="dash-section">
+        <div class="dash-section__header">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b7bbf" stroke-width="1.5"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+            <h2 class="dash-section__title">Сповіщення</h2>
+            <span class="dash-badge">+0</span>
+        </div>
+        <div class="dash-notification" id="dashNotification">
+            <div class="dash-notification__header" onclick="toggleNotification()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e89c0f" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span class="dash-notification__text">Дякуємо, що обрали AUTO.RIA!</span>
+                    <span class="dash-notification__date">11 черв 26</span>
+                <svg class="dash-notification__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="dash-notification__body">
+                <p>Ми допоможемо купити авто швидко та безпечно. Перегляньте рекомендації для вас</p>
+                <a href="#" class="dash-notification__btn">Переглянути</a>
+            </div>
+        </div>
+        <a href="#" class="dash-btn-outline">Переглянути усі сповіщення &rarr;</a>
+    </div>
+
+    <!-- Обране -->
+    <div class="dash-section">
+        <div class="dash-section__header">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b7bbf" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            <h2 class="dash-section__title">Обране</h2>
+        </div>
+        <p class="dash-text">Швидкий доступ до збережених авто</p>
+        <a href="#" class="dash-btn-outline" onclick="switchTab(event,'favorites')">Перейти до пошуку автомобілів</a>
+    </div>
+
+    <!-- AUTO.RIA про автомобілі -->
+    <div class="dash-section">
+        <div class="dash-section__header">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b7bbf" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <h2 class="dash-section__title">AUTO.RIA про автомобілі</h2>
+        </div>
+        <div class="dash-links">
+            <a href="#">Тест-драйви</a>
+            <a href="#">Відгуки про авто</a>
+            <a href="#">Порівняння авто</a>
+            <a href="#">Автомобільні новини</a>
+        </div>
+    </div>
+
+    <!-- Підписка -->
+    <div class="dash-section">
+        <div class="dash-section__header">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b7bbf" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+            <h2 class="dash-section__title">Підписка</h2>
+        </div>
+        <p class="dash-text">Створюйте підписки і отримуйте свіжі оголошення, автоновини і онлайн-журнал</p>
+        <a href="#" class="dash-btn-outline">Налаштувати підписку</a>
+    </div>
+
+    <!-- Для бізнесу -->
+    <div class="dash-section">
+        <div class="dash-section__header">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b7bbf" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+            <h2 class="dash-section__title">AUTO.RIA.com для Вашого бізнесу</h2>
+        </div>
+        <div class="dash-links">
+            <a href="#">Автосалони</a><a href="#">Автовикуп</a>
+            <a href="#">Мотосалони</a><a href="#">Автомийки</a>
+            <a href="#">Автодилери</a><a href="#">Автосервіси</a>
+            <a href="#">Авто на замовлення</a><a href="#">Магазини автозапчастин</a>
+        </div>
+    </div>
+
+    <!-- Оцінка -->
+    <div class="dash-section">
+        <p class="dash-text">Оцініть, чи зручно користуватись Особистим кабінетом?</p>
+        <div class="dash-stars" id="dashStars">
+            <div class="dash-star" data-value="1"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>1</span></div>
+            <div class="dash-star" data-value="2"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>2</span></div>
+            <div class="dash-star" data-value="3"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>3</span></div>
+            <div class="dash-star" data-value="4"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>4</span></div>
+            <div class="dash-star" data-value="5"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>5</span></div>
+            <div class="dash-star" data-value="6"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>6</span></div>
+            <div class="dash-star" data-value="7"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>7</span></div>
+            <div class="dash-star" data-value="8"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>8</span></div>
+            <div class="dash-star" data-value="9"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>9</span></div>
+            <div class="dash-star" data-value="10"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><span>10</span></div>
+        </div>
+    </div>
+</div>

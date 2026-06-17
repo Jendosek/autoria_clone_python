@@ -20,10 +20,17 @@
             <span class="topbar__icon" role="button">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
             </span>
-            <a href="{% url 'login' %}" class="topbar__login">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 10-16 0"/></svg>
-                <span>Увійти в кабінет</span>
-            </a>
+            {% if logged_in %}
+                <a href="{% url 'cabinet' %}" class="topbar__login">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 10-16 0"/></svg>
+                    <span>Особистий кабінет</span>
+                </a>
+            {% else %}
+                <span class="topbar__login topbar__login--text">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 10-16 0"/></svg>
+                    <span>Увійти в кабінет</span>
+                </span>
+            {% endif %}
         </div>
     </div>
 </div>

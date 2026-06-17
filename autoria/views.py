@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 
@@ -197,12 +197,58 @@ CARS = [
     },
 ]
 
+USER = {
+    'id': 17160024,
+    'first_name': 'Євгеній',
+    'last_name': 'Балакер',
+    'phone': '+38 (068) 817 07 71',
+    'email': '',
+    'patronymic': '',
+    'region': '',
+    'city': '',
+    'rating': 25,
+    'balance': 0,
+}
+
+
 def index(request):
-    return render(request, 'index/index.html', {'cars': CARS})
+    return render(request, 'index/index.html', {
+        'cars': CARS,
+        'is_logged_in': request.session.get('is_logged_in', False),
+    })
+
 
 def car_detail(request, car_id):
     car = next((c for c in CARS if c['id'] == car_id), None)
-    return render(request, 'car_detail/car_detail.html', {'car': car, 'similar_cars': CARS})
+    return render(request, 'car_detail/car_detail.html', {
+        'car': car,
+        'is_logged_in': request.session.get('is_logged_in', False),
+    })
 
-def login(request):
+
+def login_view(request):
+    if request.session.get('is_logged_in'):
+        return redirect('cabinet')
+    if request.method == 'POST':
+        request.session['is_logged_in'] = True
+        return redirect('cabinet')
     return render(request, 'login/login.html')
+
+
+def cabinet(request):
+    if not request.session.get('is_logged_in'):
+        return redirect('login')
+    return render(request, 'cabinet/cabinet.html', {
+        'user': USER,
+        'cars': CARS,
+    })
+
+
+def logout_view(request):
+    request.session.flush()
+    return redirect('index')
+
+def force_login(request):
+    request.session['is_logged_in'] = True
+    return redirect('cabinet')
+

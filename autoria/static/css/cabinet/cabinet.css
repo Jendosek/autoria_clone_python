@@ -1,0 +1,20 @@
+.cabinet-page {
+    background: #fff;
+    margin: -24px 0;
+    padding: 32px 0 48px;
+    border-top: 1px solid #f4f4f4;
+}
+.cabinet-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2c2c2c;
+    margin-bottom: 24px;
+}
+.cabinet-layout {
+    display: grid;
+    grid-template-columns: 310px 1fr;
+    gap: 20px;
+    align-items: flex-start;
+}
+.cabinet-content > div { display: none; }
+.cabinet-content > div.is-active { display: block; }

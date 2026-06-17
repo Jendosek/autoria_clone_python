@@ -1,0 +1,55 @@
+<div id="tab-listings">
+    <div class="listings-header">
+        <h2 class="listings-title">Мої оголошення</h2>
+        <button class="listings-filter-btn" onclick="toggleListingsFilter()">Фільтр <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    </div>
+
+    <!-- Фільтр -->
+    <div class="listings-filter" id="listingsFilter">
+        <div class="listings-filter__row"><span class="listings-filter__label">Тип транспорту</span><select class="listings-filter__select"><option>Виберіть</option></select></div>
+        <div class="listings-filter__row"><span class="listings-filter__label">Марка</span><select class="listings-filter__select"><option>Виберіть</option></select></div>
+        <div class="listings-filter__row"><span class="listings-filter__label">Модель</span><select class="listings-filter__select"><option>Виберіть</option></select></div>
+        <div class="listings-filter__row"><span class="listings-filter__label">Ціна</span><input type="text" class="listings-filter__input" placeholder="Від"><input type="text" class="listings-filter__input" placeholder="До"><select class="listings-filter__select listings-filter__select--sm"><option>$</option><option>грн</option></select></div>
+        <div class="listings-filter__row"><span class="listings-filter__label">Сортування</span><select class="listings-filter__select"><option>Звичайна</option></select></div>
+        <a href="#" class="listings-filter__reset">&#8592; скинути всі фільтри</a>
+        <button class="listings-filter__search">Пошук</button>
+    </div>
+
+    <!-- Дії -->
+    <div class="listings-actions">
+        <label class="listings-check"><input type="checkbox" id="selectAll" onchange="toggleSelectAll()"><span>Виділити всі</span></label>
+        <select class="listings-action-select" id="actionSelect">
+            <option>Виберіть дію</option>
+            <option>Підняти</option>
+            <option>Повторно опублікувати</option>
+            <option>Повідомити про продаж</option>
+            <option>Видалити в архів</option>
+        </select>
+        <button class="listings-action-btn">Застосувати</button>
+    </div>
+
+    <!-- Оголошення або порожній стан -->
+    <div id="listingsContent">
+        {% if cars %}
+        <div class="listings-grid">
+            {% for car in cars %}
+            <div class="listing-card" data-listing>
+                <label class="listing-card__check"><input type="checkbox" class="listing-checkbox"></label>
+                <img src="{{ car.image }}" alt="{{ car.brand }} {{ car.model }}" class="listing-card__img">
+                <div class="listing-card__info">
+                    <a href="{% url 'car_detail' car.id %}" class="listing-card__name">{{ car.brand }} {{ car.model }} {{ car.year }}</a>
+                    <span class="listing-card__price">{{ car.price|floatformat:0 }} $</span>
+                    <span class="listing-card__meta">{{ car.engine }} &middot; {{ car.transmission }} &middot; {{ car.mileage }} тис. км</span>
+                    <span class="listing-card__date">{{ car.posted }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="listings-empty">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e89c0f" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span>Зараз у Вас немає опублікованих оголошень. Ви можете <a href="#">додати нове</a></span>
+        </div>
+        {% endif %}
+    </div>
+</div>

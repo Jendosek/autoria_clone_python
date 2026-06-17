@@ -148,3 +148,174 @@
     border-radius: 50%;
     pointer-events: none;
 }
+
+/* ================================================
+   HEADER LOGIN (старий дизайн)
+   ================================================ */
+
+/* --- Верхня панель --- */
+.topbar {
+    background: #f0f2fa;
+    /*border-bottom: 1px solid #e8e8e8;*/
+}
+.topbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.topbar__nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.topbar__link {
+    font-size: 15px;
+    color: #2c2c2c;
+    text-decoration: none;
+}
+.topbar__link:hover {
+    text-decoration: underline;
+}
+
+/* Автомобілі — активний з червоною полоскою */
+.topbar__item {
+    font-size: 15px;
+    /*font-weight: 500;*/
+    color: #2c2c2c;
+    padding-top: 10px;
+    border-top: 3px solid #db5c4c;
+    margin-top: -10px;
+    cursor: default;
+}
+
+/* Прапор у верхній панелі */
+.topbar__flag {
+    width: 20px;
+    height: 14px;
+    flex-shrink: 0;
+    border-radius: 2px;
+    background: linear-gradient(to bottom, #005bbb 50%, #ffd500 50%);
+    display: inline-block;
+    vertical-align: middle;
+}
+.topbar__link--donate {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Права частина */
+.topbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.topbar__icon {
+    color: #888888;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.topbar__login {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #2c2c2c;
+    text-decoration: none;
+}
+.topbar__login:hover {
+    text-decoration: underline;
+}
+.topbar__login svg {
+    color: #888;
+}
+
+/* --- Основний хедер --- */
+.header-old {
+    background: #fff;
+    /*border-bottom: 1px solid #e8e8e8;*/
+    padding: 14px 0;
+}
+.header-old__inner {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+.header-old__logo {
+    flex-shrink: 0;
+}
+.header-old__logo img {
+    width: 160px;
+    height: 48px;
+}
+.header-old__nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex: 1;
+}
+.header-old__nav a {
+    font-size: 18px;
+    /*font-weight: 600;*/
+    color: #2c2c2c;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+.header-old__nav a:hover {
+    color: #c45a5a;
+}
+.header-old__dropdown {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Зелена кнопка */
+.btn-sell-old {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 32px;
+    background: #8bc34a;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+.btn-sell-old:hover {
+    background: #9ccc65;
+}
+
+/* --- Банер --- */
+.banner-old {
+    background: #fff;
+    /*padding: 12px 0;*/
+}
+.banner-old__inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+.banner-old__flag {
+    width: 20px;
+    height: 14px;
+    flex-shrink: 0;
+    border-radius: 2px;
+    background: linear-gradient(to bottom, #005bbb 50%, #ffd500 50%);
+}
+.banner-old__text {
+    font-size: 18px;
+    /*font-weight: 600;*/
+    color: #0069b4;
+    text-decoration: none;
+}
+.banner-old__text:hover {
+    text-decoration: underline;
+}

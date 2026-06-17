@@ -1,8 +1,55 @@
 {% load static %}
-<header class="header">
-    <div class="container header__inner">
-        <a href="{% url 'index' %}" class="logo">
-            <img src="{% static 'images/base/logo.svg' %}" alt="AutoRia" class="logo__img">
+
+<!-- Верхня панель -->
+<div class="topbar">
+    <div class="container-narrow topbar__inner">
+        <nav class="topbar__nav">
+            <a href="#" class="topbar__link">RIA.com</a>
+            <span class="topbar__item topbar__item--active">Автомобілі</span>
+            <a href="#" class="topbar__link">Нерухомість</a>
+            <a href="#" class="topbar__link">Автозапчастини</a>
+            <a href="#" class="topbar__link topbar__link--donate">
+                <span class="topbar__flag"></span>
+                Збір на авто для ЗСУ
+            </a>
+        </nav>
+        <div class="topbar__actions">
+            <span class="topbar__icon" role="button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </span>
+            <span class="topbar__icon" role="button">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+            </span>
+            <a href="{% url 'login' %}" class="topbar__login">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 10-16 0"/></svg>
+                <span>Увійти в кабінет</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Основний хедер -->
+<header class="header-old">
+    <div class="container-narrow header-old__inner">
+        <a href="{% url 'index' %}" class="header-old__logo">
+            <img src="{% static 'images/base/logo_header.png' %}" alt="AutoRia">
         </a>
+        <nav class="header-old__nav">
+            <a href="#">Вживані авто</a>
+            <a href="#">Нові авто</a>
+            <a href="#">Новини</a>
+            <a href="#" class="header-old__dropdown">Все для авто
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </a>
+        </nav>
+        <a href="#" class="btn-sell-old">+ Продати авто</a>
     </div>
 </header>
+
+<!-- Банер -->
+<div class="banner-old">
+    <div class="container-narrow banner-old__inner">
+        <span class="banner-old__flag"></span>
+        <a href="#" class="banner-old__text">Донатьте на авто для ЗСУ, AUTO.RIA подвоїть будь-яку суму</a>
+    </div>
+</div>

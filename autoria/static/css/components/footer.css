@@ -193,3 +193,208 @@
     color: #dfdfdf;
     padding-bottom: 24px;
 }
+
+/* ================================================
+   FOOTER LOGIN (старий дизайн)
+   ================================================ */
+.footer-old {
+    background: #fff;
+}
+
+.footer-old__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    padding: 30px 16px;
+}
+
+/* --- Секції з посиланнями --- */
+.footer-old__section {
+    margin-bottom: 20px;
+}
+.footer-old__heading {
+    font-size: 13px;
+    font-weight: 700;
+    color: #256799;
+    text-decoration: none;
+    display: block;
+    /*margin-bottom: 6px;*/
+}
+.footer-old__heading:hover {
+    text-decoration: underline;
+}
+.footer-old__heading--solo {
+    margin-bottom: 16px;
+}
+.footer-old__links {
+    /*line-height: 1.8;*/
+}
+.footer-old__links a {
+    font-size: 11px;
+    color: #256799;
+    text-decoration: none;
+}
+.footer-old__links a:hover {
+    text-decoration: underline;
+}
+.footer-old__dot {
+    color: #3b7bbf;
+    margin: 0 4px;
+    font-size: 14px;
+}
+
+/* --- Права колонка --- */
+.footer-old__col--right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Допомога */
+.footer-old__help {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.footer-old__photos {
+    position: relative;
+    width: 85px;
+    height: 85px;
+    flex-shrink: 0;
+}
+.footer-old__photo {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    object-fit: cover;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+}
+.footer-old__photo:nth-child(1) {
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+.footer-old__photo:nth-child(2) {
+    top: 18px;
+    right: -10px;
+    z-index: 2;
+}
+.footer-old__photo:nth-child(3) {
+    bottom: 0;
+    top: 40px;
+    left: 0;
+    z-index: 3;
+}
+.footer-old__help-link {
+    font-size: 13px;
+    font-weight: 700;
+    color: #256799;
+    text-decoration: none;
+    /*line-height: 1.4;*/
+}
+.footer-old__help-link:hover {
+    text-decoration: underline;
+}
+
+/* Соцмережі */
+.footer-old__socials {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+}
+.footer-old-social {
+    width: 54px;
+    height: 54px;
+    border: 1px solid #d0d8e0;
+    border-radius: 5px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+.footer-old-social:hover {
+    /*background: #e8f4f8;*/
+    border-color: #256799;
+}
+
+/* Написати нам */
+.footer-old__write {
+    display: block;
+    text-align: center;
+    padding: 6px;
+    border: 1px solid #256799;
+    border-radius: 3px;
+    font-size: 16px;
+    color: #256799;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    margin-top: -10px;
+}
+.footer-old__write:hover {
+    background: #e8f4f8;
+}
+
+/* Юридичні посилання */
+.footer-old__legal {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.footer-old__legal a {
+    font-size: 13px;
+    font-weight: 700;
+    color: #256799;
+    text-decoration: none;
+}
+.footer-old__legal a:hover {
+    text-decoration: underline;
+}
+
+/* --- Нижня панель --- */
+.footer-old__bottom {
+    border-top: 1px solid #e0e0e0;
+}
+.footer-old__bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+}
+.footer-old__bottom-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.footer-old__bottom-logo {
+    height: 32px;
+    width: auto;
+}
+.footer-old__copyright {
+    font-size: 13px;
+    color: #9b9b9b;
+}
+
+/* Мови */
+.footer-old__lang {
+    display: flex;
+    gap: 12px;
+}
+.footer-old__lang-item {
+    font-size: 13px;
+    text-decoration: none;
+    color: #256799;
+}
+.footer-old__lang-item:hover {
+    text-decoration: underline;
+}
+.footer-old__lang-item--active {
+    color: #2c2c2c;
+    /*font-weight: 600;*/
+    cursor: default;
+}
+.footer-old__lang-item--active:hover {
+    text-decoration: none;
+}

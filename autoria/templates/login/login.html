@@ -4,10 +4,24 @@
 {% block title %}Вхід — AutoRia{% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login/apps.css' %}">
+{% endblock %}
+
+{% block header %}
+    {% include 'components/_header_login.html' %}
 {% endblock %}
 
 {% block content %}
-    <h1>Вхід в кабінет</h1>
-    <p>Тут буде форма входу</p>
+    {% include 'login/_form.html' %}
+    {% include 'login/_apps.html' %}
+{% endblock %}
+
+{% block footer %}
+    {% include 'components/_footer_login.html' %}
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/login/form.js' %}"></script>
 {% endblock %}

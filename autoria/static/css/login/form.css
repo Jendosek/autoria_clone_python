@@ -1,0 +1,365 @@
+/* ================================================
+   ЗАГОЛОВОК
+   ================================================ */
+.auth-title {
+    font-size: 20px;
+    font-weight: 400;
+    color: #2c2c2c;
+    margin-bottom: 24px;
+}
+
+.auth-title--accent {
+    color: #db5c4c;
+    font-weight: 700;
+}
+
+/* ================================================
+   СОЦМЕРЕЖІ
+   ================================================ */
+.auth-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.auth-social {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 20px;
+    background: #fff;
+    border: 1px solid #256799;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #256799;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.auth-social:hover {
+    background: #e8f4f8;
+}
+
+.auth-social__icon {
+    flex-shrink: 0;
+}
+
+/* Дія */
+.auth-social__diya {
+    width: 24px;
+    height: 24px;
+    background: #000;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Неактивні (реєстрація) */
+.auth-socials--disabled .auth-social {
+    opacity: 0.5;
+    pointer-events: none;
+    border-color: #ddd;
+}
+
+.auth-socials--disabled.is-active .auth-social {
+    opacity: 1;
+    pointer-events: auto;
+    border-color: #c8dae8;
+}
+
+/* ================================================
+   РОЗДІЛЬНИК
+   ================================================ */
+.auth-divider {
+    text-align: center;
+    font-size: 16px;
+    /*font-weight: 700;*/
+    color: #2c2c2c;
+    margin-bottom: 20px;
+}
+
+/* ================================================
+   ПОЛЯ ВВОДУ
+   ================================================ */
+.auth-field {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 10px 48px 10px 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #2c2c2c;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.auth-input::placeholder {
+    color: #aaa;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-color: #5bc0de;
+    box-shadow: 0 0 0 3px rgba(91, 192, 222, 0.25);
+}
+
+.auth-field__icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.auth-field__toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: #aaa;
+    display: flex;
+}
+
+.auth-field__toggle:hover {
+    color: #555;
+}
+
+/* ================================================
+   ЧЕКБОКС + ЗАБУЛИ ПАРОЛЬ
+   ================================================ */
+.auth-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.auth-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.auth-check__input {
+    display: none;
+}
+
+.auth-check__box {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    flex-shrink: 0;
+    position: relative;
+    transition: background-color 0.15s, border-color 0.15s;
+    margin-top: 1px;
+}
+
+.auth-check__input:checked + .auth-check__box {
+    background: #3b7bbf;
+    border-color: #3b7bbf;
+}
+
+.auth-check__input:checked + .auth-check__box::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 6px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.auth-check__label {
+    font-size: 15px;
+    color: #2c2c2c;
+    line-height: 1.4;
+    font-size: 13px;
+}
+
+.auth-check__label a {
+    color: #3b7bbf;
+}
+
+.auth-check__label a:hover {
+    text-decoration: underline;
+}
+
+.auth-check--terms {
+    margin-bottom: 16px;
+}
+
+.auth-forgot {
+    font-size: 15px;
+    color: #256799;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.auth-forgot:hover {
+    text-decoration: underline;
+}
+
+/* ================================================
+   КНОПКА
+   ================================================ */
+.auth-submit {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    background: #79be00;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    /*font-weight: 600;*/
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 20px;
+}
+
+.auth-submit:hover {
+    background: #9ccc65;
+}
+
+.auth-submit--disabled {
+    background: #ccc;
+    cursor: default;
+    pointer-events: none;
+}
+
+.auth-submit--disabled.is-active {
+    background: #8bc34a;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.auth-submit--disabled.is-active:hover {
+    background: #9ccc65;
+}
+
+/* ================================================
+   ПОСИЛАННЯ
+   ================================================ */
+.auth-link {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    color: #256799;
+    text-decoration: none;
+    margin-bottom: 24px;
+}
+
+.auth-link:hover {
+    text-decoration: underline;
+}
+
+/* ================================================
+   ПРИВАТНІСТЬ
+   ================================================ */
+.auth-privacy {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.auth-privacy a {
+    color: #3b7bbf;
+    text-decoration: underline;
+}
+
+.auth-privacy a:hover {
+    text-decoration: none;
+}
+
+/* ================================================
+   ЛОГОТИПИ
+   ================================================ */
+.auth-logos-wrap {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 20px;
+    margin-bottom: 24px;
+}
+
+.auth-logos__text {
+    font-size: 13px;
+    color: #7a7a7a;
+    margin-bottom: 14px;
+    /*line-height: 1.5;*/
+}
+
+.auth-logos {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.auth-logos img {
+    height: 22px;
+    width: 72px;
+}
+
+/* ================================================
+   ПІДТРИМКА
+   ================================================ */
+.auth-support {
+    /*border-top: 1px solid #e0e0e0;*/
+    padding-top: 10px;
+}
+
+.auth-support__title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #2c2c2c;
+    margin-bottom: 4px;
+}
+
+.auth-support__link {
+    font-size: 13px;
+    color: #256799;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 14px;
+    font-weight: 600;
+}
+
+.auth-support__link:hover {
+    text-decoration: underline;
+}
+
+.auth-support__phones {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 15px;
+    color: #2c2c2c;
+    line-height: 1.6;
+}
+
+.auth-support__phones svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+ria-com-uno {
+    width: 29px;
+}

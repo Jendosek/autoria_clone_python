@@ -1,5 +1,139 @@
-<footer class="footer">
-    <div class="container">
-        <p>&copy; 2026 AutoRia Clone — Вхід</p>
+{% load static %}
+
+<footer class="footer-old">
+
+    <!-- ===== Основний контент ===== -->
+    <div class="container-narrow footer-old__inner">
+
+        <!-- Ліва колонка -->
+        <div class="footer-old__col">
+            <div class="footer-old__section">
+                <a href="#" class="footer-old__heading">Вживані авто</a>
+                <div class="footer-old__links">
+                    <a href="#">Автодилери</a><span class="footer-old__dot">&middot;</span>
+                    <a href="#">Електромобілі</a><span class="footer-old__dot">&middot;</span>
+                    <a href="#">Пригнані авто</a>
+                    <br><a href="#">Нерозмитнені авто</a><span class="footer-old__dot">&middot;</span>
+                    <a href="#">GARAGE AUTO.RIA</a>
+                </div>
+            </div>
+            <div class="footer-old__section">
+                <a href="#" class="footer-old__heading">Нові авто</a>
+                <div class="footer-old__links">
+                    <a href="#">Автосалони</a><span class="footer-old__dot">&middot;</span>
+                    <a href="#">Мотосалони</a><span class="footer-old__dot">&middot;</span>
+                    <a href="#">Спецтехніка</a>
+                    <br><a href="#">Нові Електромобілі</a><span class="footer-old__dot">&middot;</span>
+                    <a href="#">Автоцентр AUTO.RIA</a>
+                </div>
+            </div>
+            <div class="footer-old__section">
+                <a href="#" class="footer-old__heading">Сільгосптехніка</a>
+                <div class="footer-old__links">
+                    <a href="#">Нова</a><span class="footer-old__dot">&middot;</span>
+                    <a href="#">Вживані</a><span class="footer-old__dot">&middot;</span>
+                    <a href="#">Оренда</a><span class="footer-old__dot">&middot;</span>
+                    <a href="#">Послуги</a>
+                </div>
+            </div>
+            <div class="footer-old__section">
+                <a href="#" class="footer-old__heading">Всі послуги для авто</a>
+                <div class="footer-old__links"><a href="#">СТО</a></div>
+            </div>
+            <div class="footer-old__section">
+                <a href="#" class="footer-old__heading">Сервіси</a>
+                <div class="footer-old__links">
+                    <a href="#">Калькулятор розмитнення</a><span class="footer-old__dot">&middot;</span>
+                    <a href="#">Порівняння авто</a>
+                    <br><a href="#">Ціни на пальне</a><span class="footer-old__dot">&middot;</span>
+                    <a href="#">Автотерміни</a><span class="footer-old__dot">&middot;</span>
+                    <a href="#">Фінансування авто</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Середня колонка -->
+        <div class="footer-old__col">
+            <div class="footer-old__section">
+                <a href="#" class="footer-old__heading">Новини</a>
+                <div class="footer-old__links">
+                    <a href="#">Тест-драйви</a><span class="footer-old__dot">&middot;</span>
+                    <a href="#">Електромобілі</a><span class="footer-old__dot">&middot;</span>
+                    <a href="#">Розмитнення</a>
+                    <br><a href="#">Онлайн-журнал</a><span class="footer-old__dot">&middot;</span>
+                    <a href="#">Як підготувати авто до зими</a>
+                </div>
+            </div>
+            <a href="#" class="footer-old__heading footer-old__heading--solo">Відгуки про авто</a>
+            <a href="#" class="footer-old__heading footer-old__heading--solo">Авто Лідер</a>
+            <a href="#" class="footer-old__heading footer-old__heading--solo">RIA.com для бізнесу</a>
+            <a href="#" class="footer-old__heading footer-old__heading--solo">RIA.com Marketplaces</a>
+            <a href="#" class="footer-old__heading footer-old__heading--solo">API для розробників</a>
+            <a href="#" class="footer-old__heading footer-old__heading--solo">Вікіпедія про AUTO.RIA</a>
+            <a href="#" class="footer-old__heading footer-old__heading--solo">Банк ідей</a>
+            <a href="#" class="footer-old__heading footer-old__heading--solo">Мапа сайту</a>
+            <a href="#" class="footer-old__heading footer-old__heading--solo">Партнерська ініціатива - Біле світло</a>
+        </div>
+
+        <!-- Права колонка -->
+        <div class="footer-old__col footer-old__col--right">
+
+            <!-- Допомога -->
+            <div class="footer-old__help">
+                <div class="footer-old__photos">
+                    <img src="{% static 'images/base/support_1.png' %}" alt="" class="footer-old__photo">
+                    <img src="{% static 'images/base/support_2.png' %}" alt="" class="footer-old__photo">
+                    <img src="{% static 'images/base/support_3.png' %}" alt="" class="footer-old__photo">
+                </div>
+                <a href="#" class="footer-old__help-link">Допомога по сайту<br>AUTO.RIA.com &rarr;</a>
+            </div>
+
+            <!-- Соцмережі -->
+            <div class="footer-old__socials">
+                <a href="#" class="footer-old-social" aria-label="Telegram">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#2AABEE"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+                </a>
+                <a href="#" class="footer-old-social" aria-label="Messenger">
+                    <svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.2 5.42 3.15 7.2V22l3.03-1.66c.85.24 1.75.36 2.82.36 5.64 0 10-3.93 10-9.3S17.64 2 12 2z" fill="#0084FF"/><path d="M13.05 14.53l-2.55-2.72L5.6 14.53l5.37-5.7 2.55 2.72 4.87-2.72-5.34 5.7z" fill="#fff"/></svg>
+                </a>
+                <a href="#" class="footer-old-social" aria-label="Viber">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#7360F2"><path d="M16.4 3.03C14.95 2.5 13.22 2.2 12 2.2s-2.95.3-4.4.83C5.83 3.73 4.5 5 3.8 6.87 3.2 8.5 3 10.3 3 12s.2 3.5.8 5.13c.7 1.87 2.03 3.14 3.8 3.84L8.4 22l2.5-1.5c.37.03.73.05 1.1.05s.73-.02 1.1-.05L15.6 22l.8-1.03c1.77-.7 3.1-1.97 3.8-3.84.6-1.63.8-3.43.8-5.13s-.2-3.5-.8-5.13c-.7-1.87-2.03-3.14-3.8-3.84zM16 14.5c-.3.8-.9 1.3-1.6 1.5-.4.1-.9.1-1.4 0-1.5-.4-2.8-1.2-3.8-2.3-1-1.1-1.6-2.4-1.8-3.8-.1-.5 0-1 .2-1.4.3-.6.8-1 1.4-1.2.3-.1.6 0 .8.2l.8 1c.2.3.2.6 0 .9l-.4.6c-.1.2-.1.4 0 .5.4.8 1 1.4 1.7 1.8.2.1.4.1.5 0l.6-.5c.3-.2.6-.2.9 0l1 .7c.3.2.3.5.2.8l-.1.1z"/></svg>
+                </a>
+                <a href="#" class="footer-old-social" aria-label="Email">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3b7bbf" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+                <a href="#" class="footer-old-social" aria-label="Телефон">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#4CAF50"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.21 2.2z"/></svg>
+                </a>
+            </div>
+
+            <!-- Написати нам -->
+            <a href="#" class="footer-old__write">Написати нам</a>
+
+            <!-- Юридичні посилання -->
+            <div class="footer-old__legal">
+                <a href="#">Безпечні угоди</a>
+                <a href="#">Угода про надання послуг</a>
+                <a href="#">Допомога по сайту AUTO.RIA.com</a>
+                <a href="#">Політика приватності</a>
+                <a href="#">Вакансії AUTO.RIA</a>
+            </div>
+        </div>
+
     </div>
+
+    <!-- ===== Нижня панель ===== -->
+    <div class="footer-old__bottom">
+        <div class="container-narrow footer-old__bottom-inner">
+            <div class="footer-old__bottom-left">
+                <img src="{% static 'images/base/old_footer_logo.svg' %}" alt="RIA.com" class="footer-old__bottom-logo">
+                <span class="footer-old__copyright">&copy; 2014-2026 RIA.com</span>
+            </div>
+            <div class="footer-old__lang">
+                <span class="footer-old__lang-item footer-old__lang-item--active">Укр</span>
+                <a href="#" class="footer-old__lang-item">Рус</a>
+            </div>
+        </div>
+    </div>
+
 </footer>

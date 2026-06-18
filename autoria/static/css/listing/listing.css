@@ -1,0 +1,186 @@
+.listing-page {
+    background: #fff;
+    margin: -20px 0;
+    padding: 0 0 48px;
+    border-top: 1px solid #e8e8e8;
+}
+
+/* Юзер */
+.listing-user {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 24px 0;
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 28px;
+}
+
+.listing-user__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e8e8e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.listing-user__name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #2c2c2c;
+    display: block;
+}
+
+.listing-user__meta {
+    font-size: 13px;
+    color: #414042;
+    display: block;
+    margin-top: 2px;
+}
+
+.listing-user__switch {
+    font-size: 13px;
+    color: #256799;
+    text-decoration: none;
+    display: block;
+    margin-top: 4px;
+}
+
+.listing-user__switch:hover {
+    text-decoration: underline;
+}
+
+/* Заголовок */
+.listing-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2c2c2c;
+    margin-bottom: 20px;
+}
+
+/* Кроки */
+.listing-steps {
+    display: flex;
+    margin-bottom: 4px;
+    /*border-radius: 8px;*/
+    overflow: hidden;
+}
+
+.listing-step {
+    flex: 1;
+    padding: 8px 34px;
+    background: #e6e6e6;
+}
+
+.listing-step--active {
+    background: #e06050;
+    color: #fff;
+    position: relative;
+}
+
+.listing-step--active::after {
+    content: '';
+    position: absolute;
+    right: -20px;
+    top: 0;
+    border-left: 20px solid #e06050;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    z-index: 1;
+}
+
+.listing-step__name {
+    font-size: 20px;
+    /*font-weight: 700;*/
+    display: block;
+}
+
+.listing-step--active .listing-step__name {
+    color: #fff;
+}
+
+.listing-step__desc {
+    font-size: 13px;
+    display: block;
+    margin-top: 2px;
+}
+
+.listing-step--active .listing-step__desc {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.listing-step:not(.listing-step--active) .listing-step__name {
+    color: #414042;
+}
+
+.listing-step:not(.listing-step--active) .listing-step__desc {
+    color: #888;
+}
+
+/* Секція (згортувана) */
+.listing-section {
+    border-bottom: 1px solid #e8e8e8;
+    padding: 24px 0;
+}
+
+.listing-section__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    cursor: pointer;
+}
+
+.listing-section__num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #9b9b9b;
+    color: #fff;
+    font-size: 16px;
+    /*font-weight: 700;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.listing-section__text {
+    flex: 1;
+}
+
+.listing-section__title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #2c2c2c;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.listing-section__subtitle {
+    font-size: 14px;
+    color: #414042;
+    display: block;
+    /*margin-top: 4px;*/
+}
+
+.listing-section__arrow {
+    flex-shrink: 0;
+    margin-top: 4px;
+    transition: transform 0.3s;
+}
+
+.listing-section.is-collapsed .listing-section__arrow {
+    transform: rotate(180deg);
+}
+
+.listing-section__body {
+    padding-top: 20px;
+    padding-left: 46px;
+}
+
+.listing-section.is-collapsed .listing-section__body {
+    display: none;
+}

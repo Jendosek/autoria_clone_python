@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Додавання оголошення — AutoRia{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/listing/listing.css' %}">
+    <link rel="stylesheet" href="{% static 'css/listing/photos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/listing/info.css' %}">
+    <link rel="stylesheet" href="{% static 'css/listing/description.css' %}">
+    <link rel="stylesheet" href="{% static 'css/listing/characteristics.css' %}">
+{% endblock %}
+
+{% block header %}
+    {% include 'components/_header_login.html' with logged_in=True %}
+{% endblock %}
+
+{% block content %}
+<div class="listing-page">
+    <div class="container-narrow">
+        {% include 'listing/_user_info.html' %}
+        {% include 'listing/_steps.html' %}
+        {% include 'listing/_photos.html' %}
+        {% include 'listing/_info.html' %}
+        {% include 'listing/_description.html' %}
+        {% include 'listing/_characteristics.html' %}
+        {% include 'listing/_options.html' %}
+        {% include 'listing/_price.html' %}
+        {% include 'listing/_submit.html' %}
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'components/_footer_mini.html' %}
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/listing/photos.js' %}"></script>
+    <script src="{% static 'js/listing/info.js' %}"></script>
+    <script src="{% static 'js/listing/description.js' %}"></script>
+{% endblock %}

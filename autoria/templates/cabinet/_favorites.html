@@ -3,7 +3,7 @@
     <div class="listings-grid">
         {% for car in cars %}
         <div class="listing-card">
-            <img src="{{ car.image }}" alt="{{ car.brand }} {{ car.model }}" class="listing-card__img">
+            <img src="{{ car.image_url }}" alt="{{ car.brand }} {{ car.model }}" class="listing-card__img">
             <div class="listing-card__info">
                 <a href="{% url 'car_detail' car.id %}" class="listing-card__name">{{ car.brand }} {{ car.model }} {{ car.year }}</a>
                 <span class="listing-card__price">{{ car.price|floatformat:0 }} $</span>

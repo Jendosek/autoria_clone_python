@@ -1,0 +1,45 @@
+<div class="listing-section" data-section="price">
+    <div class="listing-section__header" onclick="toggleSection('price')">
+        <span class="listing-section__num">6</span>
+        <div class="listing-section__text">
+            <span class="listing-section__title">Вартість
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </span>
+            <span class="listing-section__subtitle">ціна, валюта, торг, обмін</span>
+        </div>
+        <svg class="listing-section__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2.5"><polyline points="6 15 12 9 18 15"/></svg>
+    </div>
+
+    <div class="listing-section__body">
+        <div class="info-row" data-required>
+            <span class="info-label">Ціна <span class="info-req">*</span></span>
+            <input type="number" class="info-input info-input--short" name="price" placeholder="">
+            <select class="info-select price-currency" name="currency">
+                <option>$</option>
+                <option>&euro;</option>
+                <option>грн.</option>
+            </select>
+        </div>
+
+        <div class="price-options">
+            <label class="info-check">
+                <input type="checkbox" name="not_cleared">
+                <span>Нерозмитнений</span>
+            </label>
+            <label class="info-check">
+                <input type="checkbox" name="bargain">
+                <span>Можливий торг</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#e3000f"/><path d="M7 17l4-4m0 0l-2-6m2 6l6-2m-6 2l4 4" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+            </label>
+            <label class="info-check">
+                <input type="checkbox" name="exchange">
+                <span>Можливий обмін на автомобіль</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="4" fill="#4CAF50"/><path d="M7 10h6l-2-2M17 14H11l2 2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="6" y="7" width="4" height="4" rx="1" stroke="#fff" stroke-width="1.5"/><rect x="14" y="13" width="4" height="4" rx="1" stroke="#fff" stroke-width="1.5"/></svg>
+            </label>
+            <label class="info-check">
+                <input type="checkbox" name="installment">
+                <span>Можлива оплата частинами</span>
+            </label>
+        </div>
+    </div>
+</div>

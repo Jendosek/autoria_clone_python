@@ -1,0 +1,33 @@
+<div class="listing-section" data-section="description">
+    <div class="listing-section__header" onclick="toggleSection('description')">
+        <span class="listing-section__num">3</span>
+        <div class="listing-section__text">
+            <span class="listing-section__title">Опис автомобіля</span>
+        </div>
+        <svg class="listing-section__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2.5"><polyline points="6 15 12 9 18 15"/></svg>
+    </div>
+
+    <div class="listing-section__body">
+        <div class="desc-rules">
+            <p class="desc-rules__title">В даному полі забороняється:</p>
+            <div class="desc-rules__item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e89c0f" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span>Залишати посилання або контактні дані</span>
+            </div>
+            <div class="desc-rules__item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e89c0f" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span>Пропонувати послуги (пригжену під замовлення, є інші авто, допоможу вибрати)</span>
+            </div>
+        </div>
+
+        <div class="desc-textarea-wrap">
+            <textarea class="desc-textarea" name="description" id="descTextarea" placeholder="Опис українською" maxlength="2000" oninput="updateCharCount()"></textarea>
+            <span class="desc-chars" id="descChars">Доступно 2000 символів</span>
+        </div>
+
+        <label class="info-check">
+            <input type="checkbox" name="no_business_calls">
+            <span>Не зацікавлений у дзвінках від автобізнесменів</span>
+        </label>
+    </div>
+</div>

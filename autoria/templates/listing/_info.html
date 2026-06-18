@@ -1,0 +1,164 @@
+<div class="listing-section" data-section="info">
+    <div class="listing-section__header" onclick="toggleSection('info')">
+        <span class="listing-section__num">2</span>
+        <div class="listing-section__text">
+            <span class="listing-section__title">Основна інформація</span>
+            <span class="listing-section__subtitle">* Поля обов'язкові для заповнення</span>
+        </div>
+        <svg class="listing-section__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2.5"><polyline points="6 15 12 9 18 15"/></svg>
+    </div>
+
+    <div class="listing-section__body">
+        <div class="info-form" id="infoForm">
+            <div class="info-row" data-required>
+                <span class="info-label">Тип транспорту <span class="info-req">*</span></span>
+                <select class="info-select" name="type">
+                    <option value="">Оберіть</option>
+                    <option>Легкові</option>
+                    <option>Мото</option>
+                    <option>Вантажівки</option>
+                    <option>Причепи</option>
+                    <option>Спецтехніка</option>
+                    <option>Сільгосптехніка</option>
+                    <option>Автобуси</option>
+                    <option>Водний транспорт</option>
+                    <option>Повітряний транспорт</option>
+                    <option>Автобудинки</option>
+                </select>
+                <span class="info-error">Поле "Тип транспорту" обов'язкове для заповнення</span>
+            </div>
+
+            <div class="info-row" data-required>
+                <span class="info-label">Марка авто <span class="info-req">*</span></span>
+                <select class="info-select" name="brand">
+                    <option value="">Оберіть</option>
+                    <option>Toyota</option>
+                    <option>BMW</option>
+                    <option>Volkswagen</option>
+                    <option>Mercedes-Benz</option>
+                    <option>Audi</option>
+                    <option>Ford</option>
+                    <option>Hyundai</option>
+                    <option>Kia</option>
+                    <option>Nissan</option>
+                    <option>Renault</option>
+                    <option>Skoda</option>
+                    <option>Opel</option>
+                    <option>Mazda</option>
+                    <option>Honda</option>
+                    <option>Chevrolet</option>
+                    <option>Peugeot</option>
+                    <option>Mitsubishi</option>
+                </select>
+                <span class="info-error">Поле "Марка авто" обов'язкове для заповнення</span>
+            </div>
+
+            <div class="info-row" data-required>
+                <span class="info-label">Модель авто <span class="info-req">*</span></span>
+                <select class="info-select" name="model">
+                    <option value="">Оберіть</option>
+                </select>
+                <span class="info-error">Поле "Модель авто" обов'язкове для заповнення</span>
+            </div>
+
+            <div class="info-row" data-required>
+                <span class="info-label">Рік випуску <span class="info-req">*</span></span>
+                <select class="info-select" name="year" id="yearSelect"></select>
+                <span class="info-error">Поле "Рік випуску" обов'язкове для заповнення</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Пробіг</span>
+                <input type="text" class="info-input info-input--short" name="mileage" placeholder="тис.км">
+            </div>
+
+            <div class="info-row" data-required>
+                <span class="info-label">Тип кузова <span class="info-req">*</span></span>
+                <select class="info-select" name="body_type">
+                    <option value="">Оберіть</option>
+                    <option>Седан</option>
+                    <option>Хетчбек</option>
+                    <option>Універсал</option>
+                    <option>Кросовер</option>
+                    <option>Позашляховик</option>
+                    <option>Купе</option>
+                    <option>Кабріолет</option>
+                    <option>Мінівен</option>
+                    <option>Пікап</option>
+                    <option>Ліфтбек</option>
+                    <option>Фастбек</option>
+                </select>
+                <span class="info-error">Поле "Тип кузова" обов'язкове для заповнення</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Модифікація</span>
+                <input type="text" class="info-input" name="modification" placeholder="Модифікація">
+            </div>
+
+            <div class="info-row" data-required>
+                <span class="info-label">Регіон <span class="info-req">*</span></span>
+                <select class="info-select" name="region">
+                    <option value="">Оберіть</option>
+                    <option>Вінницька</option>
+                    <option>Волинська</option>
+                    <option>Дніпропетровська</option>
+                    <option>Донецька</option>
+                    <option>Житомирська</option>
+                    <option>Закарпатська</option>
+                    <option>Запорізька</option>
+                    <option>Івано-Франківська</option>
+                    <option>Київська</option>
+                    <option>Кіровоградська</option>
+                    <option>Луганська</option>
+                    <option>Львівська</option>
+                    <option>Миколаївська</option>
+                    <option>Одеська</option>
+                    <option>Полтавська</option>
+                    <option>Рівненська</option>
+                    <option>Сумська</option>
+                    <option>Тернопільська</option>
+                    <option>Харківська</option>
+                    <option>Херсонська</option>
+                    <option>Хмельницька</option>
+                    <option>Черкаська</option>
+                    <option>Чернівецька</option>
+                    <option>Чернігівська</option>
+                </select>
+                <span class="info-error">Поле "Регіон" обов'язкове для заповнення</span>
+            </div>
+
+            <div class="info-row" data-required>
+                <span class="info-label">Місто <span class="info-req">*</span></span>
+                <select class="info-select" name="city">
+                    <option value="">Оберіть</option>
+                </select>
+                <span class="info-error">Поле "Місто" обов'язкове для заповнення</span>
+            </div>
+        </div>
+
+        <!-- VIN -->
+        <div class="info-vin">
+            <h3 class="info-vin__title">Авто з перевіреним VIN-кодом продаються швидше</h3>
+            <p class="info-vin__desc">Ми безкоштовно перевіримо авто за офіційними відкритими державними даними, порталом відкритих даних і дилерськими базами, а ви отримаєте вищі місця в пошуку</p>
+            <div class="info-vin__row">
+                <span class="info-label">VIN-код</span>
+                <input type="text" class="info-input" name="vin" placeholder="VIN">
+                <svg class="info-vin__camera" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="12" cy="12" r="3"/></svg>
+                <a href="#" class="info-vin__link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b7bbf" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    Де знайти VIN-код авто?
+                </a>
+            </div>
+            <!-- Власник -->
+            <div class="info-owner">
+                <h3 class="info-owner__title">Ви власник авто?</h3>
+                <p class="info-owner__desc">Розкажіть про це - покупці активно шукають авто від власників</p>
+                <label class="info-check">
+                    <input type="checkbox" name="is_owner">
+                    <span>Я власник цього авто</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>

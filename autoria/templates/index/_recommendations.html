@@ -9,7 +9,7 @@
             <div class="car-card__visual">
                 <div class="car-card__image-wrap">
                     <a href="{% url 'car_detail' car.id %}">
-                        <img src="{{ car.image }}" alt="{{ car.brand }} {{ car.model }}" class="car-card__image">
+                        <img src="{{ car.image_url }}" alt="{{ car.brand }} {{ car.model }}" class="car-card__image">
                     </a>
                     <button class="car-card__close" onclick="hideCard(this)" aria-label="Приховати">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -88,7 +88,7 @@
         <div class="car-card" data-card>
             <div class="car-card__visual">
                 <div class="car-card__image-wrap">
-                    <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image }}"
+                    <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image_url }}"
                                                                  alt="{{ car.brand }} {{ car.model }}"
                                                                  class="car-card__image"></a>
                     <button class="car-card__close" onclick="hideCard(this)" aria-label="Приховати">
@@ -164,7 +164,7 @@
         <div class="car-card" data-card>
             <div class="car-card__visual">
                 <div class="car-card__image-wrap">
-                    <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image }}"
+                    <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image_url }}"
                                                                  alt="{{ car.brand }} {{ car.model }}"
                                                                  class="car-card__image"></a>
                     <button class="car-card__close" onclick="hideCard(this)" aria-label="Приховати">
@@ -240,7 +240,7 @@
         <div class="car-card" data-card>
             <div class="car-card__visual">
                 <div class="car-card__image-wrap">
-                    <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image }}" alt="{{ car.brand }} {{ car.model }}" class="car-card__image"></a>
+                    <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image_url }}" alt="{{ car.brand }} {{ car.model }}" class="car-card__image"></a>
                     <button class="car-card__close" onclick="hideCard(this)" aria-label="Приховати"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
                     <button class="car-card__fav" onclick="toggleFav(this)" aria-label="Додати в обране"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
                     <div class="car-card__badges"><span class="car-card__vin"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Перевірений VIN</span><span class="car-card__plate">
@@ -282,7 +282,7 @@
         <div class="car-card" data-card>
             <div class="car-card__visual">
                 <div class="car-card__image-wrap">
-                    <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image }}" alt="{{ car.brand }} {{ car.model }}" class="car-card__image"></a>
+                    <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image_url }}" alt="{{ car.brand }} {{ car.model }}" class="car-card__image"></a>
                     <button class="car-card__close" onclick="hideCard(this)" aria-label="Приховати"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
                     <button class="car-card__fav" onclick="toggleFav(this)" aria-label="Додати в обране"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
                     <div class="car-card__badges"><span class="car-card__vin"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Перевірений VIN</span><span class="car-card__plate">
@@ -324,7 +324,7 @@
         <div class="car-card" data-card>
             <div class="car-card__visual">
                 <div class="car-card__image-wrap">
-                    <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image }}" alt="{{ car.brand }} {{ car.model }}" class="car-card__image"></a>
+                    <a href="{% url 'car_detail' car.id %}"><img src="{{ car.image_url }}" alt="{{ car.brand }} {{ car.model }}" class="car-card__image"></a>
                     <button class="car-card__close" onclick="hideCard(this)" aria-label="Приховати"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
                     <button class="car-card__fav" onclick="toggleFav(this)" aria-label="Додати в обране"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
                     <div class="car-card__badges"><span class="car-card__vin"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Перевірений VIN</span><span class="car-card__plate">

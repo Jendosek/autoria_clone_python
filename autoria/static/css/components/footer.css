@@ -398,3 +398,62 @@
 .footer-old__lang-item--active:hover {
     text-decoration: none;
 }
+/* ================================================
+   MINI FOOTER
+   ================================================ */
+.footer-mini {
+    background: #fff;
+    border-top: 1px solid #e8e8e8;
+    padding: 16px 0;
+}
+.footer-mini__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.footer-mini__left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.footer-mini__logo {
+    height: 28px;
+    width: auto;
+}
+.footer-mini__copy {
+    font-size: 13px;
+    color: #888;
+}
+.footer-mini__dot {
+    color: #ccc;
+    font-size: 14px;
+}
+.footer-mini__link {
+    font-size: 12px;
+    color: #256799;
+    text-decoration: none;
+}
+.footer-mini__link:hover {
+    text-decoration: underline;
+}
+.footer-mini__lang {
+    display: flex;
+    gap: 12px;
+}
+.footer-mini__lang-item {
+    font-size: 14px;
+    color: #3b7bbf;
+    text-decoration: none;
+}
+.footer-mini__lang-item:hover {
+    text-decoration: underline;
+}
+.footer-mini__lang-item--active {
+    color: #2c2c2c;
+    /*font-weight: 600;*/
+    cursor: default;
+    font-size: 13px;
+}
+.footer-mini__lang-item--active:hover {
+    text-decoration: none;
+}

@@ -1,0 +1,96 @@
+<div class="listing-section" data-section="characteristics">
+    <div class="listing-section__header" onclick="toggleSection('characteristics')">
+        <span class="listing-section__num">4</span>
+        <div class="listing-section__text">
+            <span class="listing-section__title">Характеристики авто</span>
+        </div>
+        <svg class="listing-section__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2.5"><polyline points="6 15 12 9 18 15"/></svg>
+    </div>
+
+    <div class="listing-section__body">
+        <!-- Колір -->
+        <div class="info-row">
+            <span class="info-label">Колір</span>
+            <div class="color-picker" id="colorPicker">
+
+                <div class="color-picker__trigger" onclick="toggleColorPicker()">
+                    <span class="color-picker__value" id="colorValue">Оберіть</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+
+                <div class="color-picker__dropdown" id="colorDropdown">
+                    <span class="color-swatch" style="background:#d2b48c" data-color="Бежевий" onclick="pickColor(this)"></span>
+                    <span class="color-swatch" style="background:#1a1a1a" data-color="Чорний" onclick="pickColor(this)"></span>
+                    <span class="color-swatch" style="background:#3333ff" data-color="Синій" onclick="pickColor(this)"></span>
+                    <span class="color-swatch" style="background:#8b4513" data-color="Коричневий" onclick="pickColor(this)"></span>
+                    <span class="color-swatch" style="background:#22aa22" data-color="Зелений" onclick="pickColor(this)"></span>
+                    <span class="color-swatch" style="background:#aaa" data-color="Сірий" onclick="pickColor(this)"></span>
+                    <span class="color-swatch" style="background:#ff8800" data-color="Помаранчевий" onclick="pickColor(this)"></span>
+                    <span class="color-swatch" style="background:#8833aa" data-color="Фіолетовий" onclick="pickColor(this)"></span>
+                    <span class="color-swatch" style="background:#e3000f" data-color="Червоний" onclick="pickColor(this)"></span>
+                    <span class="color-swatch" style="background:#fff;border:1px solid #ccc" data-color="Білий" onclick="pickColor(this)"></span>
+                    <span class="color-swatch" style="background:#ffd700" data-color="Жовтий" onclick="pickColor(this)"></span>
+                </div>
+                <input type="hidden" name="color" id="colorInput">
+                <label class="info-check color-picker__metallic">
+                    <input type="checkbox" name="metallic">
+                    <span>Металік</span>
+                </label>
+            </div>
+
+        </div>
+
+
+        <!-- Пригнаний з -->
+        <div class="info-row">
+            <span class="info-label">Пригнаний з</span>
+            <select class="info-select" name="imported_from">
+                <option value="">Оберіть</option>
+                <option>Австралія</option><option>Австрія</option><option>Алжир</option><option>Англія</option><option>Аргентина</option>
+                <option>Бельгія</option><option>Білорусь</option><option>Болгарія</option><option>Бразилія</option>
+                <option>Греція</option><option>Грузія</option><option>Данія</option><option>Естонія</option><option>Єгипет</option>
+                <option>Ізраїль</option><option>Індія</option><option>Іран</option><option>Ірландія</option><option>Іспанія</option><option>Італія</option>
+                <option>Казахстан</option><option>Канада</option><option>Китай</option><option>Корея Південна</option>
+                <option>Латвія</option><option>Литва</option><option>Молдова</option><option>Нідерланди</option><option>Німеччина</option><option>Норвегія</option>
+                <option>ОАЕ</option><option>Польща</option><option>Португалія</option><option>Росія</option><option>Румунія</option>
+                <option>Словаччина</option><option>Словенія</option><option>США</option>
+                <option>Туреччина</option><option>Угорщина</option><option>Україна</option>
+                <option>Фінляндія</option><option>Франція</option><option>Хорватія</option>
+                <option>Чехія</option><option>Швейцарія</option><option>Швеція</option><option>Японія</option>
+            </select>
+        </div>
+
+        <!-- Участь в ДТП -->
+        <div class="info-row">
+            <span class="info-label">Участь в ДТП</span>
+            <select class="info-select" name="accident">
+                <option value="">Оберіть</option>
+                <option>Ні, не був у ДТП</option>
+                <option>Так, був у ДТП</option>
+            </select>
+        </div>
+
+        <!-- Лакофарбове покриття -->
+        <div class="info-row">
+            <span class="info-label">Лакофарбове покриття</span>
+            <select class="info-select" name="paint">
+                <option value="">Оберіть</option>
+                <option>Як нове</option>
+                <option>Професійно виправлені сліди використання</option>
+                <option>Невиправлені сліди використання</option>
+            </select>
+        </div>
+
+        <!-- Технічний стан -->
+        <div class="info-row">
+            <span class="info-label">Технічний стан</span>
+            <select class="info-select" name="technical_condition">
+                <option value="">Оберіть</option>
+                <option>Повністю непошкоджене</option>
+                <option>Професійно відремонтовані пошкодження</option>
+                <option>Невідремонтовані пошкодження</option>
+                <option>Не на ходу / На запчастини</option>
+            </select>
+        </div>
+    </div>
+</div>

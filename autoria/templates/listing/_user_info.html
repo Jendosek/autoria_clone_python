@@ -1,0 +1,10 @@
+<div class="listing-user">
+    <div class="listing-user__avatar">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </div>
+    <div class="listing-user__info">
+        <span class="listing-user__name">{{ user.first_name }} {{ user.last_name }}</span>
+        <span class="listing-user__meta">ID {{ user.id }} &middot; {{ user.phone }}</span>
+        <a href="{% url 'logout' %}" class="listing-user__switch">Зайти як інший користувач</a>
+    </div>
+</div>

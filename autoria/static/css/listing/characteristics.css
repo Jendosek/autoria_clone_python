@@ -1,0 +1,66 @@
+.color-picker {
+    flex: 1;
+    max-width: 300px;
+    position: relative;
+}
+.color-picker__trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #fff;
+    font-size: 15px;
+    color: #2c2c2c;
+}
+.color-picker__trigger:hover {
+    border-color: #999;
+}
+.color-picker.is-open .color-picker__trigger {
+    border-color: #5bc0de;
+}
+.color-picker__value {
+    color: #aaa;
+}
+.color-picker__value.has-value {
+    color: #2c2c2c;
+}
+.color-picker__dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 12px;
+    display: none;
+    flex-wrap: wrap;
+    gap: 6px;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.color-picker.is-open .color-picker__dropdown {
+    display: flex;
+}
+.color-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+.color-swatch:hover {
+    transform: scale(1.15);
+}
+.color-swatch.is-selected {
+    outline: 2px solid #3b7bbf;
+    outline-offset: 2px;
+}
+
+.color-picker__metallic {
+    margin-top: 10px;
+}

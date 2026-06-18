@@ -252,3 +252,8 @@ def force_login(request):
     request.session['is_logged_in'] = True
     return redirect('cabinet')
 
+def add_listing(request):
+    if not request.session.get('is_logged_in'):
+        return redirect('login')
+    return render(request, 'listing/listing.html', {'user': USER})
+

@@ -1,0 +1,145 @@
+/* Редагування */
+.photos-edit-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #414042;
+    margin-bottom: 16px;
+}
+
+/* Сітка фото */
+.photos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+/* Кнопка додати */
+.photos-add {
+    width: 120px;
+    height: 120px;
+    border: 2px dashed #3b7bbf;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: border-style 0.2s, background-color 0.2s;
+    color: #3b7bbf;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    background: #f0f6fb;
+}
+.photos-add:hover {
+    border-style: solid;
+    /*background: #f0f6fb;*/
+}
+
+/* Превʼю фото */
+.photos-preview {
+    width: 140px;
+    height: 140px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+.photos-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.photos-preview__remove {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+.photos-preview__remove:hover {
+    background: #e3000f;
+}
+.photos-preview__badge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Підказка */
+.photos-tip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 16px;
+    background: #f3fafd;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+.photos-tip a {
+    font-size: 14px;
+    color: #3b7bbf;
+    text-decoration: underline;
+}
+.photos-tip a:hover { text-decoration: none; }
+
+/* Чеклист */
+.photos-checklist {
+    padding: 16px;
+    background: #f5f7fa;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+.photos-checklist__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 14px;
+    color: #2c2c2c;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+.photos-checklist__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+}
+.photos-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* YouTube */
+.photos-youtube {
+    display: inline-block;
+    font-size: 15px;
+    color: #3b7bbf;
+    text-decoration: underline;
+    margin-top: 8px;
+}
+.photos-youtube:hover { text-decoration: none; }

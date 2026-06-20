@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Q
-from .models import User, Car, Favorite
+from .models import User, Car, Favorite, CarImage
 
 
 def index(request):
@@ -42,6 +42,8 @@ def login_view(request):
                 user = authenticate(request, username=user_obj.username, password=password)
                 if user:
                     login(request, user)
+                    if user.is_staff:
+                        return redirect('admin_panel')
                     return redirect('cabinet')
 
             return render(request, 'login/login.html', {
@@ -110,8 +112,88 @@ def cabinet(request):
 def add_listing(request):
     if not request.user.is_authenticated:
         return redirect('login')
-    return render(request, 'listing/listing.html', {'user': request.user})
 
+    if request.method == 'POST':
+        brand = request.POST.get('brand', '').strip()
+        model = request.POST.get('model', '').strip()
+        year = request.POST.get('year', '')
+        body_type = request.POST.get('body_type', '').strip()
+        region = request.POST.get('region', '').strip()
+        city = request.POST.get('city', '').strip()
+        price = request.POST.get('price', '')
+
+        # Валідація — тільки ключові поля
+        if not all([brand, year, price]):
+            return render(request, 'listing/listing.html', {
+                'user': request.user,
+                'errors': 'Заповніть обов\'язкові поля: марка, рік, ціна',
+            })
+
+        try:
+            price_val = float(price)
+        except ValueError:
+            return render(request, 'listing/listing.html', {
+                'user': request.user,
+                'errors': 'Невірний формат ціни',
+            })
+
+        currency = request.POST.get('currency', '$')
+        if currency == '$':
+            price_usd = price_val
+            price_uah = price_val * 41.5
+        elif '€' in currency or currency == '€':
+            price_usd = price_val * 1.1
+            price_uah = price_val * 45.5
+        else:
+            price_uah = price_val
+            price_usd = price_val / 41.5
+
+        mileage = request.POST.get('mileage', '0')
+        try:
+            mileage_val = int(mileage) if mileage else 0
+        except ValueError:
+            mileage_val = 0
+
+        car = Car.objects.create(
+            seller=request.user,
+            brand=brand,
+            model=model if model else 'Не вказано',
+            year=int(year),
+            modification=request.POST.get('modification', ''),
+            price=price_usd,
+            price_uah=price_uah,
+            mileage=mileage_val,
+            engine='',
+            transmission='',
+            body_type=body_type,
+            drive='',
+            color=request.POST.get('color', ''),
+            interior_color=request.POST.get('interior_color', ''),
+            interior_material=request.POST.get('interior', ''),
+            region=region,
+            city=city,
+            vin=request.POST.get('vin', ''),
+            description=request.POST.get('description', ''),
+            headlights=request.POST.get('headlights', ''),
+            conditioning=request.POST.get('ac', ''),
+            power_steering=request.POST.get('power_steering', ''),
+            steering_adjustment=request.POST.get('steering', ''),
+            spare_wheel=request.POST.get('spare_wheel', ''),
+            electric_windows=request.POST.get('windows', ''),
+            seat_adjustment=request.POST.get('seat_height', ''),
+            state=request.POST.get('technical_condition', ''),
+        )
+
+        photos = request.FILES.getlist('photos')
+        if photos:
+            car.image = photos[0]
+            car.save()
+            for i, photo in enumerate(photos[1:], start=1):
+                CarImage.objects.create(car=car, image=photo, order=i)
+
+        return redirect('car_detail', car_id=car.id)
+
+    return render(request, 'listing/listing.html', {'user': request.user})
 
 def logout_view(request):
     logout(request)
@@ -123,3 +205,14 @@ def force_login(request):
     if user:
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
     return redirect('cabinet')
+
+def admin_panel(request):
+    if not request.user.is_authenticated or not request.user.is_staff:
+        return redirect('login')
+    all_users = User.objects.all().order_by('-date_joined')
+    all_cars = Car.objects.all().select_related('seller').order_by('-created_at')
+    return render(request, 'admin_panel/admin_panel.html', {
+        'user': request.user,
+        'all_users': all_users,
+        'all_cars': all_cars,
+    })

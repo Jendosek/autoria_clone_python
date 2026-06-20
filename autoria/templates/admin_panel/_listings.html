@@ -1,0 +1,46 @@
+ʼ<div id="tab-listings">
+    <div class="ap-header">
+        <h2 class="ap-title">Оголошення</h2>
+        <span class="ap-count">Всього: {{ all_cars|length }}</span>
+    </div>
+
+    <table class="ap-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Авто</th>
+                <th>Ціна</th>
+                <th>Продавець</th>
+                <th>Місто</th>
+                <th>Статус</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in all_cars %}
+            <tr id="car-row-{{ car.id }}" class="{% if not car.is_active %}ap-row--inactive{% endif %}">
+                <td>{{ car.id }}</td>
+                <td>
+                    <a href="{% url 'car_detail' car.id %}" class="ap-link">{{ car.brand }} {{ car.model }} {{ car.year }}</a>
+                </td>
+                <td>{{ car.price|floatformat:0 }} $</td>
+                <td>{{ car.seller.first_name }} {{ car.seller.last_name|default:car.seller.username }}</td>
+                <td>{{ car.city|default:"—" }}</td>
+                <td>
+                    <span class="ap-status {% if car.is_active %}ap-status--active{% else %}ap-status--banned{% endif %}" id="car-status-{{ car.id }}">
+                        {% if car.is_active %}Активне{% else %}Приховане{% endif %}
+                    </span>
+                </td>
+                <td>
+                    <div class="ap-actions">
+                        <button class="ap-btn ap-btn--toggle" onclick="toggleCar({{ car.id }})">
+                            {% if car.is_active %}Сховати{% else %}Показати{% endif %}
+                        </button>
+                        <button class="ap-btn ap-btn--delete" onclick="deleteCar({{ car.id }})">Видалити</button>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

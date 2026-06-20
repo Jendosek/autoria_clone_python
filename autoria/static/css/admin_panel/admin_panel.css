@@ -1,0 +1,155 @@
+/* ================================================
+   HEADER
+   ================================================ */
+.ap-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.ap-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #2c2c2c;
+}
+
+.ap-count {
+    font-size: 14px;
+    color: #888;
+}
+
+/* ================================================
+   ТАБЛИЦЯ
+   ================================================ */
+.ap-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.ap-table thead {
+    background: #f5f7fa;
+}
+
+.ap-table th {
+    text-align: left;
+    padding: 10px 12px;
+    font-weight: 600;
+    color: #555;
+    border-bottom: 2px solid #e8e8e8;
+    white-space: nowrap;
+}
+
+.ap-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #2c2c2c;
+    vertical-align: middle;
+}
+
+.ap-table tbody tr:hover {
+    background: #f9fbfd;
+}
+
+.ap-row--banned td,
+.ap-row--inactive td {
+    opacity: 0.5;
+}
+
+/* ================================================
+   СТАТУС
+   ================================================ */
+.ap-status {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.ap-status--active {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.ap-status--banned {
+    background: #ffeaea;
+    color: #c62828;
+}
+
+/* ================================================
+   БЕЙДЖІ
+   ================================================ */
+.ap-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+.ap-badge--admin {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.ap-badge--super {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+/* ================================================
+   КНОПКИ ДІЙ
+   ================================================ */
+.ap-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.ap-btn {
+    padding: 4px 12px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.ap-btn:hover {
+    opacity: 0.8;
+}
+
+.ap-btn--ban {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.ap-btn--unban {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.ap-btn--toggle {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.ap-btn--delete {
+    background: #ffeaea;
+    color: #c62828;
+}
+
+/* ================================================
+   ПОСИЛАННЯ
+   ================================================ */
+.ap-link {
+    color: #256799;
+    text-decoration: none;
+}
+
+.ap-link:hover {
+    text-decoration: underline;
+}

@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Додавання оголошення — AutoRia{% endblock %}
-
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/listing/listing.css' %}">
     <link rel="stylesheet" href="{% static 'css/listing/photos.css' %}">
@@ -10,31 +8,34 @@
     <link rel="stylesheet" href="{% static 'css/listing/description.css' %}">
     <link rel="stylesheet" href="{% static 'css/listing/characteristics.css' %}">
 {% endblock %}
-
-{% block header %}
-    {% include 'components/_header_login.html' with logged_in=True %}
-{% endblock %}
-
+{% block header %}{% include 'components/_header_login.html' with logged_in=True %}{% endblock %}
 {% block content %}
 <div class="listing-page">
     <div class="container-narrow">
         {% include 'listing/_user_info.html' %}
         {% include 'listing/_steps.html' %}
-        {% include 'listing/_photos.html' %}
-        {% include 'listing/_info.html' %}
-        {% include 'listing/_description.html' %}
-        {% include 'listing/_characteristics.html' %}
-        {% include 'listing/_options.html' %}
-        {% include 'listing/_price.html' %}
-        {% include 'listing/_submit.html' %}
+
+        <form method="POST" action="{% url 'add_listing' %}" enctype="multipart/form-data" id="listingForm">
+            {% csrf_token %}
+
+            {% if errors %}
+            <div style="background: #ffeaea; border: 1px solid #e3000f; border-radius: 6px; padding: 12px 16px; margin-bottom: 20px; color: #e3000f; font-size: 14px;">
+                {{ errors }}
+            </div>
+            {% endif %}
+
+            {% include 'listing/_photos.html' %}
+            {% include 'listing/_info.html' %}
+            {% include 'listing/_description.html' %}
+            {% include 'listing/_characteristics.html' %}
+            {% include 'listing/_options.html' %}
+            {% include 'listing/_price.html' %}
+            {% include 'listing/_submit.html' %}
+        </form>
     </div>
 </div>
 {% endblock %}
-
-{% block footer %}
-    {% include 'components/_footer_mini.html' %}
-{% endblock %}
-
+{% block footer %}{% include 'components/_footer_mini.html' %}{% endblock %}
 {% block extra_js %}
     <script src="{% static 'js/listing/photos.js' %}"></script>
     <script src="{% static 'js/listing/info.js' %}"></script>

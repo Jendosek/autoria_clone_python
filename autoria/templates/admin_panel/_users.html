@@ -1,0 +1,52 @@
+<div id="tab-users" class="is-active">
+    <div class="ap-header">
+        <h2 class="ap-title">Користувачі</h2>
+        <span class="ap-count">Всього: {{ all_users|length }}</span>
+    </div>
+
+    <table class="ap-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Ім'я</th>
+                <th>Email / Телефон</th>
+                <th>Рейтинг</th>
+                <th>Оголошень</th>
+                <th>Статус</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in all_users %}
+            <tr id="user-row-{{ u.id }}" class="{% if not u.is_active %}ap-row--banned{% endif %}">
+                <td>{{ u.id }}</td>
+                <td>
+                    {{ u.first_name }} {{ u.last_name }}
+                    {% if u.is_staff %}<span class="ap-badge ap-badge--admin">admin</span>{% endif %}
+                </td>
+                <td>{{ u.email|default:u.phone|default:"—" }}</td>
+                <td>{{ u.rating }}</td>
+                <td>{{ u.cars.count }}</td>
+                <td>
+                    <span class="ap-status {% if u.is_active %}ap-status--active{% else %}ap-status--banned{% endif %}" id="user-status-{{ u.id }}">
+                        {% if u.is_active %}Активний{% else %}Заблокований{% endif %}
+                    </span>
+                </td>
+                <td>
+                    {% if not u.is_superuser %}
+                    <div class="ap-actions">
+                        {% if u.is_active %}
+                        <button class="ap-btn ap-btn--ban" onclick="banUser({{ u.id }})">Бан</button>
+                        {% else %}
+                        <button class="ap-btn ap-btn--unban" onclick="unbanUser({{ u.id }})">Розбан</button>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <span class="ap-badge ap-badge--super">superuser</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

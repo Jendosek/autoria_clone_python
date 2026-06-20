@@ -38,9 +38,30 @@ function toggleTerms() {
         btn.disabled = false;
         btn.classList.add('is-active');
         socials.classList.add('is-active');
+        // Розблоковуємо Google посилання
+        var googleLink = socials.querySelector('a.auth-social');
+        if (googleLink) {
+            googleLink.style.pointerEvents = 'auto';
+            googleLink.style.opacity = '1';
+        }
     } else {
         btn.disabled = true;
         btn.classList.remove('is-active');
         socials.classList.remove('is-active');
+        var googleLink = socials.querySelector('a.auth-social');
+        if (googleLink) {
+            googleLink.style.pointerEvents = 'none';
+            googleLink.style.opacity = '0.5';
+        }
     }
 }
+
+/* ================================================
+   ПОКАЗ ФОРМИ РЕЄСТРАЦІЇ ПРИ ПОМИЛЦІ
+   ================================================ */
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector('[data-show-register]')) {
+        document.getElementById('authLogin').style.display = 'none';
+        document.getElementById('authRegister').style.display = 'block';
+    }
+});

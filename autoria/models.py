@@ -6,7 +6,6 @@ from autoria.storage import CloudinaryStorage
 
 
 class User(AbstractUser):
-    """Розширений юзер — і покупець, і продавець"""
     phone = models.CharField('Телефон', max_length=20, blank=True)
     patronymic = models.CharField('По батькові', max_length=100, blank=True)
     region = models.CharField('Область', max_length=100, blank=True)

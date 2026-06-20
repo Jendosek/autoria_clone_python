@@ -2,7 +2,7 @@
     <div class="prof-header">
         <h2 class="prof-title">Моя анкета</h2>
         <span class="prof-dot">&middot;</span>
-        <a href="#" class="prof-link">Змінити пароль</a>
+        <a href="#" class="prof-link" onclick="switchTab(event,'settings')">Змінити пароль</a>
     </div>
 
     <div class="prof-card">
@@ -12,32 +12,95 @@
         <div class="prof-card__info">
             <span class="prof-card__name">{{ user.first_name }} {{ user.last_name }}</span>
             <span class="prof-card__id">Ваш клієнтський номер: {{ user.id }}</span>
-            <span class="prof-card__phone">{{ user.phone }}</span>
+            {% if user.phone %}<span class="prof-card__phone">{{ user.phone }}</span>{% endif %}
             <div class="prof-card__rating">
-                <span>Ваш рейтинг користувача низький &middot; {{ user.rating }} з 100</span>
+                <span>Ваш рейтинг користувача {% if user.rating < 50 %}низький{% elif user.rating < 75 %}середній{% else %}високий{% endif %} &middot; {{ user.rating }} з 100</span>
                 <div class="prof-rating-bar"><div class="prof-rating-bar__fill" style="width:{{ user.rating }}%"></div></div>
             </div>
         </div>
     </div>
 
-    <div class="prof-form">
-        <div class="prof-form__row"><span class="prof-form__label">Ім'я <span class="prof-required">*</span></span><input type="text" class="prof-form__input" value="{{ user.first_name }}"></div>
-        <div class="prof-form__row"><span class="prof-form__label">Прізвище</span><input type="text" class="prof-form__input" value="{{ user.last_name }}"></div>
-        <div class="prof-form__row"><span class="prof-form__label">По батькові</span><input type="text" class="prof-form__input" placeholder="Введіть «по батькові»"></div>
-        <div class="prof-form__row"><span class="prof-form__label">Область</span><select class="prof-form__input"><option>Обрати</option></select></div>
-        <div class="prof-form__row"><span class="prof-form__label">Місто</span><select class="prof-form__input"><option>Обрати</option></select></div>
-        <div class="prof-form__row"><span class="prof-form__label">E-mail</span><input type="email" class="prof-form__input" placeholder="Введіть email"></div>
-        <div class="prof-form__row"><span class="prof-form__label">Телефони</span><div class="prof-phone-wrap"><select class="prof-form__code"><option>+38</option></select><input type="text" class="prof-form__input" value="(068) 81X XX 71"></div></div>
-    </div>
+    <!-- Форма профілю -->
+    <form method="POST" action="{% url 'save_profile' %}">
+        {% csrf_token %}
+        <div class="prof-form">
+            <div class="prof-form__row">
+                <span class="prof-form__label">Ім'я <span class="prof-required">*</span></span>
+                <input type="text" class="prof-form__input" name="first_name" value="{{ user.first_name }}" required>
+            </div>
+            <div class="prof-form__row">
+                <span class="prof-form__label">Прізвище</span>
+                <input type="text" class="prof-form__input" name="last_name" value="{{ user.last_name }}">
+            </div>
+            <div class="prof-form__row">
+                <span class="prof-form__label">По батькові</span>
+                <input type="text" class="prof-form__input" name="patronymic" value="{{ user.patronymic }}" placeholder="Введіть «по батькові»">
+            </div>
+            <div class="prof-form__row">
+                <span class="prof-form__label">Область</span>
+                <select class="prof-form__input" name="region">
+                    <option value="">Обрати</option>
+                    <option {% if user.region == "Вінницька" %}selected{% endif %}>Вінницька</option>
+                    <option {% if user.region == "Волинська" %}selected{% endif %}>Волинська</option>
+                    <option {% if user.region == "Дніпропетровська" %}selected{% endif %}>Дніпропетровська</option>
+                    <option {% if user.region == "Донецька" %}selected{% endif %}>Донецька</option>
+                    <option {% if user.region == "Житомирська" %}selected{% endif %}>Житомирська</option>
+                    <option {% if user.region == "Закарпатська" %}selected{% endif %}>Закарпатська</option>
+                    <option {% if user.region == "Запорізька" %}selected{% endif %}>Запорізька</option>
+                    <option {% if user.region == "Івано-Франківська" %}selected{% endif %}>Івано-Франківська</option>
+                    <option {% if user.region == "Київська" %}selected{% endif %}>Київська</option>
+                    <option {% if user.region == "Кіровоградська" %}selected{% endif %}>Кіровоградська</option>
+                    <option {% if user.region == "Луганська" %}selected{% endif %}>Луганська</option>
+                    <option {% if user.region == "Львівська" %}selected{% endif %}>Львівська</option>
+                    <option {% if user.region == "Миколаївська" %}selected{% endif %}>Миколаївська</option>
+                    <option {% if user.region == "Одеська" %}selected{% endif %}>Одеська</option>
+                    <option {% if user.region == "Полтавська" %}selected{% endif %}>Полтавська</option>
+                    <option {% if user.region == "Рівненська" %}selected{% endif %}>Рівненська</option>
+                    <option {% if user.region == "Сумська" %}selected{% endif %}>Сумська</option>
+                    <option {% if user.region == "Тернопільська" %}selected{% endif %}>Тернопільська</option>
+                    <option {% if user.region == "Харківська" %}selected{% endif %}>Харківська</option>
+                    <option {% if user.region == "Херсонська" %}selected{% endif %}>Херсонська</option>
+                    <option {% if user.region == "Хмельницька" %}selected{% endif %}>Хмельницька</option>
+                    <option {% if user.region == "Черкаська" %}selected{% endif %}>Черкаська</option>
+                    <option {% if user.region == "Чернівецька" %}selected{% endif %}>Чернівецька</option>
+                    <option {% if user.region == "Чернігівська" %}selected{% endif %}>Чернігівська</option>
+                </select>
+            </div>
+            <div class="prof-form__row">
+                <span class="prof-form__label">Місто</span>
+                <input type="text" class="prof-form__input" name="city" value="{{ user.city }}" placeholder="Введіть місто">
+            </div>
+            <div class="prof-form__row">
+                <span class="prof-form__label">E-mail</span>
+                <input type="email" class="prof-form__input" name="email" value="{{ user.email }}" placeholder="Введіть email">
+            </div>
+            <div class="prof-form__row">
+                <span class="prof-form__label">Телефон</span>
+                <input type="text" class="prof-form__input" name="phone" value="{{ user.phone }}" placeholder="Введіть телефон">
+            </div>
+        </div>
+        <button class="prof-save" type="submit">Зберегти</button>
+    </form>
 
+    <!-- Google — окремо, поза формою профілю -->
     <div class="prof-google">
+        {% if has_google %}
+        <p class="prof-google__title">Google акаунт прив'язано</p>
+        <p class="prof-google__desc">Ви можете входити на сайт через Google в один клік.</p>
+        <form method="POST" action="{% url 'disconnect_google' %}">
+            {% csrf_token %}
+            <button type="submit" class="prof-google__btn prof-google__btn--connected" onclick="return confirm('Відв\'язати Google акаунт?')">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#4CAF50" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Google підключено — Відв'язати
+            </button>
+        </form>
+        {% else %}
         <p class="prof-google__title">Авторизуйтесь і входьте в один клік на сайти RIA.com</p>
         <p class="prof-google__desc">Прив'язка акаунтів соцмереж зробить ваш профіль більш заповненим і дасть змогу входу на сайти RIA.com в 1 клік.</p>
-        <button class="prof-google__btn">
+        <a href="/accounts/google/login/?process=connect" class="prof-google__btn">
             <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09a6.96 6.96 0 010-4.17V7.07H2.18a11.02 11.02 0 000 9.87l3.66-2.85z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.85c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
             Приєднати Google
-        </button>
+        </a>
+        {% endif %}
     </div>
-
-    <button class="prof-save">Редагувати</button>
 </div>

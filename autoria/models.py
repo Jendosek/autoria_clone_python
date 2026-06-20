@@ -10,7 +10,7 @@ class User(AbstractUser):
     patronymic = models.CharField('По батькові', max_length=100, blank=True)
     region = models.CharField('Область', max_length=100, blank=True)
     city = models.CharField('Місто', max_length=100, blank=True)
-    rating = models.IntegerField('Рейтинг', default=0)
+    rating = models.IntegerField('Рейтинг', default=25)
     balance = models.DecimalField('Баланс', max_digits=10, decimal_places=2, default=0)
     avatar = models.ImageField('Аватар', upload_to='avatars/', blank=True,
                                storage=CloudinaryStorage(folder='avatars'))

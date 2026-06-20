@@ -9,7 +9,8 @@
             <tr>
                 <th>ID</th>
                 <th>Ім'я</th>
-                <th>Email / Телефон</th>
+                <th>Email</th>
+                <th>Телефон</th>
                 <th>Рейтинг</th>
                 <th>Оголошень</th>
                 <th>Статус</th>
@@ -24,7 +25,8 @@
                     {{ u.first_name }} {{ u.last_name }}
                     {% if u.is_staff %}<span class="ap-badge ap-badge--admin">admin</span>{% endif %}
                 </td>
-                <td>{{ u.email|default:u.phone|default:"—" }}</td>
+                <td>{{ u.email|default:"—" }}</td>
+                <td>{{ u.phone|default:"—" }}</td>
                 <td>{{ u.rating }}</td>
                 <td>{{ u.cars.count }}</td>
                 <td>

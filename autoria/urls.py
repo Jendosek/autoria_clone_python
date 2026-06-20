@@ -33,4 +33,9 @@ urlpatterns = [
     path('api/admin/users/<int:user_id>/unban/', api.api_unban_user, name='api_unban_user'),
     path('api/admin/cars/<int:car_id>/delete/', api.api_delete_car, name='api_delete_car'),
     path('api/admin/cars/<int:car_id>/toggle/', api.api_toggle_car, name='api_toggle_car'),
+    path('cabinet/google/disconnect/', views.disconnect_google, name='disconnect_google'),
+
+    path('cabinet/profile/save/', views.save_profile, name='save_profile'),
+    path('cabinet/password/change/', views.change_password, name='change_password'),
+    path('cabinet/delete/', views.delete_account, name='delete_account'),
 ]

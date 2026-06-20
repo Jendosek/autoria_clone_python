@@ -1,6 +1,3 @@
-/* ================================================
-   КАТАЛОГ АВТОМОБІЛІВ
-   ================================================ */
 var CATALOG_FILTERS = {
     used:  [{ key: 'brand', label: 'по марці' }, { key: 'region', label: 'по регіону' }, { key: 'type', label: 'по типу' }, { key: 'fuel', label: 'по паливу' }],
     new:   [{ key: 'brand', label: 'по марці' }, { key: 'region', label: 'по регіону' }, { key: 'type', label: 'по типу' }],
@@ -23,7 +20,6 @@ function switchCatalog(btn, tab) {
 
     currentCatalogTab = tab;
 
-    /* Сортування: показати/сховати + оновити опції */
     var sortEl = document.getElementById('catalogSort');
     var filters = CATALOG_FILTERS[tab];
     if (filters) {
@@ -71,7 +67,6 @@ function closeCatalogSort() {
     document.getElementById('catalogSortDropdown').classList.remove('is-open');
 }
 
-/* Закриття дропдауну при кліку за межами */
 document.addEventListener('click', function(e) {
     var sortEl = document.getElementById('catalogSort');
     if (sortEl && !sortEl.contains(e.target)) {
@@ -79,7 +74,6 @@ document.addEventListener('click', function(e) {
     }
 });
 
-/* Ініціалізація: побудувати дропдаун для першого табу */
 (function initCatalog() {
     var filters = CATALOG_FILTERS[currentCatalogTab];
     if (filters) buildSortDropdown(filters);

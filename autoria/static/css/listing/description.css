@@ -1,15 +1,14 @@
-/* ================================================
-   ПРАВИЛА
-   ================================================ */
 .desc-rules {
     margin-bottom: 20px;
 }
+
 .desc-rules__title {
     font-size: 15px;
     font-weight: 700;
     color: #2c2c2c;
     margin-bottom: 10px;
 }
+
 .desc-rules__item {
     display: flex;
     align-items: flex-start;
@@ -19,17 +18,16 @@
     /*margin-bottom: 6px;*/
     line-height: 1.4;
 }
+
 .desc-rules__item svg {
     flex-shrink: 0;
     margin-top: 2px;
 }
 
-/* ================================================
-   TEXTAREA
-   ================================================ */
 .desc-textarea-wrap {
     margin-bottom: 16px;
 }
+
 .desc-textarea {
     width: 100%;
     max-width: 560px;
@@ -42,13 +40,16 @@
     color: #2c2c2c;
     resize: vertical;
 }
+
 .desc-textarea:focus {
     outline: none;
     border-color: #5bc0de;
 }
+
 .desc-textarea::placeholder {
     color: #aaa;
 }
+
 .desc-chars {
     display: block;
     font-size: 12px;

@@ -1,6 +1,3 @@
-/* ================================================
-   ТАБКИ КАТЕГОРІЙ
-   ================================================ */
 .tabs {
     display: flex;
     gap: 12px;
@@ -33,10 +30,6 @@
     border-color: #1f2024;
 }
 
-
-/* ================================================
-   СІТКА ФІЛЬТРІВ
-   ================================================ */
 .filters__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -44,15 +37,10 @@
     margin-bottom: 20px;
 }
 
-
-/* ================================================
-   DROPDOWN — кастомний селект
-   ================================================ */
 .dropdown {
     position: relative;
 }
 
-/* --- Тригер --- */
 .dropdown__trigger {
     width: 100%;
     padding: 14px 40px 14px 16px;
@@ -77,7 +65,6 @@
     border-color: #0069b4;
 }
 
-/* --- Label на бордері --- */
 .dropdown__label {
     display: none;
     position: absolute;
@@ -97,7 +84,6 @@
     color: #2c2c2c;
 }
 
-/* --- Значення --- */
 .dropdown__value {
     flex: 1;
     overflow: hidden;
@@ -105,7 +91,6 @@
     white-space: nowrap;
 }
 
-/* --- Стрілка --- */
 .dropdown__arrow {
     position: absolute;
     right: 16px;
@@ -118,7 +103,6 @@
     transform: translateY(-50%) rotate(180deg);
 }
 
-/* --- Кнопка очистки --- */
 .dropdown__clear {
     display: none;
     position: absolute;
@@ -140,7 +124,6 @@
     display: block;
 }
 
-/* --- Панель --- */
 .dropdown__panel {
     display: none;
     position: absolute;
@@ -160,7 +143,6 @@
     display: block;
 }
 
-/* --- Список --- */
 .dropdown__list {
     padding: 0 8px;
 }
@@ -170,7 +152,6 @@
     overflow-y: auto;
 }
 
-/* --- Заголовок в панелі --- */
 .dropdown__heading {
     font-size: 14px;
     font-weight: 700;
@@ -178,7 +159,6 @@
     padding: 8px 16px 4px;
 }
 
-/* --- Опція --- */
 .dropdown__option {
     display: flex;
     align-items: center;
@@ -195,7 +175,6 @@
     background-color: #e8f0f8;
 }
 
-/* --- Radio --- */
 .dropdown__radio {
     appearance: none;
     width: 22px;
@@ -222,7 +201,6 @@
     background: #2c2c2c;
 }
 
-/* --- Checkbox --- */
 .dropdown__checkbox {
     appearance: none;
     width: 22px;
@@ -249,7 +227,6 @@
     font-weight: 700;
 }
 
-/* --- Кнопка "Застосувати" --- */
 .dropdown__apply {
     display: block;
     width: calc(100% - 32px);
@@ -269,10 +246,6 @@
     background: #ff1a2a;
 }
 
-
-/* ================================================
-   МАРКА, МОДЕЛЬ — каскадний
-   ================================================ */
 .brand-search {
     padding: 0 16px 8px;
 }
@@ -315,10 +288,6 @@
     cursor: pointer;
 }
 
-
-/* ================================================
-   РІК ВИПУСКУ — дві колонки
-   ================================================ */
 .year-range {
     display: flex;
 }
@@ -336,10 +305,6 @@
     max-height: 260px;
 }
 
-
-/* ================================================
-   ВАРТІСТЬ — інпути + валюта
-   ================================================ */
 .price-inputs {
     padding: 0 16px 12px;
     display: flex;
@@ -408,10 +373,6 @@
     color: #fff;
 }
 
-
-/* ================================================
-   КНОПКИ ПОШУКУ
-   ================================================ */
 .filters__actions {
     display: flex;
     gap: 16px;

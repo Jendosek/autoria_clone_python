@@ -14,18 +14,17 @@ class CloudinaryStorage(Storage):
         path = f"{self.folder}/{name}" if self.folder else name
         response = cloudinary.uploader.upload(
             content,
-            public_id=path.rsplit('.', 1)[0],  # без розширення
+            public_id=path.rsplit('.', 1)[0],
             overwrite=True,
             resource_type='image',
         )
         return response['public_id']
 
     def url(self, name):
-        # Повертаємо URL з Cloudinary CDN
         return cloudinary.CloudinaryImage(name).build_url()
 
     def exists(self, name):
-        return False  # Завжди дозволяємо перезапис
+        return False
 
     def delete(self, name):
         cloudinary.uploader.destroy(name)

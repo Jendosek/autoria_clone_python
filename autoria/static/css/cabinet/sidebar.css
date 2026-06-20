@@ -1,6 +1,3 @@
-/* ================================================
-   ПРОФІЛЬ
-   ================================================ */
 .cab-profile {
     /*border: 1px solid #e8e8e8;*/
     /*border-radius: 8px;*/
@@ -67,11 +64,6 @@
     margin-left: auto;
 }
 
-/*.cab-profile__edit:hover svg {*/
-/*    stroke: #2c2c2c;*/
-/*}*/
-
-
 .cab-profile__info {
     display: flex;
     flex-direction: column;
@@ -130,9 +122,6 @@
     text-decoration: underline;
 }
 
-/* ================================================
-   ДОДАТИ ОГОЛОШЕННЯ
-   ================================================ */
 .cab-add {
     display: flex;
     align-items: center;
@@ -152,9 +141,6 @@
     background: #f5faf0;
 }
 
-/* ================================================
-   НАВІГАЦІЯ
-   ================================================ */
 .cab-nav__item {
     display: flex;
     align-items: center;
@@ -223,7 +209,6 @@
     background: #db5c4c;
 }
 
-/* Підменю */
 .cab-nav__sub {
     max-height: 0;
     overflow: hidden;

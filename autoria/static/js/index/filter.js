@@ -1,4 +1,3 @@
-/* ===== Мокові дані ===== */
 const MODELS = {
     'Toyota': ['Camry', 'Corolla', 'RAV4', 'Land Cruiser'],
     'BMW': ['320d', 'X5', 'M3', '520d'],

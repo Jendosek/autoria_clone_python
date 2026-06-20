@@ -1,6 +1,3 @@
-/* ================================================
-   ПАГІНАЦІЯ — показуємо по 6, потім +3
-   ================================================ */
 var INITIAL_COUNT = 6;
 var LOAD_MORE_COUNT = 3;
 var visibleCount = 0;
@@ -9,18 +6,15 @@ document.addEventListener('DOMContentLoaded', function() {
     var cards = document.querySelectorAll('#recsGrid [data-card]');
     var total = cards.length;
 
-    // Спочатку ховаємо всі
     cards.forEach(function(card) {
         card.style.display = 'none';
     });
 
-    // Показуємо перші 6 (або менше якщо машин мало)
     visibleCount = Math.min(INITIAL_COUNT, total);
     for (var i = 0; i < visibleCount; i++) {
         cards[i].style.display = '';
     }
 
-    // Ховаємо кнопку якщо показали все
     updateMoreButton();
 });
 
@@ -47,9 +41,6 @@ function updateMoreButton() {
     }
 }
 
-/* ================================================
-   ПРИХОВАТИ / ПОКАЗАТИ КАРТКУ
-   ================================================ */
 function hideCard(btn) {
     var card = btn.closest('[data-card]');
     card.querySelector('.car-card__visual').style.display = 'none';
@@ -62,9 +53,6 @@ function unhideCard(btn) {
     card.querySelector('.car-card__hidden').style.display = 'none';
 }
 
-/* ================================================
-   ОБРАНЕ + ТОСТ
-   ================================================ */
 function toggleFav(btn, carId) {
     fetch('/api/favorite/toggle/' + carId + '/', {
         method: 'POST',

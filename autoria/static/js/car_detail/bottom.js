@@ -1,4 +1,3 @@
-/* Рейтинг */
 (function initBottomRating() {
     var container = document.getElementById('bottomStars');
     if (!container) return;
@@ -27,7 +26,6 @@
     });
 })();
 
-/* Схожі оголошення — по одній картці */
 (function initSimilar() {
     var track = document.getElementById('similarTrack');
     if (!track) return;

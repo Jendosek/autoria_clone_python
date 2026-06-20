@@ -1,4 +1,3 @@
-/* Генерація років */
 (function initYears() {
     var select = document.getElementById('yearSelect');
     if (!select) return;
@@ -8,7 +7,6 @@
     }
 })();
 
-/* Валідація обов'язкових полів */
 function validateInfoForm() {
     var rows = document.querySelectorAll('#infoForm .info-row[data-required]');
     var valid = true;
@@ -24,7 +22,6 @@ function validateInfoForm() {
     return valid;
 }
 
-/* Зняття помилки при зміні */
 document.querySelectorAll('#infoForm select, #infoForm input').forEach(function(field) {
     field.addEventListener('change', function() {
         var row = this.closest('.info-row');

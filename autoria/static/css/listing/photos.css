@@ -1,4 +1,3 @@
-/* Редагування */
 .photos-edit-note {
     display: flex;
     align-items: center;
@@ -8,7 +7,6 @@
     margin-bottom: 16px;
 }
 
-/* Сітка фото */
 .photos-grid {
     display: flex;
     flex-wrap: wrap;
@@ -16,7 +14,6 @@
     margin-bottom: 20px;
 }
 
-/* Кнопка додати */
 .photos-add {
     width: 120px;
     height: 120px;
@@ -35,12 +32,12 @@
     text-align: center;
     background: #f0f6fb;
 }
+
 .photos-add:hover {
     border-style: solid;
     /*background: #f0f6fb;*/
 }
 
-/* Превʼю фото */
 .photos-preview {
     width: 140px;
     height: 140px;
@@ -48,11 +45,13 @@
     overflow: hidden;
     position: relative;
 }
+
 .photos-preview img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
+
 .photos-preview__remove {
     position: absolute;
     top: 6px;
@@ -60,7 +59,7 @@
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     color: #fff;
     border: none;
     cursor: pointer;
@@ -70,15 +69,17 @@
     font-size: 14px;
     transition: background-color 0.2s;
 }
+
 .photos-preview__remove:hover {
     background: #e3000f;
 }
+
 .photos-preview__badge {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     color: #fff;
     font-size: 12px;
     font-weight: 600;
@@ -88,7 +89,6 @@
     gap: 4px;
 }
 
-/* Підказка */
 .photos-tip {
     display: flex;
     align-items: center;
@@ -98,20 +98,24 @@
     border-radius: 4px;
     margin-bottom: 16px;
 }
+
 .photos-tip a {
     font-size: 14px;
     color: #3b7bbf;
     text-decoration: underline;
 }
-.photos-tip a:hover { text-decoration: none; }
 
-/* Чеклист */
+.photos-tip a:hover {
+    text-decoration: none;
+}
+
 .photos-checklist {
     padding: 16px;
     background: #f5f7fa;
     border-radius: 8px;
     margin-bottom: 16px;
 }
+
 .photos-checklist__header {
     display: flex;
     align-items: flex-start;
@@ -121,11 +125,13 @@
     margin-bottom: 12px;
     line-height: 1.4;
 }
+
 .photos-checklist__items {
     display: flex;
     flex-wrap: wrap;
     gap: 6px 16px;
 }
+
 .photos-check {
     display: inline-flex;
     align-items: center;
@@ -134,7 +140,6 @@
     color: #aaa;
 }
 
-/* YouTube */
 .photos-youtube {
     display: inline-block;
     font-size: 15px;
@@ -142,4 +147,7 @@
     text-decoration: underline;
     margin-top: 8px;
 }
-.photos-youtube:hover { text-decoration: none; }
+
+.photos-youtube:hover {
+    text-decoration: none;
+}

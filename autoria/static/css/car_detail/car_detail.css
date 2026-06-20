@@ -1,6 +1,3 @@
-/* ================================================
-   BREADCRUMBS
-   ================================================ */
 .detail-breadcrumbs {
     display: flex;
     align-items: center;
@@ -9,14 +6,26 @@
     font-size: 14px;
     flex-wrap: wrap;
 }
-.breadcrumb__link { color: #888; text-decoration: none; }
-.breadcrumb__link:hover { text-decoration: underline; }
-.breadcrumb__sep { color: #bbb; font-size: 12px; }
-.breadcrumb__current { color: #2c2c2c; font-weight: 500; }
 
-/* ================================================
-   LAYOUT
-   ================================================ */
+.breadcrumb__link {
+    color: #888;
+    text-decoration: none;
+}
+
+.breadcrumb__link:hover {
+    text-decoration: underline;
+}
+
+.breadcrumb__sep {
+    color: #bbb;
+    font-size: 12px;
+}
+
+.breadcrumb__current {
+    color: #2c2c2c;
+    font-weight: 500;
+}
+
 .detail-layout {
     display: grid;
     grid-template-columns: 1fr 380px;

@@ -46,7 +46,6 @@
     background: #f0f4f8;
 }
 
-/* Сповіщення */
 .dash-notification {
     border: 1px solid #e8e8e8;
     border-radius: 8px;
@@ -122,7 +121,6 @@
     background: #2d6aa0;
 }
 
-/* Лінки */
 .dash-links {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -140,7 +138,6 @@
     text-decoration: underline;
 }
 
-/* Зірки */
 .dash-stars {
     display: flex;
     gap: 10px;

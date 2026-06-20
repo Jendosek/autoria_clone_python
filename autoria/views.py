@@ -27,7 +27,6 @@ def car_detail(request, car_id):
     if request.user.is_authenticated:
         favorite_ids = list(Favorite.objects.filter(user=request.user).values_list('car_id', flat=True))
 
-    # Збираємо всі фото
     gallery_images = []
     if car:
         if car.image and hasattr(car.image, 'url'):
@@ -58,7 +57,6 @@ def login_view(request):
             identifier = request.POST.get('identifier', '').strip()
             password = request.POST.get('password', '')
 
-            # Шукаємо юзера по email, телефону або username
             user_obj = User.objects.filter(
                 Q(email=identifier) | Q(phone=identifier) | Q(username=identifier)
             ).first()
@@ -145,7 +143,6 @@ def add_listing(request):
         city = request.POST.get('city', '').strip()
         price = request.POST.get('price', '')
 
-        # Валідація — тільки ключові поля
         if not all([brand, year, price]):
             return render(request, 'listing/listing.html', {
                 'user': request.user,
@@ -256,7 +253,6 @@ def save_profile(request):
         new_email = request.POST.get('email', '').strip()
         user.phone = request.POST.get('phone', '').strip()
 
-        # Оновлюємо email і в allauth
         if new_email and new_email != user.email:
             EmailAddress.objects.filter(user=user).update(email=new_email)
         user.email = new_email
@@ -272,7 +268,6 @@ def change_password(request):
         confirm = request.POST.get('confirm_password', '')
         has_password = request.user.has_usable_password()
 
-        # Якщо є пароль — перевіряємо поточний
         if has_password:
             current = request.POST.get('current_password', '')
             if not request.user.check_password(current):

@@ -1,4 +1,3 @@
-/* ===== Перемикання табок транспорту ===== */
 function switchTransport(btn, panel) {
     document.querySelectorAll('.transport-tab').forEach(t => t.classList.remove('transport-tab--active'));
     btn.classList.add('transport-tab--active');
@@ -6,7 +5,6 @@ function switchTransport(btn, panel) {
     document.querySelector(`[data-panel="${panel}"]`).classList.add('transport-panel--active');
 }
 
-/* ===== Рейтинг зірками ===== */
 (function initRating() {
     const container = document.getElementById('ratingStars');
     if (!container) return;

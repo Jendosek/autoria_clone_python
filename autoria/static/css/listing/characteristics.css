@@ -3,6 +3,7 @@
     max-width: 300px;
     position: relative;
 }
+
 .color-picker__trigger {
     display: flex;
     align-items: center;
@@ -15,18 +16,23 @@
     font-size: 15px;
     color: #2c2c2c;
 }
+
 .color-picker__trigger:hover {
     border-color: #999;
 }
+
 .color-picker.is-open .color-picker__trigger {
     border-color: #5bc0de;
 }
+
 .color-picker__value {
     color: #aaa;
 }
+
 .color-picker__value.has-value {
     color: #2c2c2c;
 }
+
 .color-picker__dropdown {
     display: none;
     position: absolute;
@@ -41,11 +47,13 @@
     flex-wrap: wrap;
     gap: 6px;
     z-index: 10;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 .color-picker.is-open .color-picker__dropdown {
     display: flex;
 }
+
 .color-swatch {
     width: 32px;
     height: 32px;
@@ -53,9 +61,11 @@
     cursor: pointer;
     transition: transform 0.15s;
 }
+
 .color-swatch:hover {
     transform: scale(1.15);
 }
+
 .color-swatch.is-selected {
     outline: 2px solid #3b7bbf;
     outline-offset: 2px;

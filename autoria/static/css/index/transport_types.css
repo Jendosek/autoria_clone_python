@@ -1,6 +1,4 @@
-/* ================================================
-   ТИПИ ТРАНСПОРТУ
-   ================================================ */
+
 .section-transport {
     padding: 24px 0 0 0;
 }
@@ -9,7 +7,6 @@
     margin-bottom: 16px;
 }
 
-/* --- Табки --- */
 .transport-tabs {
     display: flex;
     background: #f0f0f0;
@@ -44,7 +41,6 @@
     background: #2c2c2c;
 }
 
-/* --- Панелі --- */
 .transport-panel {
     display: none;
 }
@@ -53,7 +49,6 @@
     display: block;
 }
 
-/* --- Сітка брендів --- */
 .brands-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -94,7 +89,6 @@
     text-align: center;
 }
 
-/* "Дивитись всі" */
 .brand-card--all {
     justify-content: center;
 }
@@ -110,7 +104,6 @@
     color: #2c2c2c;
 }
 
-/* --- Посилання (мото, вантажівки і тд) --- */
 .transport-links {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -130,10 +123,6 @@
     text-decoration: none;
 }
 
-
-/* ================================================
-   ОЦІНКА СТОРІНКИ
-   ================================================ */
 .section-rating {
     padding: 32px 0 16px;
 }
@@ -160,7 +149,6 @@
     color: #252525;
 }
 
-/* --- Зірки --- */
 .rating-stars {
     display: flex;
     gap: 14px;

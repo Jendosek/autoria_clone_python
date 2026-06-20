@@ -1,4 +1,3 @@
-
 function copyVin(vin) {
     navigator.clipboard.writeText(vin).catch(function() {});
 }

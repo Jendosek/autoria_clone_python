@@ -1,4 +1,3 @@
-/* Карусель з disabled стрілками */
 function createCarousel(trackId, arrowClass, visible, gap) {
     var track = document.getElementById(trackId);
     if (!track) return null;
@@ -34,7 +33,6 @@ function createCarousel(trackId, arrowClass, visible, gap) {
     };
 }
 
-/* Відгуки */
 (function() {
     var c = createCarousel('reviewsTrack', 'carousel-nav', 3, 16);
     if (c) {
@@ -43,7 +41,6 @@ function createCarousel(trackId, arrowClass, visible, gap) {
     }
 })();
 
-/* Новини */
 (function() {
     var c = createCarousel('newsDetailTrack', 'carousel-nav', 3, 20);
     if (c) {

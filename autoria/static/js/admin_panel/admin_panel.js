@@ -1,6 +1,3 @@
-/* ================================================
-   ПЕРЕКЛЮЧЕННЯ ВКЛАДОК
-   ================================================ */
 function switchAdminTab(e, tab) {
     e.preventDefault();
     document.querySelectorAll('.cabinet-content > div').forEach(function(d) {
@@ -16,18 +13,12 @@ function switchAdminTab(e, tab) {
     if (navItem) navItem.classList.add('cab-nav__item--active');
 }
 
-/* ================================================
-   CSRF TOKEN
-   ================================================ */
 function getCookie(name) {
     var value = '; ' + document.cookie;
     var parts = value.split('; ' + name + '=');
     if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-/* ================================================
-   КОРИСТУВАЧІ
-   ================================================ */
 function banUser(userId) {
     if (!confirm('Заблокувати користувача #' + userId + '?')) return;
 
@@ -78,9 +69,6 @@ function unbanUser(userId) {
     });
 }
 
-/* ================================================
-   ОГОЛОШЕННЯ
-   ================================================ */
 function toggleCar(carId) {
     fetch('/api/admin/cars/' + carId + '/toggle/', {
         method: 'POST',

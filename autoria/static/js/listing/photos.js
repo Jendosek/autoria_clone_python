@@ -1,10 +1,8 @@
-/* Згортання секцій */
 function toggleSection(name) {
     var section = document.querySelector('[data-section="' + name + '"]');
     section.classList.toggle('is-collapsed');
 }
 
-/* Завантаження фото */
 function handlePhotos(files) {
     var grid = document.getElementById('photosGrid');
     var addBtn = document.getElementById('photosAdd');
@@ -44,7 +42,6 @@ function removePhoto(btn) {
     var wasFirst = preview.querySelector('.photos-preview__badge');
     preview.remove();
 
-    /* Якщо видалили головне фото — перше стає головним */
     if (wasFirst) {
         var first = grid.querySelector('.photos-preview');
         if (first && !first.querySelector('.photos-preview__badge')) {

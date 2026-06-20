@@ -1,15 +1,14 @@
-/* ================================================
-   ФОРМА ІНФОРМАЦІЇ
-   ================================================ */
 .info-form {
     margin-bottom: 28px;
 }
+
 .info-row {
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 5px 0;
 }
+
 .info-label {
     font-size: 15px;
     color: #2c2c2c;
@@ -17,10 +16,12 @@
     flex-shrink: 0;
     width: 250px;
 }
+
 .info-req {
     color: #e3000f;
     font-weight: 700;
 }
+
 .info-select {
     flex: 1;
     max-width: 300px;
@@ -32,10 +33,12 @@
     background: #fff;
     appearance: auto;
 }
+
 .info-select:focus {
     outline: none;
     border-color: #5bc0de;
 }
+
 .info-input {
     flex: 1;
     max-width: 300px;
@@ -45,18 +48,20 @@
     font-size: 15px;
     color: #2c2c2c;
 }
+
 .info-input--short {
     max-width: 160px;
 }
+
 .info-input:focus {
     outline: none;
     border-color: #5bc0de;
 }
+
 .info-input::placeholder {
     color: #aaa;
 }
 
-/* --- Валідація --- */
 .info-error {
     display: none;
     font-size: 13px;
@@ -66,15 +71,16 @@
     border-radius: 6px;
     white-space: nowrap;
 }
+
 .info-row.has-error .info-select,
 .info-row.has-error .info-input {
     border-color: #e3000f;
 }
+
 .info-row.has-error .info-error {
     display: block;
 }
 
-/* --- Чекбокс --- */
 .info-check {
     display: flex;
     align-items: center;
@@ -84,49 +90,54 @@
     cursor: pointer;
     padding: 4px 0;
 }
+
 .info-check input[type="checkbox"] {
     width: 18px;
     height: 18px;
     accent-color: #3b7bbf;
 }
 
-/* ================================================
-   VIN
-   ================================================ */
 .info-vin {
     background: #f0f6fb;
     border-radius: 8px;
     padding: 24px;
     margin-bottom: 24px;
 }
+
 .info-vin__title {
     font-size: 16px;
     font-weight: 700;
     color: #2c2c2c;
     margin-bottom: 10px;
 }
+
 .info-vin__desc {
     font-size: 13px;
     color: #555;
     line-height: 1.5;
     margin-bottom: 16px;
 }
+
 .info-vin__row {
     display: flex;
     align-items: center;
     gap: 12px;
 }
+
 .info-vin__row .info-label {
     min-width: 80px;
 }
+
 .info-vin__row .info-input {
     max-width: 240px;
     margin-left: 74px;
 }
+
 .info-vin__camera {
     flex-shrink: 0;
     cursor: pointer;
 }
+
 .info-vin__link {
     display: inline-flex;
     align-items: center;
@@ -136,62 +147,64 @@
     text-decoration: underline;
     white-space: nowrap;
 }
+
 .info-vin__link:hover {
     text-decoration: none;
 }
 
-/* ================================================
-   ВЛАСНИК
-   ================================================ */
 .info-owner {
     padding-top: 20px;
 }
+
 .info-owner__title {
     font-size: 16px;
     font-weight: 700;
     color: #2c2c2c;
     margin-bottom: 8px;
 }
+
 .info-owner__desc {
     font-size: 13px;
     color: #555;
     margin-bottom: 14px;
 }
 
-/* Валюта */
 .price-currency {
     max-width: 100px;
 }
 
-/* Опції ціни */
 .price-options {
     padding-left: 166px;
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
+
 .price-options .info-check svg {
     flex-shrink: 0;
     margin-left: 4px;
 }
 
-/* Підтвердження */
 .listing-submit {
     padding: 32px 40px;
     border-top: 1px solid #e8e8e8;
 }
+
 .listing-submit__terms {
     margin-bottom: 10px;
 }
+
 .listing-submit__terms a {
     color: #3b7bbf;
 }
+
 .listing-submit__privacy {
     font-size: 14px;
     color: #555;
     line-height: 1.5;
     margin-bottom: 20px;
 }
+
 .listing-submit__privacy a {
     color: #3b7bbf;
     text-decoration: none;
@@ -202,6 +215,7 @@
     align-items: center;
     gap: 20px;
 }
+
 .listing-submit__btn {
     padding: 10px 40px;
     background: #79be00;
@@ -213,9 +227,11 @@
     cursor: pointer;
     transition: background-color 0.2s;
 }
+
 .listing-submit__btn:hover {
     background: #9ccc65;
 }
+
 .listing-submit__note {
     font-size: 14px;
     color: #555;

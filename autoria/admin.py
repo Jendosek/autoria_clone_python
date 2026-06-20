@@ -1,5 +1,3 @@
-# autoria/admin.py
-
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import User, Car, CarImage, Favorite
@@ -11,7 +9,6 @@ class CustomUserAdmin(UserAdmin):
                     'is_verified_seller', 'rating', 'is_staff')
     list_filter = ('is_verified_seller', 'is_staff', 'is_superuser', 'is_active')
 
-    # Додаємо кастомні поля до стандартних секцій
     fieldsets = UserAdmin.fieldsets + (
         ('Додатково', {
             'fields': ('phone', 'patronymic', 'region', 'city',

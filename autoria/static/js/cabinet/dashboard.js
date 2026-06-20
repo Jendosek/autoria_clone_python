@@ -1,9 +1,7 @@
-/* Сповіщення */
 function toggleNotification() {
     document.getElementById('dashNotification').classList.toggle('is-open');
 }
 
-/* Зірки */
 (function() {
     var container = document.getElementById('dashStars');
     if (!container) return;

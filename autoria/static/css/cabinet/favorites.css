@@ -27,7 +27,6 @@
     text-decoration: none;
 }
 
-/* Фільтр */
 .listings-filter {
     display: none;
     border: 1px solid #e8e8e8;
@@ -97,7 +96,6 @@
     background: #f0f4f8;
 }
 
-/* Дії */
 .listings-actions {
     display: flex;
     align-items: center;
@@ -137,7 +135,6 @@
     background: #2d6aa0;
 }
 
-/* Картки */
 .listings-grid {
     display: flex;
     flex-direction: column;
@@ -214,7 +211,6 @@
     cursor: pointer;
 }
 
-/* Порожній стан */
 .listings-empty {
     display: flex;
     align-items: center;

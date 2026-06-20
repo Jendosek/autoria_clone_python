@@ -1,6 +1,3 @@
-/* ================================================
-   ПОКАЗАТИ / СХОВАТИ ПАРОЛЬ
-   ================================================ */
 function togglePassword(inputId, btn) {
     var input = document.getElementById(inputId);
     var isPassword = input.type === 'password';
@@ -11,9 +8,6 @@ function togglePassword(inputId, btn) {
         : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
 }
 
-/* ================================================
-   ПЕРЕКЛЮЧЕННЯ ФОРМ
-   ================================================ */
 function switchToRegister(e) {
     e.preventDefault();
     document.getElementById('authLogin').style.display = 'none';
@@ -26,9 +20,6 @@ function switchToLogin(e) {
     document.getElementById('authLogin').style.display = 'block';
 }
 
-/* ================================================
-   ЧЕКБОКС УМОВ
-   ================================================ */
 function toggleTerms() {
     var checked = document.getElementById('termsCheck').checked;
     var btn = document.getElementById('regSubmit');
@@ -38,7 +29,6 @@ function toggleTerms() {
         btn.disabled = false;
         btn.classList.add('is-active');
         socials.classList.add('is-active');
-        // Розблоковуємо Google посилання
         var googleLink = socials.querySelector('a.auth-social');
         if (googleLink) {
             googleLink.style.pointerEvents = 'auto';
@@ -56,9 +46,6 @@ function toggleTerms() {
     }
 }
 
-/* ================================================
-   ПОКАЗ ФОРМИ РЕЄСТРАЦІЇ ПРИ ПОМИЛЦІ
-   ================================================ */
 document.addEventListener('DOMContentLoaded', function() {
     if (document.querySelector('[data-show-register]')) {
         document.getElementById('authLogin').style.display = 'none';

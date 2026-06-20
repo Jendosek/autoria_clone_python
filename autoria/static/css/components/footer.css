@@ -1,25 +1,19 @@
-/* ================================================
-   FOOTER
-   ================================================ */
 .footer {
     background-color: rgb(31, 32, 36);
     color: #fff;
 }
 
-/* ================================================
-   ПІДТРИМКА 24/7
-   ================================================ */
 .footer-support {
     display: flex;
     align-items: center;
     padding: 32px 0;
 }
 
-/* --- Фото --- */
 .footer-support__photos {
     display: flex;
     flex-shrink: 0;
 }
+
 .footer-support__photo {
     width: 98px;
     height: 98px;
@@ -27,38 +21,45 @@
     /* border: 3px solid #fff; */
     object-fit: cover;
 }
+
 .footer-support__photo:not(:first-child) {
     margin-left: -18px;
 }
 
-/* --- Текст --- */
 .footer-support__info {
     display: flex;
     flex-direction: column;
     gap: 8px;
     margin-left: 28px;
 }
+
 .footer-support__title {
     font-size: 18px;
     font-weight: 700;
     color: #fff;
     text-decoration: none;
 }
-.footer-support__title:hover { text-decoration: underline; }
+
+.footer-support__title:hover {
+    text-decoration: underline;
+}
 
 .footer-support__desc {
     font-size: 15px;
     color: #fff;
     text-decoration: none;
 }
-.footer-support__desc:hover { text-decoration: underline; }
 
-/* --- Соц. мережі --- */
+.footer-support__desc:hover {
+    text-decoration: underline;
+}
+
 .footer-support__socials {
     display: flex;
     gap: 14px;
     margin-left: auto;
 }
+
 .footer-social {
     width: 46px;
     height: 46px;
@@ -68,27 +69,39 @@
     justify-content: center;
     transition: filter 0.2s;
 }
-.footer-social:hover { filter: brightness(0.8); }
 
-.footer-social--telegram { background: #2AABEE; }
-.footer-social--messenger { background: #0084FF; }
-.footer-social--viber { background: #7360F2; }
-.footer-social--chat { background: #8E7CC3; }
+.footer-social:hover {
+    filter: brightness(0.8);
+}
+
+.footer-social--telegram {
+    background: #2AABEE;
+}
+
+.footer-social--messenger {
+    background: #0084FF;
+}
+
+.footer-social--viber {
+    background: #7360F2;
+}
+
+.footer-social--chat {
+    background: #8E7CC3;
+}
+
 .footer-social--phone {
     background: #fff;
     color: #2c2c2c;
 }
 
-
-/* ================================================
-   PILL-ПОСИЛАННЯ
-   ================================================ */
 .footer-pills {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
     padding: 8px 0 28px;
 }
+
 .footer-pill {
     padding: 14px 22px;
     border: none;
@@ -101,24 +114,25 @@
     transition: filter 0.2s;
     white-space: nowrap;
 }
+
 .footer-pill:hover {
     filter: brightness(0.85);
 }
 
-
-/* ================================================
-   КАТЕГОРІЇ
-   ================================================ */
 .footer-categories {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0 80px;
     padding: 28px 0;
 }
+
 .footer-category {
     margin-bottom: 24px;
 }
-.footer-category:last-child { margin-bottom: 0; }
+
+.footer-category:last-child {
+    margin-bottom: 0;
+}
 
 .footer-category__title {
     font-size: 18px;
@@ -128,7 +142,10 @@
     display: inline-block;
     margin-bottom: 8px;
 }
-.footer-category__title:hover { text-decoration: underline; }
+
+.footer-category__title:hover {
+    text-decoration: underline;
+}
 
 .footer-category__links {
     display: flex;
@@ -136,12 +153,16 @@
     align-items: center;
     line-height: 1.8;
 }
+
 .footer-category__links a {
     font-size: 16px;
     color: #fff;
     text-decoration: none;
 }
-.footer-category__links a:hover { text-decoration: underline; }
+
+.footer-category__links a:hover {
+    text-decoration: underline;
+}
 
 .footer-dot {
     color: #fff;
@@ -149,30 +170,30 @@
     font-size: 14px;
 }
 
-
-/* ================================================
-   НИЖНЯ ПАНЕЛЬ
-   ================================================ */
 .footer-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px 0 12px;
 }
+
 .footer-bottom__left,
 .footer-bottom__right {
     display: flex;
     align-items: center;
     gap: 24px;
 }
+
 .footer-bottom__link {
     font-size: 16px;
     color: #fff;
     text-decoration: none;
 }
-.footer-bottom__link:hover { text-decoration: underline; }
 
-/* --- Мова --- */
+.footer-bottom__link:hover {
+    text-decoration: underline;
+}
+
 .footer-lang {
     display: flex;
     align-items: center;
@@ -184,9 +205,11 @@
     cursor: pointer;
     padding: 0;
 }
-.footer-lang:hover { text-decoration: underline; }
 
-/* --- Копірайт --- */
+.footer-lang:hover {
+    text-decoration: underline;
+}
+
 .footer-copyright {
     font-size: 16px;
     margin-top: 16px;
@@ -194,9 +217,6 @@
     padding-bottom: 24px;
 }
 
-/* ================================================
-   FOOTER LOGIN (старий дизайн)
-   ================================================ */
 .footer-old {
     background: #fff;
 }
@@ -208,10 +228,10 @@
     padding: 30px 16px;
 }
 
-/* --- Секції з посиланнями --- */
 .footer-old__section {
     margin-bottom: 20px;
 }
+
 .footer-old__heading {
     font-size: 13px;
     font-weight: 700;
@@ -220,48 +240,54 @@
     display: block;
     /*margin-bottom: 6px;*/
 }
+
 .footer-old__heading:hover {
     text-decoration: underline;
 }
+
 .footer-old__heading--solo {
     margin-bottom: 16px;
 }
+
 .footer-old__links {
     /*line-height: 1.8;*/
 }
+
 .footer-old__links a {
     font-size: 11px;
     color: #256799;
     text-decoration: none;
 }
+
 .footer-old__links a:hover {
     text-decoration: underline;
 }
+
 .footer-old__dot {
     color: #3b7bbf;
     margin: 0 4px;
     font-size: 14px;
 }
 
-/* --- Права колонка --- */
 .footer-old__col--right {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-/* Допомога */
 .footer-old__help {
     display: flex;
     align-items: center;
     gap: 16px;
 }
+
 .footer-old__photos {
     position: relative;
     width: 85px;
     height: 85px;
     flex-shrink: 0;
 }
+
 .footer-old__photo {
     width: 64px;
     height: 64px;
@@ -271,22 +297,26 @@
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
     position: absolute;
 }
+
 .footer-old__photo:nth-child(1) {
     top: 0;
     left: 0;
     z-index: 1;
 }
+
 .footer-old__photo:nth-child(2) {
     top: 18px;
     right: -10px;
     z-index: 2;
 }
+
 .footer-old__photo:nth-child(3) {
     bottom: 0;
     top: 40px;
     left: 0;
     z-index: 3;
 }
+
 .footer-old__help-link {
     font-size: 13px;
     font-weight: 700;
@@ -294,16 +324,17 @@
     text-decoration: none;
     /*line-height: 1.4;*/
 }
+
 .footer-old__help-link:hover {
     text-decoration: underline;
 }
 
-/* Соцмережі */
 .footer-old__socials {
     display: flex;
     gap: 10px;
     margin-top: 16px;
 }
+
 .footer-old-social {
     width: 54px;
     height: 54px;
@@ -315,12 +346,12 @@
     justify-content: center;
     transition: background-color 0.2s, border-color 0.2s;
 }
+
 .footer-old-social:hover {
     /*background: #e8f4f8;*/
     border-color: #256799;
 }
 
-/* Написати нам */
 .footer-old__write {
     display: block;
     text-align: center;
@@ -333,127 +364,145 @@
     transition: background-color 0.2s;
     margin-top: -10px;
 }
+
 .footer-old__write:hover {
     background: #e8f4f8;
 }
 
-/* Юридичні посилання */
 .footer-old__legal {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
+
 .footer-old__legal a {
     font-size: 13px;
     font-weight: 700;
     color: #256799;
     text-decoration: none;
 }
+
 .footer-old__legal a:hover {
     text-decoration: underline;
 }
 
-/* --- Нижня панель --- */
 .footer-old__bottom {
     border-top: 1px solid #e0e0e0;
 }
+
 .footer-old__bottom-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 16px;
 }
+
 .footer-old__bottom-left {
     display: flex;
     align-items: center;
     gap: 12px;
 }
+
 .footer-old__bottom-logo {
     height: 32px;
     width: auto;
 }
+
 .footer-old__copyright {
     font-size: 13px;
     color: #9b9b9b;
 }
 
-/* Мови */
 .footer-old__lang {
     display: flex;
     gap: 12px;
 }
+
 .footer-old__lang-item {
     font-size: 13px;
     text-decoration: none;
     color: #256799;
 }
+
 .footer-old__lang-item:hover {
     text-decoration: underline;
 }
+
 .footer-old__lang-item--active {
     color: #2c2c2c;
     /*font-weight: 600;*/
     cursor: default;
 }
+
 .footer-old__lang-item--active:hover {
     text-decoration: none;
 }
-/* ================================================
-   MINI FOOTER
-   ================================================ */
+
 .footer-mini {
     background: #fff;
     border-top: 1px solid #e8e8e8;
     padding: 16px 0;
 }
+
 .footer-mini__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 .footer-mini__left {
     display: flex;
     align-items: center;
     gap: 8px;
 }
+
 .footer-mini__logo {
     height: 28px;
     width: auto;
 }
+
 .footer-mini__copy {
     font-size: 13px;
     color: #888;
 }
+
 .footer-mini__dot {
     color: #ccc;
     font-size: 14px;
 }
+
 .footer-mini__link {
     font-size: 12px;
     color: #256799;
     text-decoration: none;
 }
+
 .footer-mini__link:hover {
     text-decoration: underline;
 }
+
 .footer-mini__lang {
     display: flex;
     gap: 12px;
 }
+
 .footer-mini__lang-item {
     font-size: 14px;
     color: #3b7bbf;
     text-decoration: none;
 }
+
 .footer-mini__lang-item:hover {
     text-decoration: underline;
 }
+
 .footer-mini__lang-item--active {
     color: #2c2c2c;
     /*font-weight: 600;*/
     cursor: default;
     font-size: 13px;
 }
+
 .footer-mini__lang-item--active:hover {
     text-decoration: none;
 }

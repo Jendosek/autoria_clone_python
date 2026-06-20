@@ -1,8 +1,6 @@
-/* ================================================
-   СТРІЛКИ КАРУСЕЛЕЙ (спільні)
-   ================================================ */
 .carousel-nav {
-    width: 48px; height: 48px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     border: 2px solid #2c2c2c;
     background: transparent;
@@ -13,31 +11,35 @@
     justify-content: center;
     transition: border-color 0.2s, color 0.2s;
 }
-.carousel-nav:hover { background: #f0f0f0; }
+
+.carousel-nav:hover {
+    background: #f0f0f0;
+}
+
 .carousel-nav.disabled {
     border-color: #ccc;
     color: #ccc;
     pointer-events: none;
 }
 
-/* ================================================
-   ВІДГУКИ
-   ================================================ */
 .reviews {
     padding: 0 16px;
     /*border-top: 1px solid #eee;*/
 }
+
 .reviews__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
 }
+
 .reviews__header .reviews__arrows,
 .news-detail__header .reviews__arrows {
     display: flex;
     gap: 14px;
 }
+
 .reviews__title {
     font-size: 24px;
     font-weight: 700;
@@ -49,7 +51,6 @@
     gap: 20px;
 }
 
-/* --- Рейтинг зліва --- */
 .reviews-rating {
     flex: 0 0 420px;
     /*border: 1px solid #e0e0e0;*/
@@ -58,14 +59,17 @@
     padding: 20px;
     align-self: flex-start;
 }
+
 .reviews-rating__head {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 18px;
 }
+
 .reviews-rating__score {
-    width: 54px; height: 54px;
+    width: 54px;
+    height: 54px;
     border-radius: 50%;
     background: #2c2c2c;
     display: flex;
@@ -76,24 +80,46 @@
     color: #fff;
     flex-shrink: 0;
 }
+
 .reviews-rating__label {
     font-size: 14px;
     font-weight: 600;
     color: #2c2c2c;
 }
 
-/* --- Бари --- */
-.reviews-rating__bars { margin-bottom: 18px; }
+.reviews-rating__bars {
+    margin-bottom: 18px;
+}
+
 .rating-bar {
     display: flex;
     align-items: center;
     gap: 6px;
     margin-bottom: 10px;
 }
-.rating-bar:last-child { margin-bottom: 0; }
-.rating-bar__val { font-size: 14px; font-weight: 700; color: #2c2c2c; min-width: 24px; }
-.rating-bar__dot { color: #2c2c2c; font-size: 16px; }
-.rating-bar__name { font-size: 13px; color: #2c2c2c; min-width: 80px; }
+
+.rating-bar:last-child {
+    margin-bottom: 0;
+}
+
+.rating-bar__val {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2c2c2c;
+    min-width: 24px;
+}
+
+.rating-bar__dot {
+    color: #2c2c2c;
+    font-size: 16px;
+}
+
+.rating-bar__name {
+    font-size: 13px;
+    color: #2c2c2c;
+    min-width: 80px;
+}
+
 .rating-bar__track {
     flex: 1;
     height: 8px;
@@ -101,6 +127,7 @@
     border-radius: 4px;
     overflow: hidden;
 }
+
 .rating-bar__fill {
     height: 100%;
     background: #2c2c2c;
@@ -119,25 +146,30 @@
     cursor: pointer;
     transition: background-color 0.2s;
 }
-.reviews-rating__btn:hover { background: #f0f0f0; }
 
-/* --- Карусель відгуків --- */
+.reviews-rating__btn:hover {
+    background: #f0f0f0;
+}
+
 .reviews__carousel {
     flex: 1;
     overflow: hidden;
     min-width: 0;
 }
+
 .reviews__track {
     display: flex;
     gap: 16px;
     transition: transform 0.4s ease;
 }
+
 .review-card {
     flex: 0 0 calc(33.333% - 11px);
     text-decoration: none;
     color: inherit;
     min-width: 0;
 }
+
 .review-card__img {
     aspect-ratio: 4 / 3;
     border-radius: 10px;
@@ -145,7 +177,12 @@
     margin-bottom: 10px;
     background: #f0f0f0;
 }
-.review-card__img img { width: 100%; height: 100%; object-fit: cover; }
+
+.review-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .review-card__name {
     font-size: 16px;
@@ -153,7 +190,10 @@
     color: #1f2024;
     margin-bottom: 6px;
 }
-.review-card:hover .review-card__name { text-decoration: underline; }
+
+.review-card:hover .review-card__name {
+    text-decoration: underline;
+}
 
 .review-card__text {
     font-size: 14px;
@@ -165,37 +205,39 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
 .review-card__date {
     font-size: 12px;
     color: #aaa;
 }
 
-
-/* ================================================
-   НОВИНИ НА AUTO.RIA
-   ================================================ */
 .news-detail {
     padding: 32px 16px;
 }
+
 .news-detail__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
 }
+
 .news-detail__title {
     font-size: 24px;
     font-weight: 700;
     color: #2c2c2c;
 }
+
 .news-detail__carousel {
     overflow: hidden;
 }
+
 .news-detail__track {
     display: flex;
     gap: 20px;
     transition: transform 0.4s ease;
 }
+
 .news-detail-card {
     flex: 0 0 calc(33.333% - 14px);
     display: flex;
@@ -204,6 +246,7 @@
     text-decoration: none;
     color: inherit;
 }
+
 .news-detail-card__img {
     width: 120px;
     height: 80px;
@@ -212,6 +255,7 @@
     flex-shrink: 0;
     background: #f0f0f0;
 }
+
 .news-detail-card__title {
     font-size: 15px;
     font-weight: 700;
@@ -219,7 +263,10 @@
     line-height: 1.4;
     margin-bottom: 4px;
 }
-.news-detail-card:hover .news-detail-card__title { text-decoration: underline; }
+
+.news-detail-card:hover .news-detail-card__title {
+    text-decoration: underline;
+}
 
 .news-detail-card__date {
     font-size: 13px;

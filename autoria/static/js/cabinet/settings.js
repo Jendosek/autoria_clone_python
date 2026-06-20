@@ -1,4 +1,3 @@
-/* Показ вкладки settings при помилці */
 document.addEventListener('DOMContentLoaded', function() {
     if (document.querySelector('[data-show-settings]')) {
         document.querySelectorAll('.cabinet-content > div').forEach(function(d) { d.classList.remove('is-active'); });
@@ -9,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-/* Підтвердження видалення */
 function confirmDelete() {
     if (confirm('Ви впевнені що хочете видалити акаунт? Цю дію складно скасувати.')) {
         if (confirm('Останнє попередження! Натисніть OK щоб підтвердити видалення.')) {

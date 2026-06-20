@@ -1,8 +1,8 @@
 <div id="tab-favorites">
     <h2 class="listings-title">Обране</h2>
     <div class="listings-grid">
-        {% for car in cars %}
-        <div class="listing-card">
+        {% for car in favorite_cars %}
+        <div class="listing-card" id="fav-card-{{ car.id }}">
             <img src="{{ car.image_url }}" alt="{{ car.brand }} {{ car.model }}" class="listing-card__img">
             <div class="listing-card__info">
                 <a href="{% url 'car_detail' car.id %}" class="listing-card__name">{{ car.brand }} {{ car.model }} {{ car.year }}</a>
@@ -10,10 +10,35 @@
                 <span class="listing-card__meta">{{ car.engine }} &middot; {{ car.transmission }} &middot; {{ car.mileage }} тис. км</span>
                 <span class="listing-card__city">{{ car.city }}</span>
             </div>
-            <button class="listing-card__remove" onclick="this.closest('.listing-card').remove()">
+            <button class="listing-card__remove" onclick="removeFavorite({{ car.id }})">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
             </button>
         </div>
+        {% empty %}
+        <p style="color: #888; font-size: 15px;">У вас поки немає обраних оголошень</p>
         {% endfor %}
     </div>
 </div>
+
+<script>
+function removeFavorite(carId) {
+    var value = '; ' + document.cookie;
+    var parts = value.split('; csrftoken=');
+    var token = parts.length === 2 ? parts.pop().split(';').shift() : '';
+
+    fetch('/api/favorite/toggle/' + carId + '/', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': token,
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+        if (data.status === 'removed') {
+            var card = document.getElementById('fav-card-' + carId);
+            if (card) card.remove();
+        }
+    });
+}
+</script>

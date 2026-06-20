@@ -235,3 +235,8 @@
     background: #1a8a1a;
     flex-shrink: 0;
 }
+
+.sidebar-fav.is-liked svg {
+    fill: #e3000f;
+    stroke: #e3000f;
+}

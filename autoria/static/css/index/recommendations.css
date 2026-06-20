@@ -361,3 +361,26 @@
 .recs-more-btn:hover {
     background-color: #f0f0f0;
 }
+
+.recs-toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #2c2c2c;
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 50px;
+    border: 2px solid #fff;
+    font-size: 15px;
+    font-weight: 600;
+    z-index: 9999;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.recs-toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}

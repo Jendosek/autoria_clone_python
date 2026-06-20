@@ -38,4 +38,5 @@ urlpatterns = [
     path('cabinet/profile/save/', views.save_profile, name='save_profile'),
     path('cabinet/password/change/', views.change_password, name='change_password'),
     path('cabinet/delete/', views.delete_account, name='delete_account'),
+    path('api/favorite/toggle/<int:car_id>/', views.toggle_favorite, name='toggle_favorite'),
 ]

@@ -4,24 +4,33 @@ from django.db.models import Q
 from .models import User, Car, Favorite, CarImage
 from allauth.socialaccount.models import SocialAccount
 from allauth.account.models import EmailAddress
+from django.http import JsonResponse
 
 
 
 def index(request):
     cars = Car.objects.filter(is_active=True).select_related('seller')
+    favorite_ids = []
+    if request.user.is_authenticated:
+        favorite_ids = list(Favorite.objects.filter(user=request.user).values_list('car_id', flat=True))
     return render(request, 'index/index.html', {
         'cars': cars,
         'is_logged_in': request.user.is_authenticated,
+        'favorite_ids': favorite_ids,
     })
 
 
 def car_detail(request, car_id):
     car = Car.objects.select_related('seller').filter(id=car_id).first()
     similar_cars = Car.objects.filter(is_active=True).exclude(id=car_id).select_related('seller')[:6]
+    favorite_ids = []
+    if request.user.is_authenticated:
+        favorite_ids = list(Favorite.objects.filter(user=request.user).values_list('car_id', flat=True))
     return render(request, 'car_detail/car_detail.html', {
         'car': car,
         'similar_cars': similar_cars,
         'is_logged_in': request.user.is_authenticated,
+        'favorite_ids': favorite_ids,
     })
 
 
@@ -175,7 +184,7 @@ def add_listing(request):
             interior_material=request.POST.get('interior', ''),
             region=region,
             city=city,
-            vin=request.POST.get('vin', ''),
+            plate=request.POST.get('plate', ''),
             description=request.POST.get('description', ''),
             headlights=request.POST.get('headlights', ''),
             conditioning=request.POST.get('ac', ''),
@@ -314,3 +323,19 @@ def disconnect_google(request):
             SocialAccount.objects.filter(user=request.user, provider='google').delete()
         # Якщо пароля немає — не відв'язуємо (інакше юзер заблокує себе)
     return redirect('cabinet')
+
+def toggle_favorite(request, car_id):
+    if not request.user.is_authenticated:
+        return JsonResponse({'error': 'not_authenticated'}, status=401)
+    if request.method == 'POST':
+        car = Car.objects.filter(id=car_id).first()
+        if not car:
+            return JsonResponse({'error': 'not_found'}, status=404)
+        fav = Favorite.objects.filter(user=request.user, car=car).first()
+        if fav:
+            fav.delete()
+            return JsonResponse({'status': 'removed'})
+        else:
+            Favorite.objects.create(user=request.user, car=car)
+            return JsonResponse({'status': 'added'})
+    return JsonResponse({'error': 'method_not_allowed'}, status=405)

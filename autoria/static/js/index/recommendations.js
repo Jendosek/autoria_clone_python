@@ -65,9 +65,37 @@ function unhideCard(btn) {
 /* ================================================
    ОБРАНЕ + ТОСТ
    ================================================ */
-function toggleFav(btn) {
-    var isLiked = btn.classList.toggle('is-liked');
-    showToast(isLiked ? 'Пропозицію додано до Обраного' : 'Пропозицію видалено з Обраного');
+function toggleFav(btn, carId) {
+    fetch('/api/favorite/toggle/' + carId + '/', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken'),
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(function(r) {
+        if (r.status === 401) {
+            window.location.href = '/login/';
+            return;
+        }
+        return r.json();
+    })
+    .then(function(data) {
+        if (!data) return;
+        if (data.status === 'added') {
+            btn.classList.add('is-liked');
+            showToast('Пропозицію додано до Обраного');
+        } else if (data.status === 'removed') {
+            btn.classList.remove('is-liked');
+            showToast('Пропозицію видалено з Обраного');
+        }
+    });
+}
+
+function getCookie(name) {
+    var value = '; ' + document.cookie;
+    var parts = value.split('; ' + name + '=');
+    if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
 function showToast(message) {

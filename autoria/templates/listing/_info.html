@@ -69,6 +69,51 @@
                 <input type="text" class="info-input info-input--short" name="mileage" placeholder="тис.км">
             </div>
 
+            <div class="info-row">
+                <span class="info-label">Тип палива</span>
+                <select class="info-select" name="fuel_type">
+                    <option value="">Оберіть</option>
+                    <option>Бензин</option>
+                    <option>Дизель</option>
+                    <option>Газ</option>
+                    <option>Газ / Бензин</option>
+                    <option>Гібрид</option>
+                    <option>Електро</option>
+                </select>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Об'єм двигуна (л)</span>
+                <input type="text" class="info-input info-input--short" name="engine_volume" placeholder="Наприклад: 2.5">
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Потужність (к.с.)</span>
+                <input type="number" class="info-input info-input--short" name="hp" placeholder="Наприклад: 200">
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Коробка передач</span>
+                <select class="info-select" name="transmission">
+                    <option value="">Оберіть</option>
+                    <option>Механіка</option>
+                    <option>Автомат</option>
+                    <option>Робот</option>
+                    <option>Варіатор</option>
+                    <option>Типтронік</option>
+                </select>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Привід</span>
+                <select class="info-select" name="drive">
+                    <option value="">Оберіть</option>
+                    <option>Передній</option>
+                    <option>Задній</option>
+                    <option>Повний</option>
+                </select>
+            </div>
+
             <div class="info-row" data-required>
                 <span class="info-label">Тип кузова <span class="info-req">*</span></span>
                 <select class="info-select" name="body_type">

@@ -1,30 +1,76 @@
 <div class="gallery">
     <div class="gallery__main">
-        <button class="gallery__arrow gallery__arrow--left" onclick="galleryPrev()" aria-label="Назад">
+        <button class="gallery__arrow gallery__arrow--left" id="galleryLeft" aria-label="Назад">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
-        <img src="{{ car.image_url }}" alt="{{ car.brand }} {{ car.model }}" class="gallery__image" id="galleryImage">
-        <button class="gallery__arrow gallery__arrow--right" onclick="galleryNext()" aria-label="Вперед">
+        <img src="{{ gallery_images.0 }}" alt="{{ car.brand }} {{ car.model }}" class="gallery__image" id="galleryImage">
+        <button class="gallery__arrow gallery__arrow--right" id="galleryRight" aria-label="Вперед">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 6 15 12 9 18"/></svg>
         </button>
-        <span class="gallery__counter" id="galleryCounter">1 з 6</span>
+        <span class="gallery__counter" id="galleryCounter">1 з {{ gallery_images|length }}</span>
     </div>
     <div class="gallery__thumbs">
         <div class="gallery__thumbs-viewport">
             <div class="gallery__thumbs-track" id="galleryThumbs">
-                <div class="gallery__thumb gallery__thumb--active" onclick="galleryGo(0)"><img src="{{ car.image_url }}" alt=""></div>
-                <div class="gallery__thumb" onclick="galleryGo(1)"><img src="{{ car.image_url }}" alt=""></div>
-                <div class="gallery__thumb" onclick="galleryGo(2)"><img src="{{ car.image_url }}" alt=""></div>
-                <div class="gallery__thumb" onclick="galleryGo(3)"><img src="{{ car.image_url }}" alt=""></div>
-                <div class="gallery__thumb" onclick="galleryGo(4)"><img src="{{ car.image_url }}" alt=""></div>
-                <div class="gallery__thumb" onclick="galleryGo(5)"><img src="{{ car.image_url }}" alt=""></div>
+                {% for img in gallery_images %}
+                <div class="gallery__thumb {% if forloop.first %}gallery__thumb--active{% endif %}" data-index="{{ forloop.counter0 }}">
+                    <img src="{{ img }}" alt="">
+                </div>
+                {% endfor %}
             </div>
-            <button class="gallery__thumb-arrow gallery__thumb-arrow--left" onclick="galleryPrev()" aria-label="Назад">
+            <button class="gallery__thumb-arrow gallery__thumb-arrow--left" id="thumbLeft" aria-label="Назад">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
-            <button class="gallery__thumb-arrow gallery__thumb-arrow--right" onclick="galleryNext()" aria-label="Вперед">
+            <button class="gallery__thumb-arrow gallery__thumb-arrow--right" id="thumbRight" aria-label="Вперед">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="9 6 15 12 9 18"/></svg>
             </button>
         </div>
     </div>
 </div>
+
+<script>
+(function() {
+    var images = [
+        {% for img in gallery_images %}
+        "{{ img }}"{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    ];
+    var current = 0;
+    var mainImg = document.getElementById('galleryImage');
+    var counter = document.getElementById('galleryCounter');
+    var thumbs = document.querySelectorAll('.gallery__thumb');
+
+    function go(index) {
+        if (index < 0 || index >= images.length) return;
+        current = index;
+        mainImg.src = images[current];
+        counter.textContent = (current + 1) + ' з ' + images.length;
+        thumbs.forEach(function(t, i) {
+            t.classList.toggle('gallery__thumb--active', i === current);
+        });
+        var track = document.getElementById('galleryThumbs');
+        if (thumbs[current]) {
+            track.scrollTo({
+                left: thumbs[current].offsetLeft - track.offsetWidth / 2 + thumbs[current].offsetWidth / 2,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    document.getElementById('galleryLeft').addEventListener('click', function() { go(current - 1); });
+    document.getElementById('galleryRight').addEventListener('click', function() { go(current + 1); });
+
+    thumbs.forEach(function(thumb) {
+        thumb.addEventListener('click', function() {
+            go(parseInt(this.getAttribute('data-index')));
+        });
+    });
+
+    document.getElementById('thumbLeft').addEventListener('click', function() {
+        document.getElementById('galleryThumbs').scrollBy({ left: -300, behavior: 'smooth' });
+    });
+    document.getElementById('thumbRight').addEventListener('click', function() {
+        document.getElementById('galleryThumbs').scrollBy({ left: 300, behavior: 'smooth' });
+    });
+})();
+</script>

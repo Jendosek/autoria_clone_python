@@ -1,33 +1,39 @@
-var currentSlide = 0;
-var totalSlides = 6;
+var currentIndex = 0;
 
-function galleryGo(index) {
-    currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
-    document.getElementById('galleryCounter').textContent = (currentSlide + 1) + ' з ' + totalSlides;
-
-    var thumbs = document.querySelectorAll('.gallery__thumb');
-    thumbs.forEach(function(t) { t.classList.remove('gallery__thumb--active'); });
-    thumbs[currentSlide].classList.add('gallery__thumb--active');
-
-    scrollThumbsToActive();
+function getImages() {
+    return window.galleryImages || [];
 }
 
-function galleryPrev() { galleryGo(currentSlide - 1); }
-function galleryNext() { galleryGo(currentSlide + 1); }
+function galleryGo(index) {
+    var images = getImages();
+    if (index < 0 || index >= images.length) return;
+    currentIndex = index;
 
-function scrollThumbsToActive() {
+    document.getElementById('galleryImage').src = images[currentIndex];
+    document.getElementById('galleryCounter').textContent = (currentIndex + 1) + ' з ' + images.length;
+
+    var thumbs = document.querySelectorAll('.gallery__thumb');
+    thumbs.forEach(function(t, i) {
+        t.classList.toggle('gallery__thumb--active', i === currentIndex);
+    });
+
     var track = document.getElementById('galleryThumbs');
-    var thumbs = track.children;
-    if (thumbs.length === 0) return;
+    var activeThumb = thumbs[currentIndex];
+    if (activeThumb && track) {
+        var offset = activeThumb.offsetLeft - track.offsetWidth / 2 + activeThumb.offsetWidth / 2;
+        track.scrollTo({ left: offset, behavior: 'smooth' });
+    }
+}
 
-    var thumbWidth = thumbs[0].offsetWidth + 8;
-    var viewport = track.parentElement;
-    var viewportWidth = viewport.offsetWidth;
-    var maxScroll = track.scrollWidth - viewportWidth;
+function galleryPrev() {
+    galleryGo(currentIndex - 1);
+}
 
-    var targetScroll = currentSlide * thumbWidth;
-    targetScroll = Math.min(targetScroll, maxScroll);
-    targetScroll = Math.max(targetScroll, 0);
+function galleryNext() {
+    galleryGo(currentIndex + 1);
+}
 
-    track.style.transform = 'translateX(-' + targetScroll + 'px)';
+function thumbsScroll(direction) {
+    var track = document.getElementById('galleryThumbs');
+    track.scrollBy({ left: direction * 300, behavior: 'smooth' });
 }

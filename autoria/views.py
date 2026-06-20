@@ -26,11 +26,24 @@ def car_detail(request, car_id):
     favorite_ids = []
     if request.user.is_authenticated:
         favorite_ids = list(Favorite.objects.filter(user=request.user).values_list('car_id', flat=True))
+
+    # Збираємо всі фото
+    gallery_images = []
+    if car:
+        if car.image and hasattr(car.image, 'url'):
+            gallery_images.append(car.image.url)
+        else:
+            gallery_images.append('/static/images/cars/default.jpg')
+        for img in car.images.all().order_by('order'):
+            if img.image and hasattr(img.image, 'url'):
+                gallery_images.append(img.image.url)
+
     return render(request, 'car_detail/car_detail.html', {
         'car': car,
         'similar_cars': similar_cars,
         'is_logged_in': request.user.is_authenticated,
         'favorite_ids': favorite_ids,
+        'gallery_images': gallery_images,
     })
 
 
@@ -173,6 +186,7 @@ def add_listing(request):
             price=price_usd,
             price_uah=price_uah,
             mileage=mileage_val,
+            vin=request.POST.get('vin', ''),
             engine=((request.POST.get('engine_volume', '') + ' ' + request.POST.get('fuel_type', '')).strip()) or '',
             engine_volume=request.POST.get('engine_volume', ''),
             hp=int(request.POST.get('hp', 0) or 0),

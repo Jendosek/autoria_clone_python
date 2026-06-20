@@ -123,3 +123,15 @@
 .gallery__thumb-arrow--right {
     right: 6px;
 }
+
+.gallery__thumbs-track {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+}
+
+.gallery__thumbs-track::-webkit-scrollbar {
+    display: none;
+}

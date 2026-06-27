@@ -4,12 +4,12 @@
         <section class="search-section">
             <h1 class="search-section__title">Знаємо, бо перевірили</h1>
             <div class="tabs">
-                <button class="tab tab--active" onclick="switchTab(this)">Всі</button>
-                <button class="tab" onclick="switchTab(this)">Вживані</button>
-                <button class="tab" onclick="switchTab(this)">Нові</button>
-                <button class="tab" onclick="switchTab(this)">Під пригон</button>
+                <button class="tab tab--active" onclick="switchFilterTab(this)">Всі</button>
+                <button class="tab" onclick="switchFilterTab(this)">Вживані</button>
+                <button class="tab" onclick="switchFilterTab(this)">Нові</button>
+                <button class="tab" onclick="switchFilterTab(this)">Під пригон</button>
             </div>
-            <form class="filters" method="GET" action="{% url 'index' %}">
+            <form class="filters" method="GET" action="{% url 'index' %}" id="searchForm">
                 <div class="filters__grid">
                     <div class="dropdown" data-dropdown="type">
                         <button class="dropdown__trigger has-label" type="button">
@@ -19,16 +19,15 @@
                         </button>
                         <div class="dropdown__panel">
                             <div class="dropdown__list">
-                                <label class="dropdown__option"><input type="radio" name="type" value="" class="dropdown__radio"><span>Всі типи транспорту</span></label>
+                                <label class="dropdown__option"><input type="radio" name="type" value="" class="dropdown__radio"><span>Всі типи</span></label>
                                 <label class="dropdown__option"><input type="radio" name="type" value="passenger" class="dropdown__radio" checked><span>Легкові</span></label>
                                 <label class="dropdown__option"><input type="radio" name="type" value="moto" class="dropdown__radio"><span>Мото</span></label>
                                 <label class="dropdown__option"><input type="radio" name="type" value="truck" class="dropdown__radio"><span>Вантажівки</span></label>
-                                <label class="dropdown__option"><input type="radio" name="type" value="trailer" class="dropdown__radio"><span>Причепи</span></label>
-                                <label class="dropdown__option"><input type="radio" name="type" value="special" class="dropdown__radio"><span>Спецтехніка</span></label>
-                                <label class="dropdown__option"><input type="radio" name="type" value="agro" class="dropdown__radio"><span>Сільгосптехніка</span></label>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Марка/Модель з пошуком -->
                     <div class="dropdown" data-dropdown="brand">
                         <button class="dropdown__trigger" type="button">
                             <span class="dropdown__label">Марка, Модель</span>
@@ -37,30 +36,29 @@
                             <svg class="dropdown__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                         </button>
                         <div class="dropdown__panel">
+                            <!-- Крок 1: марки -->
                             <div class="brand-step brand-step--brands">
-                                <h4 class="dropdown__heading">ТОП марки</h4>
-                                <div class="dropdown__list">
-                                    <label class="dropdown__option"><input type="radio" name="brand_select" value="Toyota" class="dropdown__radio" onchange="selectBrand(this)"><img src="{% static 'images/index/filter_logos/toyota.svg' %}" alt="" class="dropdown__brand-logo" onerror="this.src='{% static 'images/index/filter_logos/default_logo.png' %}'"><span>Toyota</span></label>
-                                    <label class="dropdown__option"><input type="radio" name="brand_select" value="BMW" class="dropdown__radio" onchange="selectBrand(this)"><img src="{% static 'images/index/filter_logos/bmw.png' %}" alt="" class="dropdown__brand-logo" onerror="this.src='{% static 'images/index/filter_logos/default_logo.png' %}'"><span>BMW</span></label>
-                                    <label class="dropdown__option"><input type="radio" name="brand_select" value="Volkswagen" class="dropdown__radio" onchange="selectBrand(this)"><img src="{% static 'images/index/filter_logos/volkswagen.png' %}" alt="" class="dropdown__brand-logo" onerror="this.src='{% static 'images/index/filter_logos/default_logo.png' %}'"><span>Volkswagen</span></label>
-                                    <label class="dropdown__option"><input type="radio" name="brand_select" value="Chevrolet" class="dropdown__radio" onchange="selectBrand(this)"><img src="{% static 'images/index/filter_logos/chevrolet.svg' %}" alt="" class="dropdown__brand-logo" onerror="this.src='{% static 'images/index/filter_logos/default_logo.png' %}'"><span>Chevrolet</span></label>
-                                    <label class="dropdown__option"><input type="radio" name="brand_select" value="Hyundai" class="dropdown__radio" onchange="selectBrand(this)"><img src="{% static 'images/index/filter_logos/hyundai.png' %}" alt="" class="dropdown__brand-logo" onerror="this.src='{% static 'images/index/filter_logos/default_logo.png' %}'"><span>Hyundai</span></label>
-                                </div>
+                                <input type="text" class="brand-search__input" placeholder="Пошук марки..." oninput="filterBrands(this)">
+                                <div class="dropdown__list dropdown__list--brands dropdown__list--scroll"></div>
                             </div>
+                            <!-- Крок 2: моделі -->
                             <div class="brand-step brand-step--models" style="display:none">
                                 <div class="brand-search">
                                     <div class="brand-search__field">
-                                        <span class="brand-search__label">Пошук марки</span>
+                                        <span class="brand-search__label">Марка:</span>
                                         <span class="brand-search__value"></span>
                                         <span class="brand-search__clear" onclick="resetBrand()">&times;</span>
                                     </div>
                                 </div>
-                                <h4 class="dropdown__heading">ТОП моделі</h4>
-                                <div class="dropdown__list dropdown__list--models"></div>
+                                <input type="text" class="brand-search__input" placeholder="Пошук моделі..." oninput="filterModels(this)">
+                                <div class="dropdown__list dropdown__list--models dropdown__list--scroll"></div>
                                 <button type="button" class="dropdown__apply" onclick="applyBrand()">Застосувати</button>
                             </div>
                         </div>
+                        <!-- Hidden inputs для форми -->
+                        <input type="hidden" name="brand" id="hiddenBrand">
                     </div>
+
                     <div class="dropdown" data-dropdown="year">
                         <button class="dropdown__trigger" type="button">
                             <span class="dropdown__label">Рік випуску</span>
@@ -82,6 +80,7 @@
                             <button type="button" class="dropdown__apply" onclick="applyYear()">Застосувати</button>
                         </div>
                     </div>
+
                     <div class="dropdown" data-dropdown="price">
                         <button class="dropdown__trigger" type="button">
                             <span class="dropdown__label">Вартість</span>
@@ -90,15 +89,10 @@
                             <svg class="dropdown__arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
                         </button>
                         <div class="dropdown__panel">
-                            <div class="price-inputs">
-                                <div class="price-inputs__field price-inputs__field--labeled">
-                                    <span class="price-inputs__label">Від</span>
-                                    <input type="number" id="priceFrom" class="price-inputs__input" placeholder="Від">
-                                </div>
-                                <div class="price-inputs__field price-inputs__field--labeled">
-                                    <span class="price-inputs__label">До</span>
-                                    <input type="number" id="priceTo" class="price-inputs__input" placeholder="До">
-                                </div>
+                            <div class="price-range">
+                                <input type="number" class="price-input" id="priceFrom" name="price_from" placeholder="Від">
+                                <span class="price-sep">—</span>
+                                <input type="number" class="price-input" id="priceTo" name="price_to" placeholder="До">
                             </div>
                             <div class="currency-tabs">
                                 <button type="button" class="currency-tab currency-tab--active" onclick="switchCurrency(this,'$')">$</button>
@@ -108,6 +102,7 @@
                             <button type="button" class="dropdown__apply" onclick="applyPrice()">Застосувати</button>
                         </div>
                     </div>
+
                     <div class="dropdown" data-dropdown="region">
                         <button class="dropdown__trigger" type="button">
                             <span class="dropdown__label">Регіон</span>
@@ -117,25 +112,22 @@
                         </button>
                         <div class="dropdown__panel">
                             <div class="dropdown__list dropdown__list--scroll">
-                                <h4 class="dropdown__heading">Північ</h4>
                                 <label class="dropdown__option"><input type="checkbox" name="region" value="kyiv" class="dropdown__checkbox"><span>Київська обл.</span></label>
+                                <label class="dropdown__option"><input type="checkbox" name="region" value="vinnytsia" class="dropdown__checkbox"><span>Вінницька обл.</span></label>
+                                <label class="dropdown__option"><input type="checkbox" name="region" value="lviv" class="dropdown__checkbox"><span>Львівська обл.</span></label>
+                                <label class="dropdown__option"><input type="checkbox" name="region" value="odesa" class="dropdown__checkbox"><span>Одеська обл.</span></label>
+                                <label class="dropdown__option"><input type="checkbox" name="region" value="kherson" class="dropdown__checkbox"><span>Херсонська обл.</span></label>
+                                <label class="dropdown__option"><input type="checkbox" name="region" value="poltava" class="dropdown__checkbox"><span>Полтавська обл.</span></label>
+                                <label class="dropdown__option"><input type="checkbox" name="region" value="cherkasy" class="dropdown__checkbox"><span>Черкаська обл.</span></label>
                                 <label class="dropdown__option"><input type="checkbox" name="region" value="zhytomyr" class="dropdown__checkbox"><span>Житомирська обл.</span></label>
                                 <label class="dropdown__option"><input type="checkbox" name="region" value="sumy" class="dropdown__checkbox"><span>Сумська обл.</span></label>
                                 <label class="dropdown__option"><input type="checkbox" name="region" value="chernihiv" class="dropdown__checkbox"><span>Чернігівська обл.</span></label>
-                                <h4 class="dropdown__heading">Центр</h4>
-                                <label class="dropdown__option"><input type="checkbox" name="region" value="vinnytsia" class="dropdown__checkbox"><span>Вінницька обл.</span></label>
-                                <label class="dropdown__option"><input type="checkbox" name="region" value="poltava" class="dropdown__checkbox"><span>Полтавська обл.</span></label>
-                                <label class="dropdown__option"><input type="checkbox" name="region" value="cherkasy" class="dropdown__checkbox"><span>Черкаська обл.</span></label>
-                                <h4 class="dropdown__heading">Захід</h4>
-                                <label class="dropdown__option"><input type="checkbox" name="region" value="lviv" class="dropdown__checkbox"><span>Львівська обл.</span></label>
                                 <label class="dropdown__option"><input type="checkbox" name="region" value="ivano" class="dropdown__checkbox"><span>Івано-Франківська обл.</span></label>
-                                <h4 class="dropdown__heading">Південь</h4>
-                                <label class="dropdown__option"><input type="checkbox" name="region" value="odesa" class="dropdown__checkbox"><span>Одеська обл.</span></label>
-                                <label class="dropdown__option"><input type="checkbox" name="region" value="kherson" class="dropdown__checkbox"><span>Херсонська обл.</span></label>
                             </div>
                             <button type="button" class="dropdown__apply" onclick="applyCheckbox('region')">Застосувати</button>
                         </div>
                     </div>
+
                     <div class="dropdown" data-dropdown="fuel">
                         <button class="dropdown__trigger" type="button">
                             <span class="dropdown__label">Пальне</span>
@@ -150,11 +142,11 @@
                                 <label class="dropdown__option"><input type="checkbox" name="fuel" value="gas" class="dropdown__checkbox"><span>Газ</span></label>
                                 <label class="dropdown__option"><input type="checkbox" name="fuel" value="electric" class="dropdown__checkbox"><span>Електро</span></label>
                                 <label class="dropdown__option"><input type="checkbox" name="fuel" value="hybrid" class="dropdown__checkbox"><span>Гібрид</span></label>
-                                <label class="dropdown__option"><input type="checkbox" name="fuel" value="gas_gasoline" class="dropdown__checkbox"><span>Газ пропан-бутан / Бензин</span></label>
                             </div>
                             <button type="button" class="dropdown__apply" onclick="applyCheckbox('fuel')">Застосувати</button>
                         </div>
                     </div>
+
                     <div class="dropdown" data-dropdown="transmission">
                         <button class="dropdown__trigger" type="button">
                             <span class="dropdown__label">Коробка передач</span>
@@ -164,12 +156,11 @@
                         </button>
                         <div class="dropdown__panel">
                             <div class="dropdown__list">
-                                <label class="dropdown__option"><input type="checkbox" name="transmission" value="manual" class="dropdown__checkbox"><span>Ручна / Механіка</span></label>
+                                <label class="dropdown__option"><input type="checkbox" name="transmission" value="manual" class="dropdown__checkbox"><span>Механіка</span></label>
                                 <label class="dropdown__option"><input type="checkbox" name="transmission" value="auto" class="dropdown__checkbox"><span>Автомат</span></label>
                                 <label class="dropdown__option"><input type="checkbox" name="transmission" value="tiptronic" class="dropdown__checkbox"><span>Типтронік</span></label>
                                 <label class="dropdown__option"><input type="checkbox" name="transmission" value="robot" class="dropdown__checkbox"><span>Робот</span></label>
                                 <label class="dropdown__option"><input type="checkbox" name="transmission" value="variator" class="dropdown__checkbox"><span>Варіатор</span></label>
-                                <label class="dropdown__option"><input type="checkbox" name="transmission" value="reductor" class="dropdown__checkbox"><span>Редуктор</span></label>
                             </div>
                             <button type="button" class="dropdown__apply" onclick="applyCheckbox('transmission')">Застосувати</button>
                         </div>
@@ -177,6 +168,7 @@
                 </div>
                 <div class="filters__actions">
                     <button type="submit" class="btn-search">Шукати</button>
+                    <button type="button" class="btn-clear" onclick="clearAllFilters()">Очистити фільтр</button>
                     <button type="button" class="btn-advanced">Розширений пошук</button>
                 </div>
             </form>

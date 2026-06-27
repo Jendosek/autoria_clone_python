@@ -34,6 +34,9 @@
 
                 <form method="POST" action="{% url 'login' %}">
                     {% csrf_token %}
+                    {% if request.GET.next_fav %}
+                        <input type="hidden" name="next_fav" value="{{ request.GET.next_fav }}">
+                    {% endif %}
                     <input type="hidden" name="form_type" value="login">
 
                     {% if error %}
@@ -74,6 +77,9 @@
 
                 <form method="POST" action="{% url 'login' %}">
                     {% csrf_token %}
+                    {% if request.GET.next_fav %}
+                      <input type="hidden" name="next_fav" value="{{ request.GET.next_fav }}">
+                    {% endif %}
                     <input type="hidden" name="form_type" value="register">
 
                     {% if reg_error %}

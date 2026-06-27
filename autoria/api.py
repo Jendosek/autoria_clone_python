@@ -13,7 +13,9 @@ def api_delete_user(request, user_id):
             return Response({'error': 'Не можна видалити суперадміна'}, status=403)
         user.is_active = False
         user.save()
-        return Response({'status': 'banned', 'id': user_id})
+        Car.objects.filter(seller=user).update(is_active=False)
+        hidden_count = Car.objects.filter(seller=user).count()
+        return Response({'status': 'banned', 'id': user_id, 'hidden_cars': hidden_count})
     except User.DoesNotExist:
         return Response({'error': 'Користувач не знайдений'}, status=404)
 
@@ -25,7 +27,10 @@ def api_unban_user(request, user_id):
         user = User.objects.get(id=user_id)
         user.is_active = True
         user.save()
-        return Response({'status': 'unbanned', 'id': user_id})
+        # Повертаємо оголошення розбаненого юзера
+        Car.objects.filter(seller=user).update(is_active=True)
+        restored_count = Car.objects.filter(seller=user).count()
+        return Response({'status': 'unbanned', 'id': user_id, 'restored_cars': restored_count})
     except User.DoesNotExist:
         return Response({'error': 'Користувач не знайдений'}, status=404)
 

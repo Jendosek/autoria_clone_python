@@ -16,22 +16,19 @@
             Ви можете редагувати фото
         </p>
 
-        <!-- Превʼю завантажених фото -->
         <div class="photos-grid" id="photosGrid">
             <label class="photos-add" id="photosAdd">
-                <input type="file" accept="image/*" multiple hidden name="photos" onchange="handlePhotos(this.files)">
+                <input type="file" accept="image/*" multiple hidden onchange="handlePhotosFromInput(this)">
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b7bbf" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M2 16l4-4 4 4"/><path d="M14 14l3-3 5 5"/></svg>
                 <span>Додати<br>фото</span>
             </label>
         </div>
 
-        <!-- Підказка (зникає після додавання фото) -->
         <div class="photos-tip" id="photosTip">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b7bbf" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
             <a href="#">Як фотографувати автомобіль</a>
         </div>
 
-        <!-- Рекомендації (з'являються після додавання фото) -->
         <div class="photos-checklist" id="photosChecklist" style="display:none">
             <div class="photos-checklist__header">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3b7bbf" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 16l4-4 4 4"/></svg>

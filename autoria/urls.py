@@ -28,12 +28,15 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('force-login/', views.force_login, name='force_login'),
     path('admin-panel/', views.admin_panel, name='admin_panel'),
-    # API
+
     path('api/admin/users/<int:user_id>/delete/', api.api_delete_user, name='api_delete_user'),
     path('api/admin/users/<int:user_id>/unban/', api.api_unban_user, name='api_unban_user'),
     path('api/admin/cars/<int:car_id>/delete/', api.api_delete_car, name='api_delete_car'),
     path('api/admin/cars/<int:car_id>/toggle/', api.api_toggle_car, name='api_toggle_car'),
     path('cabinet/google/disconnect/', views.disconnect_google, name='disconnect_google'),
+
+    path('api/brands/', views.api_brands, name='api_brands'),
+    path('api/models/<str:brand>/', views.api_models, name='api_models'),
 
     path('cabinet/profile/save/', views.save_profile, name='save_profile'),
     path('cabinet/password/change/', views.change_password, name='change_password'),

@@ -10,13 +10,76 @@ from django.http import JsonResponse
 
 def index(request):
     cars = Car.objects.filter(is_active=True).select_related('seller')
+
+    # Фільтрація
+    brand = request.GET.get('brand', '').strip()
+    model = request.GET.getlist('model')
+    year_from = request.GET.get('year_from', '')
+    year_to = request.GET.get('year_to', '')
+    price_from = request.GET.get('price_from', '')
+    price_to = request.GET.get('price_to', '')
+    regions = request.GET.getlist('region')
+    fuels = request.GET.getlist('fuel')
+    transmissions = request.GET.getlist('transmission')
+
+    if brand:
+        cars = cars.filter(brand__iexact=brand)
+    if model:
+        cars = cars.filter(model__in=model)
+    if year_from:
+        try:
+            cars = cars.filter(year__gte=int(year_from))
+        except ValueError:
+            pass
+    if year_to:
+        try:
+            cars = cars.filter(year__lte=int(year_to))
+        except ValueError:
+            pass
+    if price_from:
+        try:
+            cars = cars.filter(price__gte=float(price_from))
+        except ValueError:
+            pass
+    if price_to:
+        try:
+            cars = cars.filter(price__lte=float(price_to))
+        except ValueError:
+            pass
+    if regions:
+        region_map = {
+            'kyiv': 'Київська', 'zhytomyr': 'Житомирська', 'sumy': 'Сумська',
+            'chernihiv': 'Чернігівська', 'vinnytsia': 'Вінницька', 'poltava': 'Полтавська',
+            'cherkasy': 'Черкаська', 'lviv': 'Львівська', 'ivano': 'Івано-Франківська',
+            'odesa': 'Одеська', 'kherson': 'Херсонська',
+        }
+        region_names = [region_map.get(r, r) for r in regions]
+        cars = cars.filter(region__in=region_names)
+    if fuels:
+        fuel_q = Q()
+        for f in fuels:
+            fuel_q |= Q(engine__icontains=f.replace('gasoline', 'Бензин').replace('diesel', 'Дизель').replace('gas', 'Газ').replace('electric', 'Електро').replace('hybrid', 'Гібрид'))
+        cars = cars.filter(fuel_q)
+    if transmissions:
+        trans_map = {
+            'manual': 'Механіка', 'auto': 'Автомат', 'tiptronic': 'Типтронік',
+            'robot': 'Робот', 'variator': 'Варіатор',
+        }
+        trans_names = [trans_map.get(t, t) for t in transmissions]
+        cars = cars.filter(transmission__in=trans_names)
+
     favorite_ids = []
     if request.user.is_authenticated:
         favorite_ids = list(Favorite.objects.filter(user=request.user).values_list('car_id', flat=True))
+
+    has_filters = any([brand, model, year_from, year_to, price_from, price_to, regions, fuels, transmissions])
+
     return render(request, 'index/index.html', {
         'cars': cars,
         'is_logged_in': request.user.is_authenticated,
         'favorite_ids': favorite_ids,
+        'has_filters': has_filters,
+        'filter_brand': brand,
     })
 
 
@@ -62,11 +125,21 @@ def login_view(request):
             ).first()
 
             if user_obj:
+                if not user_obj.is_active:
+                    return render(request, 'login/login.html', {
+                        'error': 'Цей акаунт заблоковано. Зверніться до підтримки.'
+                    })
                 user = authenticate(request, username=user_obj.username, password=password)
                 if user:
-                    login(request, user)
-                    if user.is_staff:
-                        return redirect('admin_panel')
+                    login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+                    # Автоматичне додавання в обране
+                    next_fav = request.POST.get('next_fav') or request.GET.get('next_fav')
+                    if next_fav:
+                        try:
+                            car = Car.objects.get(id=int(next_fav))
+                            Favorite.objects.get_or_create(user=user, car=car)
+                        except (Car.DoesNotExist, ValueError):
+                            pass
                     return redirect('cabinet')
 
             return render(request, 'login/login.html', {
@@ -87,13 +160,21 @@ def login_view(request):
                     'show_register': True,
                 })
 
-            if User.objects.filter(email=email).exists():
+            banned_by_email = User.objects.filter(email=email, is_active=False).exists()
+            banned_by_phone = User.objects.filter(phone=phone, is_active=False).exists()
+            if banned_by_email or banned_by_phone:
+                return render(request, 'login/login.html', {
+                    'reg_error': 'Реєстрація неможлива. Ці дані належать заблокованому акаунту.',
+                    'show_register': True,
+                })
+
+            if User.objects.filter(email=email, is_active=True).exists():
                 return render(request, 'login/login.html', {
                     'reg_error': 'Користувач з таким email вже існує',
                     'show_register': True,
                 })
 
-            if User.objects.filter(phone=phone).exists():
+            if User.objects.filter(phone=phone, is_active=True).exists():
                 return render(request, 'login/login.html', {
                     'reg_error': 'Користувач з таким телефоном вже існує',
                     'show_register': True,
@@ -110,9 +191,20 @@ def login_view(request):
             )
 
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+
+            next_fav = request.POST.get('next_fav') or request.GET.get('next_fav')
+            if next_fav:
+                try:
+                    car = Car.objects.get(id=int(next_fav))
+                    Favorite.objects.get_or_create(user=user, car=car)
+                except (Car.DoesNotExist, ValueError):
+                    pass
+
             return redirect('cabinet')
 
-    return render(request, 'login/login.html')
+    return render(request, 'login/login.html', {
+        'request': request,
+    })
 
 
 def cabinet(request):
@@ -121,13 +213,21 @@ def cabinet(request):
     user_cars = Car.objects.filter(seller=request.user).select_related('seller')
     favorites = Favorite.objects.filter(user=request.user).select_related('car', 'car__seller')
     has_google = SocialAccount.objects.filter(user=request.user, provider='google').exists()
-    return render(request, 'cabinet/cabinet.html', {
+
+    context = {
         'user': request.user,
         'cars': user_cars,
         'favorite_cars': [fav.car for fav in favorites],
         'has_google': has_google,
         'has_password': request.user.has_usable_password(),
-    })
+    }
+
+    if request.user.is_staff:
+        context['all_users'] = User.objects.all().order_by('-date_joined')
+        context['all_cars'] = Car.objects.all().select_related('seller').order_by('-created_at')
+        context['is_admin'] = True
+
+    return render(request, 'cabinet/cabinet.html', context)
 
 
 def add_listing(request):
@@ -142,11 +242,24 @@ def add_listing(request):
         region = request.POST.get('region', '').strip()
         city = request.POST.get('city', '').strip()
         price = request.POST.get('price', '')
+        photos = request.FILES.getlist('photos')
 
-        if not all([brand, year, price]):
+        errors = []
+        if not brand:
+            errors.append('Марка авто')
+        if not model:
+            errors.append('Модель авто')
+        if not year:
+            errors.append('Рік випуску')
+        if not price:
+            errors.append('Ціна')
+        if not photos:
+            errors.append('Фото (мінімум 1)')
+
+        if errors:
             return render(request, 'listing/listing.html', {
                 'user': request.user,
-                'errors': 'Заповніть обов\'язкові поля: марка, рік, ціна',
+                'errors': 'Заповніть обов\'язкові поля: ' + ', '.join(errors),
             })
 
         try:
@@ -155,6 +268,12 @@ def add_listing(request):
             return render(request, 'listing/listing.html', {
                 'user': request.user,
                 'errors': 'Невірний формат ціни',
+            })
+
+        if price_val <= 0:
+            return render(request, 'listing/listing.html', {
+                'user': request.user,
+                'errors': 'Ціна має бути більше 0',
             })
 
         currency = request.POST.get('currency', '$')
@@ -174,16 +293,38 @@ def add_listing(request):
         except ValueError:
             mileage_val = 0
 
+        try:
+            year_val = int(year)
+            if year_val < 1900 or year_val > 2026:
+                return render(request, 'listing/listing.html', {
+                    'user': request.user,
+                    'errors': 'Невірний рік випуску',
+                })
+        except ValueError:
+            return render(request, 'listing/listing.html', {
+                'user': request.user,
+                'errors': 'Невірний формат року',
+            })
+
+        # Перевірка що файли — це зображення
+        for photo in photos:
+            if not photo.content_type.startswith('image/'):
+                return render(request, 'listing/listing.html', {
+                    'user': request.user,
+                    'errors': 'Дозволено завантажувати тільки зображення',
+                })
+
         car = Car.objects.create(
             seller=request.user,
             brand=brand,
             model=model if model else 'Не вказано',
-            year=int(year),
+            year=year_val,
             modification=request.POST.get('modification', ''),
             price=price_usd,
             price_uah=price_uah,
             mileage=mileage_val,
             vin=request.POST.get('vin', ''),
+            plate=request.POST.get('plate', ''),
             engine=((request.POST.get('engine_volume', '') + ' ' + request.POST.get('fuel_type', '')).strip()) or '',
             engine_volume=request.POST.get('engine_volume', ''),
             hp=int(request.POST.get('hp', 0) or 0),
@@ -195,7 +336,6 @@ def add_listing(request):
             interior_material=request.POST.get('interior', ''),
             region=region,
             city=city,
-            plate=request.POST.get('plate', ''),
             description=request.POST.get('description', ''),
             headlights=request.POST.get('headlights', ''),
             conditioning=request.POST.get('ac', ''),
@@ -207,12 +347,10 @@ def add_listing(request):
             state=request.POST.get('technical_condition', ''),
         )
 
-        photos = request.FILES.getlist('photos')
-        if photos:
-            car.image = photos[0]
-            car.save()
-            for i, photo in enumerate(photos[1:], start=1):
-                CarImage.objects.create(car=car, image=photo, order=i)
+        car.image = photos[0]
+        car.save()
+        for i, photo in enumerate(photos[1:], start=1):
+            CarImage.objects.create(car=car, image=photo, order=i)
 
         return redirect('car_detail', car_id=car.id)
 
@@ -230,15 +368,7 @@ def force_login(request):
     return redirect('cabinet')
 
 def admin_panel(request):
-    if not request.user.is_authenticated or not request.user.is_staff:
-        return redirect('login')
-    all_users = User.objects.all().order_by('-date_joined')
-    all_cars = Car.objects.all().select_related('seller').order_by('-created_at')
-    return render(request, 'admin_panel/admin_panel.html', {
-        'user': request.user,
-        'all_users': all_users,
-        'all_cars': all_cars,
-    })
+    return redirect('cabinet')
 
 def save_profile(request):
     if not request.user.is_authenticated:
@@ -348,3 +478,31 @@ def toggle_favorite(request, car_id):
             Favorite.objects.create(user=request.user, car=car)
             return JsonResponse({'status': 'added'})
     return JsonResponse({'error': 'method_not_allowed'}, status=405)
+
+
+BRANDS_MODELS = {
+    'Audi': ['A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'Q3', 'Q5', 'Q7', 'Q8', 'e-tron', 'TT', 'RS6'],
+    'BMW': ['1 Series', '2 Series', '3 Series', '5 Series', '7 Series', 'X1', 'X3', 'X5', 'X6', 'X7', 'M3', 'M5', 'iX'],
+    'Chevrolet': ['Aveo', 'Bolt', 'Camaro', 'Cruze', 'Lacetti', 'Malibu', 'Spark', 'Tracker'],
+    'Ford': ['Fiesta', 'Focus', 'Fusion', 'Kuga', 'Mondeo', 'Mustang', 'Puma', 'Ranger'],
+    'Honda': ['Accord', 'Civic', 'CR-V', 'HR-V', 'Jazz', 'Pilot'],
+    'Hyundai': ['Accent', 'Creta', 'Elantra', 'i30', 'Ioniq', 'Kona', 'Santa Fe', 'Sonata', 'Tucson'],
+    'Kia': ['Ceed', 'Cerato', 'EV6', 'Niro', 'Optima', 'Rio', 'Seltos', 'Sorento', 'Sportage', 'Stinger'],
+    'Mazda': ['2', '3', '6', 'CX-3', 'CX-5', 'CX-9', 'MX-5'],
+    'Mercedes-Benz': ['A-Class', 'C-Class', 'E-Class', 'S-Class', 'GLA', 'GLC', 'GLE', 'GLS', 'EQS', 'V-Class'],
+    'Mitsubishi': ['ASX', 'Eclipse Cross', 'L200', 'Lancer', 'Outlander', 'Pajero'],
+    'Nissan': ['Juke', 'Leaf', 'Micra', 'Note', 'Qashqai', 'Rogue', 'X-Trail'],
+    'Opel': ['Astra', 'Corsa', 'Crossland', 'Grandland', 'Insignia', 'Mokka', 'Zafira'],
+    'Peugeot': ['2008', '208', '3008', '308', '5008', '508'],
+    'Renault': ['Arkana', 'Captur', 'Clio', 'Duster', 'Kadjar', 'Koleos', 'Logan', 'Megane', 'Sandero', 'Scenic'],
+    'Skoda': ['Citigo', 'Enyaq', 'Fabia', 'Kamiq', 'Karoq', 'Kodiaq', 'Octavia', 'Rapid', 'Superb'],
+    'Toyota': ['Auris', 'Avensis', 'C-HR', 'Camry', 'Corolla', 'Highlander', 'Land Cruiser', 'Prius', 'RAV4', 'Supra', 'Yaris'],
+    'Volkswagen': ['Arteon', 'Caddy', 'Golf', 'ID.3', 'ID.4', 'Jetta', 'Passat', 'Polo', 'T-Roc', 'Tiguan', 'Touareg'],
+}
+
+def api_brands(request):
+    return JsonResponse({'brands': sorted(BRANDS_MODELS.keys())})
+
+def api_models(request, brand):
+    models = BRANDS_MODELS.get(brand, [])
+    return JsonResponse({'models': models, 'brand': brand})

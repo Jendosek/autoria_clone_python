@@ -30,32 +30,17 @@
 
             <div class="info-row" data-required>
                 <span class="info-label">Марка авто <span class="info-req">*</span></span>
-                <select class="info-select" name="brand">
+                <select class="info-select" name="brand" id="listingBrand" onchange="onBrandChange(this)">
                     <option value="">Оберіть</option>
-                    <option>Toyota</option>
-                    <option>BMW</option>
-                    <option>Volkswagen</option>
-                    <option>Mercedes-Benz</option>
-                    <option>Audi</option>
-                    <option>Ford</option>
-                    <option>Hyundai</option>
-                    <option>Kia</option>
-                    <option>Nissan</option>
-                    <option>Renault</option>
-                    <option>Skoda</option>
-                    <option>Opel</option>
-                    <option>Mazda</option>
-                    <option>Honda</option>
-                    <option>Chevrolet</option>
-                    <option>Peugeot</option>
-                    <option>Mitsubishi</option>
                 </select>
                 <span class="info-error">Поле "Марка авто" обов'язкове для заповнення</span>
             </div>
 
             <div class="info-row">
                 <span class="info-label">Модель авто</span>
-                <input type="text" class="info-input" name="model" placeholder="Наприклад: M5, Camry, Golf">
+                <select class="info-select" name="model" id="listingModel" disabled>
+                    <option value="">Спочатку оберіть марку</option>
+                </select>
             </div>
 
             <div class="info-row" data-required>

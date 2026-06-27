@@ -63,7 +63,7 @@ function toggleFav(btn, carId) {
     })
     .then(function(r) {
         if (r.status === 401) {
-            window.location.href = '/login/';
+            window.location.href = '/login/?next_fav=' + carId;
             return;
         }
         return r.json();

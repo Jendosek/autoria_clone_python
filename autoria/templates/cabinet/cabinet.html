@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Особистий кабінет — AutoRia{% endblock %}
+{% block title %}{% if is_admin %}Панель адміністратора{% else %}Особистий кабінет{% endif %} — AutoRia{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/cabinet/cabinet.css' %}">
@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="{% static 'css/cabinet/profile.css' %}">
     <link rel="stylesheet" href="{% static 'css/cabinet/settings.css' %}">
     <link rel="stylesheet" href="{% static 'css/login/apps.css' %}">
+    {% if is_admin %}
+    <link rel="stylesheet" href="{% static 'css/admin_panel/admin_panel.css' %}">
+    {% endif %}
 {% endblock %}
 
 {% block header %}
@@ -21,7 +24,7 @@
 {% block content %}
 <div class="cabinet-page">
     <div class="container-narrow">
-        <h1 class="cabinet-title">Особистий кабінет</h1>
+        <h1 class="cabinet-title">{% if is_admin %}Панель адміністратора{% else %}Особистий кабінет{% endif %}</h1>
         <div class="cabinet-layout">
             {% include 'cabinet/_sidebar.html' %}
             <div class="cabinet-content">
@@ -30,6 +33,10 @@
                 {% include 'cabinet/_favorites.html' %}
                 {% include 'cabinet/_profile.html' %}
                 {% include 'cabinet/_settings.html' %}
+                {% if is_admin %}
+                {% include 'admin_panel/_users.html' %}
+                {% include 'admin_panel/_listings.html' %}
+                {% endif %}
             </div>
         </div>
     </div>
@@ -46,4 +53,7 @@
     <script src="{% static 'js/cabinet/dashboard.js' %}"></script>
     <script src="{% static 'js/cabinet/listings.js' %}"></script>
     <script src="{% static 'js/cabinet/settings.js' %}"></script>
+    {% if is_admin %}
+    <script src="{% static 'js/admin_panel/admin_panel.js' %}"></script>
+    {% endif %}
 {% endblock %}

@@ -3,6 +3,67 @@ function toggleSection(name) {
     section.classList.toggle('is-collapsed');
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    var dropZone = document.querySelector('[data-section="photos"] .listing-section__body');
+    if (!dropZone) return;
+
+    ['dragenter', 'dragover'].forEach(function(evt) {
+        dropZone.addEventListener(evt, function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.add('drag-over');
+        });
+    });
+
+    ['dragleave', 'drop'].forEach(function(evt) {
+        dropZone.addEventListener(evt, function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.remove('drag-over');
+        });
+    });
+
+    dropZone.addEventListener('drop', function(e) {
+        var files = e.dataTransfer.files;
+        if (files.length > 0) {
+            addPhotosToForm(files);
+            handlePhotos(files);
+        }
+    });
+});
+
+var collectedFiles = new DataTransfer();
+
+function addPhotosToForm(files) {
+    for (var i = 0; i < files.length; i++) {
+        if (files[i].type.startsWith('image/')) {
+            collectedFiles.items.add(files[i]);
+        }
+    }
+    updateHiddenInput();
+}
+
+function updateHiddenInput() {
+    var input = document.getElementById('photosInput');
+    if (!input) {
+        input = document.createElement('input');
+        input.type = 'file';
+        input.name = 'photos';
+        input.id = 'photosInput';
+        input.multiple = true;
+        input.style.display = 'none';
+        var form = document.getElementById('listingForm');
+        if (form) form.appendChild(input);
+    }
+    input.files = collectedFiles.files;
+}
+
+function handlePhotosFromInput(inputEl) {
+    addPhotosToForm(inputEl.files);
+    handlePhotos(inputEl.files);
+    inputEl.value = '';
+}
+
 function handlePhotos(files) {
     var grid = document.getElementById('photosGrid');
     var addBtn = document.getElementById('photosAdd');
@@ -14,13 +75,14 @@ function handlePhotos(files) {
         if (!file.type.startsWith('image/')) continue;
 
         var reader = new FileReader();
-        reader.onload = (function(isFirst) {
+        reader.onload = (function(fileIndex) {
             return function(e) {
                 var div = document.createElement('div');
                 div.className = 'photos-preview';
+                div.setAttribute('data-file-index', collectedFiles.files.length - files.length + fileIndex);
 
                 var existing = grid.querySelectorAll('.photos-preview');
-                var firstPhoto = existing.length === 0 && isFirst;
+                var firstPhoto = existing.length === 0;
 
                 div.innerHTML =
                     '<img src="' + e.target.result + '" alt="">' +
@@ -30,7 +92,7 @@ function handlePhotos(files) {
                 grid.insertBefore(div, addBtn);
                 updatePhotoState();
             };
-        })(i === 0);
+        })(i);
 
         reader.readAsDataURL(file);
     }
@@ -40,7 +102,21 @@ function removePhoto(btn) {
     var preview = btn.closest('.photos-preview');
     var grid = document.getElementById('photosGrid');
     var wasFirst = preview.querySelector('.photos-preview__badge');
+
+    var index = parseInt(preview.getAttribute('data-file-index'));
+    var newDt = new DataTransfer();
+    for (var i = 0; i < collectedFiles.files.length; i++) {
+        if (i !== index) newDt.items.add(collectedFiles.files[i]);
+    }
+    collectedFiles = newDt;
+    updateHiddenInput();
+
     preview.remove();
+
+    // Перерахувати індекси
+    grid.querySelectorAll('.photos-preview').forEach(function(p, idx) {
+        p.setAttribute('data-file-index', idx);
+    });
 
     if (wasFirst) {
         var first = grid.querySelector('.photos-preview');

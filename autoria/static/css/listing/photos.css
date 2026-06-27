@@ -151,3 +151,9 @@
 .photos-youtube:hover {
     text-decoration: none;
 }
+
+.drag-over {
+    background: #e3f2fd !important;
+    border: 2px dashed #3b7bbf !important;
+    border-radius: 8px;
+}
